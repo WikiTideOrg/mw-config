@@ -2170,11 +2170,11 @@ $wgConf->settings += [
 			/** jobrunner11 */
 			'10.0.0.104' => true,
 			/** mw11 */
-			'10.0.0.100' => true,
+			'10.0.0.101' => true,
 			/** mw12 */
-			'10.0.0.106' => true,
+			'10.0.0.102' => true,
 			/** test11 */
-			'10.0.0.108' => true,
+			'10.0.0.107' => true,
 		],
 	],
 
@@ -2211,9 +2211,9 @@ $wgConf->settings += [
 	],
 	'wgSMTP' => [
 		'default' => [
-			'host' => 'mail.wikiforge.net',
+			'host' => 'mail.wikitide.net',
 			'port' => 587,
-			'IDHost' => 'wikiforge.net',
+			'IDHost' => 'wikitide.net',
 			'auth' => true,
 			'username' => 'noreply',
 			'password' => $wmgSMTPPassword,

@@ -2,11 +2,6 @@
 
 header( 'X-Wiki-Visibility: ' . ( $cwPrivate ? 'Private' : 'Public' ) );
 
-if ( $wi->wikifarm !== 'wikitide' ) {
-	$wgSpecialPages['RequestWiki'] = WikiForge\WikiForgeMagic\Specials\SpecialRequestPremiumWiki::class;
-	$wgSpecialPages['RequestWikiQueue'] = WikiForge\WikiForgeMagic\Specials\SpecialRequestPremiumWikiQueue::class;
-}
-
 // Extensions
 if ( $wi->wikifarm === 'wikitide' || $wi->wikifarm === 'nexttide' ) {
 	wfLoadExtensions( [
@@ -21,37 +16,6 @@ if ( $wi->wikifarm === 'wikitide' || $wi->wikifarm === 'nexttide' ) {
 	$wgOATHAuthDatabase = $wi::GLOBAL_DATABASE[$wi->wikifarm];
 }
 
-if ( $wi->wikifarm === 'wikiforge' && ( $wgWikiForgeEnableCheckUser ?? false ) ) {
-	wfLoadExtensions( [
-		'CheckUser',
-		'IPInfo',
-	] );
-
-	$wgManageWikiPermissionsAdditionalRights['checkuser'] = [
-		'abusefilter-privatedetails' => true,
-		'abusefilter-privatedetails-log' => true,
-		'checkuser' => true,
-		'checkuser-log' => true,
-		'checkuser-temporary-account' => true,
-		'checkuser-temporary-account-log' => true,
-	];
-
-	if ( $wi->isExtensionActive( 'Moderation' ) ) {
-		$wgManageWikiPermissionsAdditionalRights['checkuser'] += [ 'moderation-checkuser' => true ];
-	}
-
-	if ( $wi->isExtensionActive( 'SocialProfile' ) ) {
-		$wgManageWikiPermissionsAdditionalRights['checkuser'] += [ 'editothersprofiles-private' => true ];
-	}
-
-	if ( $wi->isExtensionActive( 'SecurePoll' ) ) {
-		$wgManageWikiPermissionsAdditionalRights['checkuser'] += [ 'securepoll-view-voter-pii' => true ];
-	}
-
-	$wgManageWikiPermissionsAdditionalAddGroupsSelf['bureaucrat'][] = 'checkuser';
-	$wgManageWikiPermissionsAdditionalRemoveGroupsSelf['bureaucrat'][] = 'checkuser';
-}
-
 if ( $wi->isExtensionActive( 'chameleon' ) ) {
 	wfLoadExtension( 'Bootstrap' );
 }
@@ -62,7 +26,7 @@ if ( $wi->isExtensionActive( 'CirrusSearch' ) ) {
 	$wgCirrusSearchClusters = [
 		'default' => [
 			[
-				'host' => 'os11.wikiforge.net',
+				'host' => 'os1.wikitide.net',
 				'port' => 9200,
 				'transport' => 'Elastica\Transport\Https',
 			],
@@ -143,7 +107,7 @@ if ( $wi->version >= 1.40 || $wi->isAnyOfExtensionsActive( 'Flow', 'VisualEditor
 		'paths' => [],
 		'modules' => [
 			'parsoid' => [
-				'url' => 'https://mw-lb.wikiforge.net' . $wgRestPath,
+				'url' => 'https://mw-lb.wikitide.net' . $wgRestPath,
 				'domain' => $wi->server,
 				'prefix' => $wi->dbname,
 				'forwardCookies' => (bool)$cwPrivate,
@@ -159,7 +123,7 @@ if ( $wi->version >= 1.40 || $wi->isAnyOfExtensionsActive( 'Flow', 'VisualEditor
 	];
 
 	if ( $wi->isExtensionActive( 'Flow' ) ) {
-		$wgFlowParsoidURL = 'https://mw-lb.wikiforge.net' . $wgRestPath;
+		$wgFlowParsoidURL = 'https://mw-lb.wikitide.net' . $wgRestPath;
 		$wgFlowParsoidPrefix = $wi->dbname;
 		$wgFlowParsoidTimeout = 30;
 		$wgFlowParsoidForwardCookies = (bool)$cwPrivate;
@@ -291,7 +255,7 @@ if ( !$cwPrivate ) {
 	if ( $wi->wikifarm === 'wikitide' || $wi->wikifarm === 'nexttide' ) {
 		$wgRCFeeds['irc'] = [
 			'formatter' => WikiTideIRCRCFeedFormatter::class,
-			'uri' => 'udp://jobrunner11.wikiforge.net:5070',
+			'uri' => 'udp://jobrunner1.wikitide.net:5070',
 			'add_interwiki_prefix' => false,
 			'omit_bots' => true,
 		];
@@ -482,7 +446,7 @@ $wgLocalFileRepo = [
 	'scriptDirUrl' => $wgScriptPath,
 	'hashLevels' => 2,
 	'thumbScriptUrl' => '/w/thumb.php',
-	'thumbProxyUrl' => 'https://thumb-lb.wikiforge.net/',
+	'thumbProxyUrl' => 'https://thumb-lb.wikitide.net/',
 	'transformVia404' => true,
 	'disableLocalTransform' => true,
 	'useJsonMetadata'   => true,
@@ -518,41 +482,6 @@ if ( $wmgEnableSharedUploads && $wmgSharedUploadDBname && in_array( $wmgSharedUp
 		'fetchDescription' => true,
 		'descriptionCacheExpiry' => 86400 * 7,
 		'wiki' => $wmgSharedUploadDBname,
-		'initialCapital' => true,
-		'zones' => [
-			'public' => [
-				'container' => 'local-public',
-			],
-			'thumb' => [
-				'container' => 'local-thumb',
-			],
-			'temp' => [
-				'container' => 'local-temp',
-			],
-			'deleted' => [
-				'container' => 'local-deleted',
-			],
-		],
-		'abbrvThreshold' => 160
-	];
-}
-
-// WikiForge Commons
-if ( $wi->wikifarm === 'wikiforge' && ( $wgDBname !== 'commonswiki' && $wgWikiForgeCommons ?? false ) ) {
-	$wgForeignFileRepos[] = [
-		'class' => ForeignDBViaLBRepo::class,
-		'name' => 'wikiforgecommons',
-		'backend' => 'AmazonS3',
-		'url' => 'https://static.wikiforge.net/commonswiki',
-		'hashLevels' => 2,
-		'thumbScriptUrl' => false,
-		'transformVia404' => true,
-		'hasSharedCache' => true,
-		'descBaseUrl' => 'https://commons.wikiforge.net/wiki/File:',
-		'scriptDirUrl' => 'https://commons.wikiforge.net/w',
-		'fetchDescription' => true,
-		'descriptionCacheExpiry' => 86400 * 7,
-		'wiki' => 'commonswiki',
 		'initialCapital' => true,
 		'zones' => [
 			'public' => [

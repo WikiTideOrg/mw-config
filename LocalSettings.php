@@ -865,7 +865,7 @@ $wgConf->settings += [
 		'default' => true,
 	],
 	'wgCreateWikiNotificationEmail' => [
-		'default' => 'sre@wikiforge.net',
+		'default' => 'sre@wikitide.net',
 	],
 	'wgCreateWikiPurposes' => [
 		'wikitide' => [
@@ -989,7 +989,6 @@ $wgConf->settings += [
 		'default' => true,
 	],
 	'wgCreateWikiSubdomain' => [
-		'wikiforge' => 'wikiforge.net',
 		'wikitide' => 'wikitide.org',
 		'nexttide' => 'nexttide.org',
 	],
@@ -1046,7 +1045,7 @@ $wgConf->settings += [
 
 	// CookieWarning
 	'wgCookieWarningMoreUrl' => [
-		'default' => 'https://meta.wikiforge.net/wiki/Special:MyLanguage/Privacy_Policy#4._Cookies',
+		'default' => 'https://meta.wikitide.org/wiki/Special:MyLanguage/Privacy_Policy#4._Cookies',
 	],
 	'wgCookieWarningEnabled' => [
 		'default' => true,
@@ -1753,7 +1752,7 @@ $wgConf->settings += [
 		'default' => [],
 	],
 	'wgIncidentReportingTaskUrl' => [
-		'default' => 'https://support.wikiforge.net/',
+		'default' => 'https://issue-tracker.wikitide.org/',
 	],
 
 	// Interwiki
@@ -1948,10 +1947,10 @@ $wgConf->settings += [
 	],
 	'wgLDAPServerNames' => [
 		'accountsinternalwiki' => [
-			'wikiforge' => 'ldap.wikiforge.net',
+			'wikiforge' => 'ldap.wikitide.net',
 		],
 		'techwiki' => [
-			'wikiforge' => 'ldap.wikiforge.net',
+			'wikiforge' => 'ldap.wikitide.net',
 		],
 	],
 	'wgLDAPEncryptionType' => [

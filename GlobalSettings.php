@@ -3,18 +3,8 @@
 header( 'X-Wiki-Visibility: ' . ( $cwPrivate ? 'Private' : 'Public' ) );
 
 // Extensions
-if ( $wi->wikifarm === 'wikitide' || $wi->wikifarm === 'nexttide' ) {
-	wfLoadExtensions( [
-		'CentralAuth',
-		'GlobalCssJs',
-		'GlobalBlocking',
-		'GlobalNewFiles',
-		'GlobalPreferences',
-	] );
-
-	$wgMWOAuthSharedUserSource = 'CentralAuth';
-	$wgOATHAuthDatabase = $wi::GLOBAL_DATABASE[$wi->wikifarm];
-}
+$wgMWOAuthSharedUserSource = 'CentralAuth';
+$wgOATHAuthDatabase = $wi::GLOBAL_DATABASE[$wi->wikifarm];
 
 if ( $wi->isExtensionActive( 'chameleon' ) ) {
 	wfLoadExtension( 'Bootstrap' );

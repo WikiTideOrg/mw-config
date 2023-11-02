@@ -2,8 +2,7 @@
 
 // Per-wiki settings that are incompatible with LocalSettings.php
 switch ( $wi->dbname ) {
-	case 'accountsinternalwiki':
-	case 'techwiki':
+	case 'accountsinternalwikitide':
 		wfLoadExtension( 'LdapAuthentication' );
 
 		$wgAuthManagerAutoConfig['primaryauth'] += [
@@ -18,23 +17,6 @@ switch ( $wi->dbname ) {
 			],
 		];
 
-		break;
-	case 'betatestwiki':
-		$wgDplSettings['functionalRichness'] = 4;
-		break;
-	case 'hubwiki':
-		wfLoadExtensions( [
-			'FileStorageMonitor',
-			'GlobalWatchlist',
-			'ImportDump',
-			'IncidentReporting',
-			'SecurePoll',
-		] );
-
-		$wgFileStorageMonitorAWSBucketName = $wgAWSBucketName;
-		$wgFileStorageMonitorAWSRegion = $wgAWSRegion;
-		$wgFileStorageMonitorAWSAccessKey = $wmgAWSAccessKey;
-		$wgFileStorageMonitorAWSSecretKey = $wmgAWSAccessSecretKey;
 		break;
 	case 'metawikitide':
 		wfLoadExtensions( [

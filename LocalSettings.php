@@ -174,14 +174,7 @@ $wgConf->settings += [
 	],
 	// https://www.mediawiki.org/wiki/Special:MyLanguage/Extension:SpamBlacklist#Block_list_syntax
 	'wgBlacklistSettings' => [
-		'wikiforge' => [
-			'spam' => [
-				'files' => [
-					'https://meta.wikiforge.net/wiki/Spam_blacklist?action=raw&sb_ver=1',
-				],
-			],
-		],
-		'wikitide' => [
+		'default' => [
 			'spam' => [
 				'files' => [
 					'https://meta.wikitide.org/wiki/Spam_blacklist?action=raw&sb_ver=1',
@@ -1045,7 +1038,7 @@ $wgConf->settings += [
 
 	// CookieWarning
 	'wgCookieWarningMoreUrl' => [
-		'default' => 'https://meta.wikitide.org/wiki/Special:MyLanguage/Privacy_Policy#4._Cookies',
+		'default' => 'https://meta.wikitide.org/wiki/Special:MyLanguage/Privacy_Policy',
 	],
 	'wgCookieWarningEnabled' => [
 		'default' => true,
@@ -1289,7 +1282,7 @@ $wgConf->settings += [
 
 	// ElectronPdfService
 	'wgElectronPdfServiceRESTbaseURL' => [
-		'ext-ElectronPdfService' => "https://restbase.wikiforge.net/{$wi->hostname}/v1/page/pdf/",
+		'ext-ElectronPdfService' => "https://restbase.wikitide.net/{$wi->hostname}/v1/page/pdf/",
 	],
 
 	// EmbedVideo
@@ -1781,29 +1774,12 @@ $wgConf->settings += [
 				'urlInt' => 'https://$2.fandom.com/$3/wiki/$1',
 				'baseTransOnly' => true,
 			],
-			'wikiforge' => [
+			'miraheze' => [
 				/** Miraheze */
 				'interwiki' => 'miraheze',
 				'url' => 'https://$2.miraheze.org/wiki/$1',
 				'baseTransOnly' => true,
 			],
-		],
-		'+wikiforge' => [
-			'wikiforge' => [
-				/** WikiForge */
-				'interwiki' => 'wf',
-				'url' => 'https://$2.wikiforge.net/wiki/$1',
-				'dbname' => '$2wiki',
-				'baseTransOnly' => true,
-			],
-			'wikitide' => [
-				/** WikiTide */
-				'interwiki' => 'wt',
-				'url' => 'https://$2.wikitide.org/wiki/$1',
-				'baseTransOnly' => true,
-			],
-		],
-		'+wikitide' => [
 			'wikitide' => [
 				/** WikiTide */
 				'interwiki' => 'wt',
@@ -2228,8 +2204,7 @@ $wgConf->settings += [
 		'default' => false,
 	],
 	'wgEmergencyContact' => [
-		'wikiforge' => 'noreply@wikiforge.net',
-		'wikitide' => 'noreply@wikitide.org',
+		'default' => 'noreply@wikitide.org',
 		'nexttide' => 'noreply@wikitide.org',
 	],
 	'wgEnableSpecialMute' => [
@@ -2239,8 +2214,7 @@ $wgConf->settings += [
 		'default' => true,
 	],
 	'wgPasswordSender' => [
-		'wikiforge' => 'noreply@wikiforge.net',
-		'wikitide' => 'noreply@wikitide.org',
+		'defalt' => 'noreply@wikitide.org',
 		'nexttide' => 'noreply@wikitide.org',
 	],
 
@@ -2983,10 +2957,7 @@ $wgConf->settings += [
 		],
 	],
 	'wgCrossSiteAJAXdomains' => [
-		'wikiforge' => [
-			'meta.wikiforge.net',
-		],
-		'wikitide' => [
+		'default' => [
 			'meta.wikitide.org',
 		],
 		'nexttide' => [
@@ -3161,6 +3132,26 @@ $wgConf->settings += [
 		'default' => [
 			'mathml'
 		],
+	],
+
+	// MatomoAnalytics
+	'wgMatomoAnalyticsDatabase' => [
+		'default' => 'wtglobal',
+	],
+	'wgMatomoAnalyticsServerURL' => [
+		'default' => 'https://analytics.wikitide.net/',
+	],
+	'wgMatomoAnalyticsUseDB' => [
+		'default' => true,
+	],
+	'wgMatomoAnalyticsSiteID' => [
+		'default' => 1,
+	],
+	'wgMatomoAnalyticsGlobalID' => [
+		'default' => 1,
+	],
+	'wgMatomoAnalyticsDisableCookie' => [
+		'default' => true,
 	],
 
 	// MultiBoilerplate
@@ -4351,13 +4342,11 @@ $wgConf->settings += [
 
 	// WebAuthn
 	'wgWebAuthnRelyingPartyName' => [
-		'wikiforge' => 'WikiForge',
-		'wikitide' => 'WikiTide',
+		'default' => 'WikiTide',
 		'wikitide' => 'NextTide',
 	],
 	'wgWebAuthnRelyingPartyID' => [
-		'wikiforge' => 'wikiforge.net',
-		'wikitide' => 'wikitide.org',
+		'default' => 'wikitide.org',
 		'nexttide' => 'nexttide.org',
 	],
 
@@ -4935,7 +4924,7 @@ $wgConf->settings += [
 
 // Start settings requiring external dependency checks/functions
 
-if ( wfHostname() === 'test11.wikiforge.net' ) {
+if ( wfHostname() === 'test1.wikitide.net' ) {
 	// Prevent cache (better be safe than sorry)
 	$wgConf->settings['wgUseCdn']['default'] = false;
 }

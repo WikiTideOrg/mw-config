@@ -7,6 +7,9 @@ wfLoadExtensions( [
 	'AbuseFilter',
 	'AntiSpoof',
 	'BetaFeatures',
+	'CentralAuth',
+	'CentralNotice',
+	'CheckUser',
 	'CreateWiki',
 	'CookieWarning',
 	'ConfirmEdit',
@@ -15,10 +18,17 @@ wfLoadExtensions( [
 	'DiscordNotifications',
 	'DismissableSiteNotice',
 	'Echo',
+	'EventLogging',
+	'GlobalBlocking',
+	'GlobalCssJs',
+	'GlobalNewFiles',
+	'GlobalPreferences',
+	'IPInfo',
 	'Interwiki',
 	'InterwikiDispatcher',
 	'LoginNotify',
 	'ManageWiki',
+	'MatomoAnalytics',
 	'NativeSvgHandler',
 	'Nuke',
 	'OATHAuth',
@@ -31,17 +41,6 @@ wfLoadExtensions( [
 	'WebAuthn',
 	'WikiDiscover',
 	'WikiEditor',
+	'WikiTideMagic',
 	'cldr',
 ] );
-
-if ( $wi->wikifarm === 'wikitide' ) {
-	wfLoadExtensions( [
-		'CentralNotice',
-		'CheckUser',
-		'EventLogging',
-		// 'IPInfo',
-		'WikiTideMagic',
-	] );
-} else {
-	wfLoadExtension( 'WikiForgeMagic' );
-}

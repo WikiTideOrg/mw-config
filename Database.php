@@ -5,10 +5,10 @@ $wgLBFactoryConf = [
 	'sectionsByDB' => $wi->wikiDBClusters,
 	'sectionLoads' => [
 		'DEFAULT' => [
-			'db11' => 1,
+			'db1' => 1,
 		],
 		'c1' => [
-			'db11' => 1,
+			'db1' => 1,
 		],
 	],
 	'serverTemplate' => [
@@ -34,7 +34,7 @@ $wgLBFactoryConf = [
 		'sslCAFile' => '/etc/ssl/certs/ca-certificates.crt',
 	],
 	'hostsByName' => [
-		'db11' => $wmgDBHostname,
+		'db1' => $wmgDBHostname,
 	],
 	'externalLoads' => [
 		'echo' => [

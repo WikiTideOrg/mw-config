@@ -483,17 +483,29 @@ $wgConf->settings += [
 	'wgCitizenEnableCollapsibleSections' => [
 		'default' => true,
 	],
-	'wgCitizenPortalAttach' => [
+	'wgCitizenEnableDrawerSiteStats' => [
+		'default' => true,
+	],
+	'wgCitizenEnableManifest' => [
+		'default' => true,
+	],
+	'wgCitizenEnablePreferences' => [
+		'default' => true,
+	],
+	'wgCitizenGlobalToolsPortlet' => [
 		'default' => 'first',
 	],
+	'wgCitizenManifestBackgroundColor' => [
+		'default' => '#131a21',
+	],
+	'wgCitizenManifestThemeColor' => [
+		'default' => '#131a21',
+	],
 	'wgCitizenShowPageTools' => [
-		'default' => 1,
+		'default' => true,
 	],
 	'wgCitizenThemeColor' => [
 		'default' => '#131a21',
-	],
-	'wgCitizenEnableSearch' => [
-		'default' => true,
 	],
 	'wgCitizenSearchGateway' => [
 		'default' => 'mwActionApi',

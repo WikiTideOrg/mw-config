@@ -39,7 +39,7 @@ $wgLBFactoryConf = [
 	'externalLoads' => [
 		'echo' => [
 			/** where the metawiki and metawikitide databases are located */
-			'db11' => 1,
+			'db1' => 1,
 		],
 	],
 	'readOnlyBySection' => [

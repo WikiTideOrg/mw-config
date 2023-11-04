@@ -800,7 +800,7 @@ $wgConf->settings += [
 		],
 	],
 	'wgCreateWikiCannedResponses' => [
-		'wikitide' => [
+		'default' => [
 			'Approval reasons' => [
 				'Perfect request' => 'Perfect. Clear purpose, scope, and topic. Please ensure your wiki complies with all aspects of the Content Policy and Code of Conduct at all times and that it does not deviate from the approved scope or else your wiki may be closed. Thank you for choosing WikiTide!',
 				'Good request' => 'Pretty good. Purpose and description are a bit vague, but there is nonetheless a clear enough purpose, scope, and/or topic here. Please ensure your wiki complies with all aspects of the Content Policy and Code of Conduct at all times and that it does not deviate from the approved scope or else your wiki will be closed. Thank you for choosing WikiTide!',
@@ -855,12 +855,11 @@ $wgConf->settings += [
 		'default' => []
 	],
 	'wgCreateWikiDatabaseSuffix' => [
-		'wikiforge' => 'wiki',
-		'wikitide' => 'wikitide',
+		'default' => 'wikitide',
 		'nexttide' => 'nexttide',
 	],
 	'wgCreateWikiEnableManageInactiveWikis' => [
-		'wikitide' => true,
+		'default' => true,
 	],
 	'wgCreateWikiGlobalWiki' => [
 		'default' => $wi::CENTRAL_WIKI[$wi->wikifarm],
@@ -873,7 +872,7 @@ $wgConf->settings += [
 		'default' => 'sre@wikitide.net',
 	],
 	'wgCreateWikiPurposes' => [
-		'wikitide' => [
+		'default' => [
 			'Alternate history wiki' => 'Alternate history wiki',
 			'Class or group project education wiki' => 'Class or group project education wiki',
 			'Curriculum resource wiki' => 'Curriculum resource wiki',
@@ -893,7 +892,7 @@ $wgConf->settings += [
 		],
 	],
 	'wgCreateWikiShowBiographicalOption' => [
-		'wikitide' => true,
+		'default' => true,
 	],
 	'wgCreateWikiSQLfiles' => [
 		'default' => [
@@ -911,10 +910,7 @@ $wgConf->settings += [
 		],
 	],
 	'wgCreateWikiStateDays' => [
-		'wikiforge' => [
-			'deleted' => 90,
-		],
-		'wikitide' => [
+		'default' => [
 			'inactive' => 45,
 			'closed' => 15,
 			'removed' => 120,
@@ -925,39 +921,7 @@ $wgConf->settings += [
 		'default' => '/srv/mediawiki/cache'
 	],
 	'wgCreateWikiCategories' => [
-		'wikiforge' => [
-			'Art & Architecture' => 'artarc',
-			'Automotive' => 'automotive',
-			'Business & Finance' => 'businessfinance',
-			'Commercial' => 'commercial',
-			'Community' => 'community',
-			'Education' => 'education',
-			'Electronics' => 'electronics',
-			'Entertainment' => 'entertainment',
-			'Fandom' => 'fandom',
-			'Fantasy' => 'fantasy',
-			'Gaming' => 'gaming',
-			'Geography' => 'geography',
-			'History' => 'history',
-			'Humor/Satire' => 'humor',
-			'Language/Linguistics' => 'langling',
-			'Leisure' => 'leisure',
-			'Literature/Writing' => 'literature',
-			'Media/Journalism' => 'media',
-			'Medicine/Medical' => 'medical',
-			'Military/War' => 'military',
-			'Music' => 'music',
-			'Podcast' => 'podcast',
-			'Politics' => 'politics',
-			'Religion' => 'religion',
-			'Science' => 'science',
-			'Software/Computing' => 'software',
-			'Song Contest' => 'songcontest',
-			'Sports' => 'sport',
-			'Transportation' => 'transportation',
-			'Uncategorized' => 'uncategorized',
-		],
-		'wikitide' => [
+		'default' => [
 			'Art & Architecture' => 'artarc',
 			'Automotive' => 'automotive',
 			'Business & Finance' => 'businessfinance',
@@ -994,12 +958,11 @@ $wgConf->settings += [
 		'default' => true,
 	],
 	'wgCreateWikiSubdomain' => [
-		'wikitide' => 'wikitide.org',
+		'default' => 'wikitide.org',
 		'nexttide' => 'nexttide.org',
 	],
 	'wgCreateWikiUseClosedWikis' => [
-		'wikitide' => true,
-		'nexttide' => true,
+		'default' => true,
 	],
 	'wgCreateWikiUseCustomDomains' => [
 		'default' => true,
@@ -1008,24 +971,28 @@ $wgConf->settings += [
 		'default' => true,
 	],
 	'wgCreateWikiUseExperimental' => [
-		'wikitide' => true,
-		'nexttide' => true,
+		'default' => true,
 	],
 	'wgCreateWikiUseInactiveWikis' => [
-		'wikitide' => true,
-		'nexttide' => true,
+		'default' => true,
 	],
 	'wgCreateWikiUsePrivateWikis' => [
 		'default' => true,
-		'nexttide' => true,
 	],
 	'wgCreateWikiUseSecureContainers' => [
 		'default' => true,
 	],
-	'wgCreateWikiExtraSecuredContainers' => [
+	'wgCreateWikiContainers' => [
 		'default' => [
-			'dumps-backup',
-			'timeline-render',
+			'avatars' => 'public-private',
+			'awards' => 'public-private',
+			'local-public' => 'public-private',
+			'local-thumb' => 'public-private',
+			'local-transcoded' => 'public-private',
+			'local-temp' => 'private',
+			'local-deleted' => 'private',
+			'dumps-backup' => 'public-private',
+			'timeline-render' => 'public-private'
 		],
 	],
 	'wgRequestWikiConfirmAgreement' => [

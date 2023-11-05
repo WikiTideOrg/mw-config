@@ -4964,7 +4964,8 @@ if ( $wgRequestTimeLimit ) {
 require_once '/srv/mediawiki/config/Database.php';
 require_once '/srv/mediawiki/config/GlobalCache.php';
 require_once '/srv/mediawiki/config/GlobalLogging.php';
-require_once '/srv/mediawiki/config/FileBackend.php';
+// Only once Swift is up!
+//require_once '/srv/mediawiki/config/FileBackend.php';
 
 if ( $wi->missing ) {
 	require_once '/srv/mediawiki/ErrorPages/MissingWiki.php';

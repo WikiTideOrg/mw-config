@@ -37,29 +37,24 @@ class WikiTideFunctions {
 	private const CACHE_DIRECTORY = '/srv/mediawiki/cache';
 
 	private const DEFAULT_SERVER = [
-		'wikiforge' => 'wikiforge.net',
 		'wikitide' => 'wikitide.org',
 	];
 
 	private const MEDIAWIKI_DIRECTORY = '/srv/mediawiki/';
 
 	private const TAGS = [
-		'wikiforge' => 'wikiforge',
 		'wikitide' => 'wikitide',
 	];
 
 	public const CENTRAL_WIKI = [
-		'wikiforge' => 'hubwiki',
 		'wikitide' => 'metawikitide',
 	];
 
 	public const GLOBAL_DATABASE = [
-		'wikiforge' => 'wfglobal',
 		'wikitide' => 'wtglobal',
 	];
 
 	public const LISTS = [
-		'wikiforge' => 'wikiforge',
 		'wikitide' => 'wikitide',
 	];
 
@@ -73,7 +68,6 @@ class WikiTideFunctions {
 	];
 
 	public const SUFFIXES = [
-		'wiki' => 'wikiforge.net',
 		'wikitide' => 'wikitide.org',
 	];
 
@@ -309,8 +303,7 @@ class WikiTideFunctions {
 		$hostname = $_SERVER['HTTP_HOST'] ?? 'undefined';
 
 		static $database = null;
-		$database ??= self::readDbListFile( 'databases-wikiforge', true, 'https://' . $hostname, true ) ?:
-			self::readDbListFile( 'databases-wikitide', true, 'https://' . $hostname, true );
+		$database ??= self::readDbListFile( 'databases-wikitide', true, 'https://' . $hostname, true );
 
 		if ( $database ) {
 			return $database;
@@ -413,7 +406,7 @@ class WikiTideFunctions {
 	 * @return string
 	 */
 	public static function getDefaultMediaWikiVersion(): string {
-		return ( php_uname( 'n' ) === 'test11.wikiforge.net' && isset( self::MEDIAWIKI_VERSIONS['beta'] ) ) ? 'beta' : 'stable';
+		return ( php_uname( 'n' ) === 'test1.wikitide.net' && isset( self::MEDIAWIKI_VERSIONS['beta'] ) ) ? 'beta' : 'stable';
 	}
 
 	/**
@@ -1006,20 +999,9 @@ class WikiTideFunctions {
 					self::GLOBAL_DATABASE['wikitide']
 				),
 			],
-			'databases-wikiforge' => [
-				'combi' => self::getCombiList(
-					self::GLOBAL_DATABASE['wikiforge']
-				),
-			],
 			'databases-wikitide' => [
 				'combi' => self::getCombiList(
 					self::GLOBAL_DATABASE['wikitide']
-				),
-			],
-			'deleted-wikiforge' => [
-				'deleted' => 'databases',
-				'databases' => self::getDeletedList(
-					self::GLOBAL_DATABASE['wikiforge']
 				),
 			],
 			'deleted-wikitide' => [
@@ -1030,21 +1012,15 @@ class WikiTideFunctions {
 			],
 		];
 
-		$databaseLists['databases-all'] = [
+		/* $databaseLists['databases-all'] = [
 			'combi' => array_merge(
 				$databaseLists['databases-wikiforge']['combi'],
 				$databaseLists['databases-wikitide']['combi']
 			)
-		];
+		];*/
 
 		foreach ( self::MEDIAWIKI_VERSIONS as $name => $version ) {
 			$databaseLists += [
-				$name . '-wikis-wikiforge' => [
-					'combi' => self::getCombiList(
-						self::GLOBAL_DATABASE['wikiforge'],
-						$version
-					),
-				],
 				$name . '-wikis-wikitide' => [
 					'combi' => self::getCombiList(
 						self::GLOBAL_DATABASE['wikitide'],
@@ -1088,45 +1064,8 @@ class WikiTideFunctions {
 
 		asort( $versions );
 
-		if ( $wikiFarm !== 'wikitide' ) {
-			$mwSettings = new ManageWikiSettings( $dbName );
-			$setList = $mwSettings->list();
-			$formDescriptor['article-path'] = [
-				'label-message' => 'wikiforge-label-managewiki-article-path',
-				'type' => 'select',
-				'options-messages' => [
-					'wikiforge-label-managewiki-article-path-wiki' => '/wiki/$1',
-					'wikiforge-label-managewiki-article-path-root' => '/$1',
-				],
-				'default' => $setList['wgArticlePath'] ?? '/wiki/$1',
-				'disabled' => !$ceMW,
-				'cssclass' => 'managewiki-infuse',
-				'section' => 'main',
-			];
-
-			$formDescriptor['mainpage-is-domain-root'] = [
-				'label-message' => 'wikiforge-label-managewiki-mainpage-is-domain-root',
-				'type' => 'check',
-				'default' => $setList['wgMainPageIsDomainRoot'] ?? false,
-				'disabled' => !$ceMW,
-				'cssclass' => 'managewiki-infuse',
-				'section' => 'main',
-			];
-
-			if ( $permissionManager->userHasRight( $context->getUser(), 'managewiki-restricted' ) ) {
-				$formDescriptor['checkuser'] = [
-					'label-message' => 'wikiforge-label-managewiki-checkuser',
-					'type' => 'check',
-					'default' => $setList['wgWikiForgeEnableCheckUser'] ?? false,
-					'disabled' => !$permissionManager->userHasRight( $context->getUser(), 'managewiki-restricted' ),
-					'cssclass' => 'managewiki-infuse',
-					'section' => 'main',
-				];
-			}
-		}
-
 		$formDescriptor['mediawiki-version'] = [
-			'label-message' => 'wikiforge-label-managewiki-mediawiki-version',
+			'label-message' => 'wikitide-label-managewiki-mediawiki-version',
 			'type' => 'select',
 			'options' => array_combine( $versions, $versions ),
 			'default' => $mwVersion,
@@ -1196,16 +1135,6 @@ class WikiTideFunctions {
 			$wiki->changes['mainpage-is-domain-root'] = [
 				'old' => $mainPageIsDomainRoot,
 				'new' => $formData['mainpage-is-domain-root']
-			];
-		}
-
-		$wikiForgeEnableCheckUser = $mwSettings->list()['wgWikiForgeEnableCheckUser'] ?? false;
-		if ( isset( $formData['checkuser'] ) && $formData['checkuser'] !== $wikiForgeEnableCheckUser ) {
-			$mwSettings->modify( [ 'wgWikiForgeEnableCheckUser' => $formData['checkuser'] ] );
-			$mwSettings->commit();
-			$wiki->changes['checkuser'] = [
-				'old' => $wikiForgeEnableCheckUser,
-				'new' => $formData['checkuser']
 			];
 		}
 	}

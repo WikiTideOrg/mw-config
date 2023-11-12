@@ -2131,7 +2131,18 @@ $wgConf->settings += [
 			'10.0.0.107' => true,
 		],
 	],
-
+	
+	// Lingo
+	'wgexLingoPage' => [
+		'default' => 'Terminology',
+	],
+	'wgexLingoDisplayOnce' => [
+		'default' => false,
+	],
+	'wgexLingoEnableApprovedRevs' => [
+		'default' => false,
+	],
+	
 	// Logs
 	'wgLogRestrictions' => [
 			'hubwiki' => [

@@ -2068,8 +2068,10 @@ $wgConf->settings += [
 	'wgRightsPage' => [
 		'default' => '',
 	],
-	'wgRightsText' => [],
-	'wgRightsUrl' => [],
+	'wgRightsText' => [
+		'harrypotterwikitide' => 'Creative Commons Attribution-ShareAlike 3.0 Unported (CC BY-SA 3.0)',
+	'wgRightsUrl' => [
+		'harrypotterwikitide' => 'https://creativecommons.org/licenses/by-sa/3.0',
 	'wmgWikiLicense' => [
 		'default' => 'cc-by-sa',
 	],

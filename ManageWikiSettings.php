@@ -1241,7 +1241,7 @@ $wgManageWikiSettings = [
 		'requires' => [],
 	],
 	'wgWikiTideCommons' => [
-		'name' => 'Enable WikiTide Commons (linking to commons.wikitide.prg)',
+		'name' => 'Enable WikiTide Commons (linking to commons.wikitide.org)',
 		'from' => 'mediawiki',
 		'global' => true,
 		'type' => 'check',

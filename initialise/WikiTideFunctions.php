@@ -214,12 +214,12 @@ class WikiTideFunctions {
 
 	/**
 	 * @return string
+  	 * TODO: REMOVE?
 	 */
 	public static function getWikiFarm(): string {
 		self::$currentDatabase ??= self::getCurrentDatabase();
 
-		return ( substr( self::$currentDatabase, -4 ) === 'wiki' ) ?
-			self::TAGS['wikiforge'] : self::TAGS['wikitide'];
+		return self::TAGS['wikitide'];
 	}
 
 	/**
@@ -414,8 +414,8 @@ class WikiTideFunctions {
 	 * @return string
 	 */
 	public static function getMediaWikiVersion( ?string $database = null ): string {
-		if ( getenv( 'WIKIFORGE_WIKI_VERSION' ) ) {
-			return getenv( 'WIKIFORGE_WIKI_VERSION' );
+		if ( getenv( 'WIKITIDE_WIKI_VERSION' ) ) {
+			return getenv( 'WIKITIDE_WIKI_VERSION' );
 		}
 
 		if ( $database ) {
@@ -1011,13 +1011,6 @@ class WikiTideFunctions {
 				),
 			],
 		];
-
-		/* $databaseLists['databases-all'] = [
-			'combi' => array_merge(
-				$databaseLists['databases-wikiforge']['combi'],
-				$databaseLists['databases-wikitide']['combi']
-			)
-		];*/
 
 		foreach ( self::MEDIAWIKI_VERSIONS as $name => $version ) {
 			$databaseLists += [

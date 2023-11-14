@@ -143,6 +143,9 @@ $wgDiscordNotificationWikiUrlEndingEditArticle = '?action=edit';
 $wgDiscordNotificationWikiUrlEndingHistory = '?action=history';
 $wgDiscordNotificationWikiUrlEndingUserRights = 'Special:UserRights?user=';
 
+// Don't need a global here
+unset( $articlePath );
+
 $wgAllowedCorsHeaders[] = 'X-WikiTide-Debug';
 
 // AWS

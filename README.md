@@ -1,6 +1,6 @@
-# WikiForge's MediaWiki Configuration
+# WikiTide's MediaWiki Configuration
 
-![Continuous integration](https://github.com/WikiForge/mw-config/workflows/Continuous%20integration/badge.svg)
+![Continuous integration](https://github.com/WikiTideOrg/mw-config/workflows/Continuous%20integration/badge.svg)
 
 This repository contains our production MediaWiki configuration. Contributions (see below) are always welcome.
 

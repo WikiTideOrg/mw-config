@@ -1,7 +1,7 @@
 <?php
 
 /**
- * LocalSettings.php for WikiForge and WikiTide.
+ * LocalSettings.php for WikiTide.
  * Authors of initial version: Universal Omega, Miraheze contributors
  */
 
@@ -91,7 +91,6 @@ $wgConf->settings += [
 	],
 	'wgAbuseFilterIsCentral' => [
 		'default' => false,
-		'hubwiki' => true,
 		'metawikitide' => true,
 		'metanexttide' => true,
 	],
@@ -530,7 +529,7 @@ $wgConf->settings += [
 		'ext-Collection' => 5,
 	],
 	'wgCollectionMWServeURL' => [
-		'ext-Collection' => 'https://restbase.wikiforge.net',
+		'ext-Collection' => 'https://restbase.wikitide.net',
 	],
 	'wgCollectionPODPartners' => [
 		'ext-Collection' => [],
@@ -863,7 +862,7 @@ $wgConf->settings += [
 	],
 	'wgCreateWikiGlobalWiki' => [
 		'default' => $wi::CENTRAL_WIKI[$wi->wikifarm],
-		'test1wiki' => 'test1wiki',
+		'test1wikitide' => 'test1wikitide',
 	],
 	'wgCreateWikiEmailNotifications' => [
 		'default' => true,
@@ -1139,20 +1138,6 @@ $wgConf->settings += [
 			'users' => [
 				// Exclude excessive bots from all feeds
 				'FuzzyBot',
-			],
-		],
-		'+hubwiki' => [
-			'article_inserted' => [
-				'groups' => [
-					'bot',
-					'flood',
-				],
-			],
-			'article_saved' => [
-				'groups' => [
-					'bot',
-					'flood',
-				],
 			],
 		],
 		'+metawikitide' => [
@@ -1488,9 +1473,6 @@ $wgConf->settings += [
 	'wgMaxAnimatedGifArea' => [
 		'default' => '1.25e7',
 	],
-	'wgWikiForgeCommons' => [
-		'wikiforge' => true,
-	],
 	'wgWikiTideCommons' => [
 		'wikitide' => true,
 	],
@@ -1530,43 +1512,7 @@ $wgConf->settings += [
 			'showDimensions' => true,
 			'mode' => 'traditional',
 		],
-		'darkangelwiki' => [
-			'imagesPerRow' => 0,
-			'imageWidth' => 120,
-			'imageHeight' => 120,
-			'captionLength' => true,
-			'showBytes' => true,
-			'showDimensions' => true,
-			'mode' => 'packed',
-		],
-		'dcmultiversewiki' => [
-			'imagesPerRow' => 0,
-			'imageWidth' => 120,
-			'imageHeight' => 120,
-			'captionLength' => true,
-			'showBytes' => true,
-			'showDimensions' => true,
-			'mode' => 'packed',
-		],
-		'rippaversewiki' => [
-			'imagesPerRow' => 0,
-			'imageWidth' => 120,
-			'imageHeight' => 120,
-			'captionLength' => true,
-			'showBytes' => true,
-			'showDimensions' => true,
-			'mode' => 'packed',
-		],
 		'theunnamedwikiwikitide' => [
-			'imagesPerRow' => 0,
-			'imageWidth' => 120,
-			'imageHeight' => 120,
-			'captionLength' => true,
-			'showBytes' => true,
-			'showDimensions' => true,
-			'mode' => 'packed',
-		],
-		'valiantcinematicuniversewiki' => [
 			'imagesPerRow' => 0,
 			'imageWidth' => 120,
 			'imageHeight' => 120,
@@ -1616,7 +1562,6 @@ $wgConf->settings += [
 
 	// GlobalUsage
 	'wgGlobalUsageDatabase' => [
-		'wikiforge' => 'commonswiki',
 		'wikitide' => 'commonswikitide',
 	],
 	'wgGlobalUsageSharedRepoWiki' => [
@@ -1833,7 +1778,6 @@ $wgConf->settings += [
 	],
 	'wgJsonConfigInterwikiPrefix' => [
 		'default' => 'commons',
-		'commonswiki' => 'meta',
 		'commonswikitide' => 'meta',
 	],
 	'wgJsonConfigModels' => [
@@ -1893,174 +1837,109 @@ $wgConf->settings += [
 
 	// LDAP
 	'wgLDAPDomainNames' => [
-		'accountsinternalwiki' => [
-			'wikiforge',
-		],
-		'techwiki' => [
-			'wikiforge',
+		'accountsinternalwikitide' => [
+			'wikitide',
 		],
 	],
 	'wgLDAPServerNames' => [
-		'accountsinternalwiki' => [
-			'wikiforge' => 'ldap.wikitide.net',
-		],
-		'techwiki' => [
-			'wikiforge' => 'ldap.wikitide.net',
+		'accountsinternalwikitide' => [
+			'wikitide' => 'ldap.wikitide.net',
 		],
 	],
 	'wgLDAPEncryptionType' => [
-		'accountsinternalwiki' => [
-			'wikiforge' => 'ssl',
-		],
-		'techwiki' => [
-			'wikiforge' => 'ssl',
+		'accountsinternalwikitide' => [
+			'wikitide' => 'ssl',
 		],
 	],
 	'wgLDAPSearchAttributes' => [
-		'accountsinternalwiki' => [
-			'wikiforge' => 'uid',
-		],
-		'techwiki' => [
-			'wikiforge' => 'uid',
+		'accountsinternalwikitide' => [
+			'wikitide' => 'uid',
 		],
 	],
 	'wgLDAPBaseDNs' => [
-		'accountsinternalwiki' => [
-			'wikiforge' => 'dc=wikiforge,dc=net',
-		],
-		'techwiki' => [
-			'wikiforge' => 'dc=wikiforge,dc=net',
+		'accountsinternalwikitide' => [
+			'wikitide' => 'dc=wikitide,dc=org',
 		],
 	],
 	'wgLDAPUserBaseDNs' => [
-		'accountsinternalwiki' => [
-			'wikiforge' => 'ou=people,dc=wikiforge,dc=net',
-		],
-		'techwiki' => [
-			'wikiforge' => 'ou=people,dc=wikiforge,dc=net',
+		'accountsinternalwikitide' => [
+			'wikitide' => 'ou=people,dc=wikitide,dc=org',
 		],
 	],
 	'wgLDAPProxyAgent' => [
-		'accountsinternalwiki' => [
-			'wikiforge' => 'cn=admin,dc=wikiforge,dc=net',
-		],
-		'techwiki' => [
-			'wikiforge' => 'cn=admin,dc=wikiforge,dc=net',
+		'accountsinternalwikitide' => [
+			'wikitide' => 'cn=admin,dc=wikitide,dc=org',
 		],
 	],
 	'wgLDAPProxyAgentPassword' => [
-		'accountsinternalwiki' => [
-			'wikiforge' => $wmgLdapPassword,
-		],
-		'techwiki' => [
-			'wikiforge' => $wmgLdapPassword,
+		'accountsinternalwikitide' => [
+			'wikitide' => $wmgLdapPassword,
 		],
 	],
 	'wgLDAPWriterDN' => [
-		'accountsinternalwiki' => [
-			'wikiforge' => 'cn=admin,dc=wikiforge,dc=net',
-		],
-		'techwiki' => [
-			'wikiforge' => 'cn=admin,dc=wikiforge,dc=net',
+		'accountsinternalwikitide' => [
+			'wikitide' => 'cn=admin,dc=wikitide,dc=org',
 		],
 	],
 	'wgLDAPWriterPassword' => [
-		'accountsinternalwiki' => [
-			'wikiforge' => $wmgLdapPassword,
-		],
-		'techwiki' => [
-			'wikiforge' => $wmgLdapPassword,
+		'accountsinternalwikitide' => [
+			'wikitide' => $wmgLdapPassword,
 		],
 	],
 	'wgLDAPWriteLocation' => [
-		'accountsinternalwiki' => [
-			'wikiforge' => 'ou=people,dc=wikiforge,dc=net',
-		],
-		'techwiki' => [
-			'wikiforge' => 'ou=people,dc=wikiforge,dc=net',
+		'accountsinternalwikitide' => [
+			'wikitide' => 'ou=people,dc=wikitide,dc=org',
 		],
 	],
 	'wgLDAPAddLDAPUsers' => [
-		'accountsinternalwiki' => [
-			'wikiforge' => true,
-		],
-		'techwiki' => [
-			'wikiforge' => true,
+		'accountsinternalwikitide' => [
+			'wikitide' => true,
 		],
 	],
 	'wgLDAPUpdateLDAP' => [
-		'accountsinternalwiki' => [
-			'wikiforge' => true,
-		],
-		'techwiki' => [
-			'wikiforge' => true,
+		'accountsinternalwikitide' => [
+			'wikitide' => true,
 		],
 	],
 	'wgLDAPPasswordHash' => [
-		'accountsinternalwiki' => [
-			'wikiforge' => 'ssha',
-		],
-		'techwiki' => [
-			'wikiforge' => 'ssha',
+		'accountsinternalwikitide' => [
+			'wikitide' => 'ssha',
 		],
 	],
 	'wgLDAPPreferences' => [
-		'accountsinternalwiki' => [
-			'wikiforge' => [
-				'email' => 'mail',
-				'realname' => 'givenName',
-			],
-		],
-		'techwiki' => [
-			'wikiforge' => [
+		'accountsinternalwikitide' => [
+			'wikitide' => [
 				'email' => 'mail',
 				'realname' => 'givenName',
 			],
 		],
 	],
 	'wgLDAPUseFetchedUsername' => [
-		'accountsinternalwiki' => [
-			'wikiforge' => true,
-		],
-		'techwiki' => [
-			'wikiforge' => true,
+		'accountsinternalwikitide' => [
+			'wikitide' => true,
 		],
 	],
 	'wgLDAPLowerCaseUsernameScheme' => [
-		'accountsinternalwiki' => [
-			'wikiforge' => false,
-			'invaliddomain' => false,
-		],
-		'techwiki' => [
-			'wikiforge' => false,
+		'accountsinternalwikitide' => [
+			'wikitide' => false,
 			'invaliddomain' => false,
 		],
 	],
 	'wgLDAPLowerCaseUsername' => [
-		'accountsinternalwiki' => [
-			'wikiforge' => false,
-			'invaliddomain' => false,
-		],
-		'techwiki' => [
-			'wikiforge' => false,
+		'accountsinternalwikitide' => [
+			'wikitide' => false,
 			'invaliddomain' => false,
 		],
 	],
 	'wgLDAPOptions' => [
-		'accountsinternalwiki' => [
-			'wikiforge' => [
-				'LDAP_OPT_X_TLS_CACERTFILE' => '/etc/ssl/certs/ISRG_Root_X1.pem',
-			],
-		],
-		'techwiki' => [
-			'wikiforge' => [
+		'accountsinternalwikitide' => [
+			'wikitide' => [
 				'LDAP_OPT_X_TLS_CACERTFILE' => '/etc/ssl/certs/ISRG_Root_X1.pem',
 			],
 		],
 	],
 	'wgLDAPDebug' => [
-		'accountsinternalwiki' => 1,
-		'techwiki' => 1,
+		'accountsinternalwikitide' => 1,
 	],
 
 	// License
@@ -2146,24 +2025,6 @@ $wgConf->settings += [
 	'wgexLingoEnableApprovedRevs' => [
 		'default' => false,
 	],
-	
-	// Logs
-	'wgLogRestrictions' => [
-			'hubwiki' => [
-			'block' => 'block',
-			'delete' => 'delete',
-			'farmer' => 'createwiki',
-			'import' => 'import',
-			'importdump' => 'createwiki',
-			'incidentreporting' => 'createwiki',
-			'interwiki' => 'interwiki',
-			'managewiki' => 'managewiki',
-			'newusers' => 'createwiki',
-			'rights' => 'createwiki',
-			'renameuser' => 'renameuser',
-			'suppress' => 'suppressionlog',
-			],
-	],
 
 	// Loops
 	'egLoopsCountLimit' => [
@@ -2239,11 +2100,6 @@ $wgConf->settings += [
 	],
 	'wgManageWikiPermissionsAdditionalAddGroups' => [
 		'default' => [],
-		'+americanrailswiki' => [
-			'sysop' => [
-				'templateeditor',
-			],
-		],
 	],
 	'wgManageWikiPermissionsAdditionalRights' => [
 		'default' => [
@@ -2272,50 +2128,6 @@ $wgConf->settings += [
 			'user' => [
 				'mwoauthmanagemygrants' => true,
 				'user' => true,
-			],
-		],
-		'americanrailswiki' => [
-			'*' => [
-				'read' => true,
-			],
-			'bureaucrat' => [
-				'userrights' => false,
-			],
-			'steward' => [
-				'userrights' => true,
-			],
-			'sysop' => [
-				'templateeditor' => true,
-			],
-			'templateeditor' => [
-				'templateeditor' => true,
-			],
-		],
-		'+hubwiki' => [
-			'confirmed' => [
-				'mwoauthproposeconsumer' => true,
-				'mwoauthupdateownconsumer' => true,
-			],
-			'staff' => [
-				'abusefilter-modify-global' => true,
-				'createwiki' => true,
-				'handle-import-dump-interwiki' => true,
-				'handle-import-dump-requests' => true,
-				'handle-pii' => true,
-				'managewiki' => true,
-				'managewiki-editdefault' => true,
-				'managewiki-restricted' => true,
-				'mwoauthmanageconsumer' => true,
-				'noratelimit' => true,
-				'oathauth-disable-for-user' => true,
-				'oathauth-verify-user' => true,
-				'userrights' => true,
-				'userrights-interwiki' => true,
-				'view-private-import-dump-requests' => true,
-			],
-			'user' => [
-				'request-import-dump' => true,
-				'requestwiki' => true,
 			],
 		],
 		'+metawikitide' => [
@@ -2492,11 +2304,6 @@ $wgConf->settings += [
 	],
 	'wgManageWikiPermissionsAdditionalRemoveGroups' => [
 		'default' => [],
-		'+americanrailswiki' => [
-			'sysop' => [
-				'templateeditor',
-			],
-		],
 	],
 	'wgManageWikiPermissionsDisallowedRights' => [
 		'default' => [
@@ -2552,68 +2359,6 @@ $wgConf->settings += [
 				'managewiki',
 				'noratelimit',
 				'skipcaptcha',
-			],
-		],
-		'+wikiforge' => [
-			'*' => [
-				'abusefilter-hide-log',
-				'abusefilter-hidden-log',
-				'abusefilter-private',
-				'abusefilter-private-log',
-				'abusefilter-privatedetails',
-				'abusefilter-privatedetails-log',
-				'flow-suppress',
-				'hideuser',
-				'ipinfo',
-				'ipinfo-view-basic',
-				'ipinfo-view-full',
-				'ipinfo-view-log',
-				'mwoauthmanageconsumer',
-				'mwoauthmanagemygrants',
-				'mwoauthsuppress',
-				'mwoauthviewprivate',
-				'mwoauthviewsuppressed',
-				'oathauth-disable-for-user',
-				'oathauth-verify-user',
-				'renameuser',
-				'smw-patternedit',
-				'suppressionlog',
-				'suppressrevision',
-				'titleblacklistlog',
-				'updatepoints',
-				'userrights',
-				'viewpmlog',
-				'viewsuppressed',
-			],
-			'user' => [
-				'abusefilter-hide-log',
-				'abusefilter-hidden-log',
-				'abusefilter-private',
-				'abusefilter-private-log',
-				'abusefilter-privatedetails',
-				'abusefilter-privatedetails-log',
-				'flow-suppress',
-				'hideuser',
-				'ipinfo',
-				'ipinfo-view-basic',
-				'ipinfo-view-full',
-				'ipinfo-view-log',
-				'mwoauthmanageconsumer',
-				'mwoauthmanagemygrants',
-				'mwoauthsuppress',
-				'mwoauthviewprivate',
-				'mwoauthviewsuppressed',
-				'oathauth-disable-for-user',
-				'oathauth-verify-user',
-				'renameuser',
-				'smw-patternedit',
-				'suppressionlog',
-				'suppressrevision',
-				'titleblacklistlog',
-				'updatepoints',
-				'userrights',
-				'viewpmlog',
-				'viewsuppressed',
 			],
 		],
 		'+wikitide' => [
@@ -2715,10 +2460,6 @@ $wgConf->settings += [
 		],
 	],
 	'wgManageWikiPermissionsDisallowedGroups' => [
-		'wikiforge' => [
-			'checkuser',
-			'smwadministrator',
-		],
 		'wikitide' => [
 			'checkuser',
 			'oversight',
@@ -3199,10 +2940,6 @@ $wgConf->settings += [
 			'userrights',
 			'userrights-interwiki',
 		],
-		'+hubwiki' => [
-			'editsitejs',
-			'edituserjs',
-		],
 		'+metawikitide' => [
 			'editsitejs',
 			'edituserjs',
@@ -3236,14 +2973,6 @@ $wgConf->settings += [
 			'sysadmin',
 			'suppress',
 		],
-		'hubwiki' => [
-			'checkuser',
-			'staff',
-			'suppress',
-		],
-		'wikiforge' => [
-			'checkuser',
-		],
 		'wikitide' => [
 			'checkuser',
 			'interface-admin',
@@ -3259,7 +2988,6 @@ $wgConf->settings += [
 	],
 	// OAuth
 	'wgMWOAuthCentralWiki' => [
-		'wikiforge' => $wi->dbname,
 		'wikitide' => $wi::CENTRAL_WIKI[$wi->wikifarm],
 		'nexttide' => $wi::CENTRAL_WIKI[$wi->wikifarm],
 	],
@@ -3496,13 +3224,6 @@ $wgConf->settings += [
 			'usebetatoolbar' => 1,
 			'usebetatoolbar-cgd' => 1,
 		],
-		'+dcmultiversewiki' => [
-			'usecodemirror' => 1,
-			'visualeditor-newwikitext' => 1,
-			'usebetatoolbar' => 0,
-			'usebetatoolbar-cgd' => 0,
-			'visualeditor-enable-experimental' => 1,
-		],
 		'+ext-CleanChanges' => [
 			'usenewrc' => 1,
 		],
@@ -3653,11 +3374,6 @@ $wgConf->settings += [
 		],
 		'+ext-AuthorProtect' => [
 			'author',
-		],
-		'americanrailswiki' => [
-			'',
-			'autoconfirmed',
-			'sysop',
 		],
 	],
 	'wgRestrictionTypes' => [
@@ -3941,7 +3657,6 @@ $wgConf->settings += [
 		'default' => '/favicon.ico',
 	],
 	'wgLogo' => [
-		'wikiforge' => "https://$wmgUploadHostname/commonswikitide/8/80/WikiForge_logo_135px.png",
 		'wikitide' => "https://$wmgUploadHostname/commonswikitide/6/64/WikiTide_logo_135px.png",
 		'nexttide' => "https://$wmgUploadHostname/commonswikitide/6/64/WikiTide_logo_135px.png",
 	],
@@ -4048,12 +3763,6 @@ $wgConf->settings += [
 
 	// TitleBlacklist
 	'wgTitleBlacklistSources' => [
-		'wikiforge' => [
-			'local' => [
-				'type' => 'localpage',
-				'src' => 'MediaWiki:Titleblacklist',
-			],
-		],
 		'wikitide' => [
 			'global' => [
 				'type' => 'url',
@@ -4088,11 +3797,6 @@ $wgConf->settings += [
 				'zh-cn' => '本站已配置[[Project:繁簡處理|自动简繁转换]]功能，请在语言表单选择翻译语言为「中文」而非「中文（中国大陆）」。',
 				'zh-sg' => '本站已配置[[Project:繁簡處理|自动简繁转换]]功能，请在语言表单选择翻译语言为「中文」而非「中文（新加坡）」。',
 				'zh-my' => '本站已配置[[Project:繁簡處理|自动简繁转换]]功能，请在语言表单选择翻译语言为「中文」而非「中文（马来西亚）」。',
-			],
-		],
-		'hubwiki' => [
-			'*' => [
-				'en' => 'English is the source language.',
 			],
 		],
 		'metawikitide' => [
@@ -4638,81 +4342,8 @@ $wgConf->settings += [
 	],
 
 	// WikiDiscover
-	'wgWikiDiscoverListPrivateWikis' => [
-		'wikiforge' => false,
-	],
 	'wgWikiDiscoverUseDescriptions' => [
 		'default' => true,
-	],
-
-	// WikiForge
-	'wgWikiForgeMagicRequestPremiumWikiExtensionsDefaultEnabled' => [
-		'wikiforge' => [
-			'advancedsearch',
-			'categorytree',
-			'cirrussearch',
-			'cite',
-			'citethispage',
-			'citizen',
-			'codeeditor',
-			'codemirror',
-			'cologneblue',
-			'cosmos',
-			'darkmode',
-			'modern',
-			'monobook',
-			'purge',
-			'syntaxhighlight_geshi',
-			'textextracts',
-			'timeless',
-			'urlshortener',
-			'wikiseo',
-		],
-	],
-	'wgWikiForgeMagicRequestPremiumWikiPlans' => [
-		'wikiforge' => [
-			'basic' => [
-				'pricing' => 'Starting from $9.99/month',
-				'info' => 'Get started with our basic plan that offers essential features for your premium wiki.',
-				'features' => [
-					'10 GB file storage (+$2/month for every 10 GB after that)',
-					'Custom domain support',
-					'CirrusSearch/ElasticSearch support',
-					'SSO (Single Sign-On) integration (optional)',
-					'ManageWiki extension: Effortlessly manage popular settings, group rights, namespaces, and hundreds of extensions and skins directly on your wiki.',
-				],
-			],
-			'dedicated' => [
-				'pricing' => 'Starting from $28.99/month',
-				'info' => 'Upgrade to our dedicated plan for advanced capabilities and dedicated resources. Host your wiki on dedicated MediaWiki servers.',
-				'features' => [
-					'50 GB file storage (+$2/month for every 10 GB after that)',
-					'Custom domain support',
-					'CirrusSearch/ElasticSearch support',
-					'SSO (Single Sign-On) integration (optional)',
-					'ManageWiki extension: Effortlessly manage popular settings, group rights, namespaces, and hundreds of extensions and skins directly on your wiki.',
-					'Dedicated MediaWiki servers (2vCPU / 2GB RAM) (or extra servers in a load-balanced cluster for an extra $10/month/server)',
-				],
-			],
-			'enterprise' => [
-				'pricing' => 'Contact us for pricing',
-				'info' => 'Tailored solutions for enterprise customers with specific requirements and scalability needs.',
-				'features' => [
-					'All features from the dedicated plan',
-					'Customize resources to your needs',
-					'Custom extensions (if technically feasible)',
-				],
-			],
-		],
-	],
-	'wgWikiForgeMagicServicesRepo' => [
-		'wikiforge' => '/srv/services/services',
-	],
-	'wgWikiForgeMagicUsersNotifiedOnAllPremiumWikiRequests' => [
-		'wikiforge' => [
-			'Agent Isai',
-			'Universal Omega'
-		],
 	],
 
 	// WikiTide
@@ -5070,9 +4701,7 @@ $wgConf->settings += [
 	// Control MediaWiki Deprecation Warnings
 	'wgDeprecationReleaseLimit' => [
 		'default' => '1.34',
-		'alphatestwiki' => false,
-		'betatestwiki' => false,
-		'test1wiki' => false,
+		'test1wikitide' => false,
 	],
 ];
 

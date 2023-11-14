@@ -1,6 +1,6 @@
 <?php
 
-namespace WikiForge\Config\Tests\ManageWiki;
+namespace WikiTide\Config\Tests\ManageWiki;
 
 use JsonSchema\Validator;
 use PHPUnit\Framework\TestCase;

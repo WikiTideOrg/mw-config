@@ -36,7 +36,7 @@ if ( $wi->isAnyOfExtensionsActive( 'Email Authorization', 'OpenID Connect', 'Sim
 	wfLoadExtension( 'PluggableAuth' );
 }
 
-if ( ( ( $wgWikiTideCommons ?? false ) || ( $wgWikiForgeCommons ?? false ) ) && !$cwPrivate ) {
+if ( $wgWikiTideCommons ?? false && !$cwPrivate ) {
 	wfLoadExtension( 'GlobalUsage' );
 }
 
@@ -172,31 +172,10 @@ foreach ( $actions as $action ) {
 	$wgActionPaths[$action] = $wgArticlePath . '?action=' . $action;
 }
 
-if ( ( $wgWikiForgeActionPathsFormat ?? 'default' ) !== 'default' ) {
-	switch ( $wgWikiForgeActionPathsFormat ) {
-		case 'specialpages':
-			$wgActionPaths['edit'] = $articlePath . 'Special:EditPage/$1';
-			$wgActionPaths['submit'] = $wgActionPaths['edit'];
-			$wgActionPaths['delete'] = $articlePath . 'Special:DeletePage/$1';
-			$wgActionPaths['protect'] = $articlePath . 'Special:ProtectPage/$1';
-			$wgActionPaths['unprotect'] = $wgActionPaths['protect'];
-			$wgActionPaths['history'] = $articlePath . 'Special:PageHistory/$1';
-			$wgActionPaths['info'] = $articlePath . 'Special:PageInfo/$1';
-			break;
-		case '$1/action':
-		case 'action/$1':
-			foreach ( $actions as $action ) {
-				$wgActionPaths[$action] = $articlePath . str_replace( 'action', $action, $wgWikiForgeActionPathsFormat );
-			}
-
-			break;
-	}
-}
-
 // Don't need globals here
 unset( $actions, $articlePath );
 
-$wgAllowedCorsHeaders[] = 'X-WikiForge-Debug';
+$wgAllowedCorsHeaders[] = 'X-WikiTide-Debug';
 
 // AWS
 $wgAWSCredentials = [
@@ -258,9 +237,7 @@ if ( !$cwPrivate ) {
 }
 
 // Dynamic cookie settings dependant on $wgServer
-if ( preg_match( '/wikiforge\.net$/', $wi->server ) ) {
-	$wgMFStopRedirectCookieHost = '.wikiforge.net';
-} elseif ( preg_match( '/wikitide\.org$/', $wi->server ) ) {
+if ( preg_match( '/wikitide\.org$/', $wi->server ) ) {
 	$wgCentralAuthCookieDomain = '.wikitide.org';
 	$wgMFStopRedirectCookieHost = '.wikitide.org';
 } else {
@@ -309,7 +286,7 @@ $wgDataDump = [
 		'useBackendTempStore' => true,
 		'generate' => [
 			'type' => 'mwscript',
-			'script' => "$IP/extensions/" . ( $wi->wikifarm === 'wikitide' || $wi->wikifarm === 'nexttide' ? 'WikiTideMagic' : 'WikiForgeMagic' ) . '/maintenance/generateS3Backup.php',
+			'script' => "$IP/extensions/WikiTideMagic/maintenance/generateS3Backup.php",
 			'options' => [
 				'--filename',
 				'${filename}'
@@ -326,7 +303,7 @@ $wgDataDump = [
 		'file_ending' => '.json',
 		'generate' => [
 			'type' => 'mwscript',
-			'script' => "$IP/extensions/" . ( $wi->wikifarm === 'wikitide' || $wi->wikifarm === 'nexttide' ? 'WikiTideMagic' : 'WikiForgeMagic' ) . '/maintenance/generateManageWikiBackup.php',
+			'script' => "$IP/extensions/WikiTideMagic/maintenance/generateManageWikiBackup.php",
 			'options' => [
 				'--filename',
 				'${filename}'
@@ -369,7 +346,7 @@ if ( $wi->isExtensionActive( 'ContactPage' ) ) {
 		'default' => [
 			'RecipientUser' => $wmgContactPageRecipientUser ?? null,
 			'SenderEmail' => $wgPasswordSender,
-			'SenderName' => ( $wi->wikifarm === 'wikitide' || $wi->wikifarm === 'nexttide' ? 'WikiTide' : 'WikiForge' ) . ' No Reply',
+			'SenderName' => 'WikiTide No Reply',
 			'RequireDetails' => true,
 			// Should never be set to true
 			'IncludeIP' => false,
@@ -554,10 +531,7 @@ $wgUrlShortenerAllowedDomains = [
 	'(.*\.)?wikitide\.org',
 ];
 
-if (
-	!preg_match( '/^(.*).wikiforge.net$/', $wi->hostname ) &&
-	!preg_match( '/^(.*).wikitide.org$/', $wi->hostname )
-) {
+if ( !preg_match( '/^(.*).wikitide.org$/', $wi->hostname ) ) {
 	$wgUrlShortenerAllowedDomains = array_merge(
 		$wgUrlShortenerAllowedDomains,
 		[ preg_quote( str_replace( 'https://', '', $wgServer ) ) ]
@@ -585,17 +559,7 @@ if ( $wi->isExtensionActive( 'JsonConfig' ) ) {
 		],
 	];
 
-	if ( $wi->wikifarm === 'wikiforge' && $wgDBname !== 'commonswiki' ) {
-		$wgJsonConfigs['Map.JsonConfig']['remote'] = [
-			'url' => 'https://commons.wikiforge.net/w/api.php'
-		];
-
-		$wgJsonConfigs['Tabular.JsonConfig']['remote'] = [
-			'url' => 'https://commons.wikiforge.net/w/api.php'
-		];
-	}
-
-	if ( $wi->wikifarm === 'wikitide' || $wi->wikifarm === 'nexttide' && $wgDBname !== 'commonswikitide' ) {
+	if ( $wgDBname !== 'commonswikitide' ) {
 		$wgJsonConfigs['Map.JsonConfig']['remote'] = [
 			'url' => 'https://commons.wikitide.org/w/api.php'
 		];
@@ -630,7 +594,7 @@ if ( $wi->version === WikiTideFunctions::MEDIAWIKI_VERSIONS['alpha'] ) {
  * We can not set these in LocalSettings.php, to prevent them
  * from causing absolute overrides.
  */
-$wgRightsIcon = 'https://hub.wikiforge.net/' . $version . '/resources/assets/licenses/cc-by-sa.png';
+$wgRightsIcon = 'https://meta.wikitide.org/' . $version . '/resources/assets/licenses/cc-by-sa.png';
 $wgRightsText = 'Creative Commons Attribution Share Alike';
 $wgRightsUrl = 'https://creativecommons.org/licenses/by-sa/4.0/';
 
@@ -648,7 +612,7 @@ switch ( $wmgWikiLicense ) {
 		$wgRightsUrl = false;
 		break;
 	case 'cc-by':
-		$wgRightsIcon = 'https://meta.wikiforge.net/' . $version . '/resources/assets/licenses/cc-by.png';
+		$wgRightsIcon = 'https://meta.wikitide.org/' . $version . '/resources/assets/licenses/cc-by.png';
 		$wgRightsText = 'Creative Commons Attribution 4.0 International (CC BY 4.0)';
 		$wgRightsUrl = 'https://creativecommons.org/licenses/by/4.0';
 		break;
@@ -663,17 +627,17 @@ switch ( $wmgWikiLicense ) {
 		$wgRightsUrl = 'https://creativecommons.org/licenses/by-nd/4.0/';
 		break;
 	case 'cc-by-sa':
-		$wgRightsIcon = 'https://meta.wikiforge.net/' . $version . '/resources/assets/licenses/cc-by-sa.png';
+		$wgRightsIcon = 'https://meta.wikitide.org/' . $version . '/resources/assets/licenses/cc-by-sa.png';
 		$wgRightsText = 'Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)';
 		$wgRightsUrl = 'https://creativecommons.org/licenses/by-sa/4.0/';
 		break;
 	case 'cc-by-sa-2-0-kr':
-		$wgRightsIcon = 'https://meta.wikiforge.net/' . $version . '/resources/assets/licenses/cc-by-sa.png';
+		$wgRightsIcon = 'https://meta.wikitide.org/' . $version . '/resources/assets/licenses/cc-by-sa.png';
 		$wgRightsText = 'Creative Commons BY-SA 2.0 Korea';
 		$wgRightsUrl = 'https://creativecommons.org/licenses/by-sa/2.0/kr';
 		break;
 	case 'cc-by-sa-nc':
-		$wgRightsIcon = 'https://meta.wikiforge.net/' . $version . '/resources/assets/licenses/cc-by-nc-sa.png';
+		$wgRightsIcon = 'https://meta.wikitide.org/' . $version . '/resources/assets/licenses/cc-by-nc-sa.png';
 		$wgRightsText = 'Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)';
 		$wgRightsUrl = 'https://creativecommons.org/licenses/by-nc-sa/4.0/';
 		break;
@@ -683,7 +647,7 @@ switch ( $wmgWikiLicense ) {
 		$wgRightsUrl = 'https://creativecommons.org/licenses/by-nc-nd/4.0/';
 		break;
 	case 'cc-pd':
-		$wgRightsIcon = 'https://meta.wikiforge.net/' . $version . '/resources/assets/licenses/cc-0.png';
+		$wgRightsIcon = 'https://meta.wikitide.org/' . $version . '/resources/assets/licenses/cc-0.png';
 		$wgRightsText = 'CC0 Public Domain';
 		$wgRightsUrl = 'https://creativecommons.org/publicdomain/zero/1.0/';
 		break;

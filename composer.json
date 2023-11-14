@@ -1,5 +1,5 @@
 {
-	"name": "wikiforge/mw-config",
+	"name": "wikitideorg/mw-config",
 	"description": "",
 	"require-dev": {
 		"mediawiki/mediawiki-codesniffer": "41.0.0",
@@ -11,7 +11,7 @@
 	},
 	"autoload": {
 		"psr-4": {
-			"WikiForge\\Config\\Tests\\": "tests/"
+			"WikiTide\\Config\\Tests\\": "tests/"
 		}
 	},
 	"scripts": {

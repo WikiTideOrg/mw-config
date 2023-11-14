@@ -143,38 +143,6 @@ $wgDiscordNotificationWikiUrlEndingEditArticle = '?action=edit';
 $wgDiscordNotificationWikiUrlEndingHistory = '?action=history';
 $wgDiscordNotificationWikiUrlEndingUserRights = 'Special:UserRights?user=';
 
-/** TODO:
- * Add to ManageWiki (core)
- * Add rewrites to decode.php and index.php
- */
-$wgActionPaths['view'] = $wgArticlePath;
-
-// ?action=raw is not supported by this
-// according to documentation
-$actions = [
-	'delete',
-	'edit',
-	'history',
-	'info',
-	'markpatrolled',
-	'protect',
-	'purge',
-	'render',
-	'revert',
-	'rollback',
-	'submit',
-	'unprotect',
-	'unwatch',
-	'watch',
-];
-
-foreach ( $actions as $action ) {
-	$wgActionPaths[$action] = $wgArticlePath . '?action=' . $action;
-}
-
-// Don't need globals here
-unset( $actions, $articlePath );
-
 $wgAllowedCorsHeaders[] = 'X-WikiTide-Debug';
 
 // AWS

@@ -59,7 +59,7 @@ jobs:
   notify-irc:
     needs: test
     runs-on: ubuntu-latest
-    if: ${{ always() && github.repository_owner == 'WikiTideOrg' && ( github.ref	== 'refs/heads/main' || github.event_name == 'pull_request' ) }}
+    if: ${{ always() && github.repository_owner == 'WikiTideOrg' && ( github.ref == 'refs/heads/main' || github.event_name == 'pull_request' ) }}
     steps:
       - name: succeeded
         uses: technote-space/workflow-conclusion-action@v3

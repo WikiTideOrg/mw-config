@@ -217,8 +217,6 @@ class WikiTideFunctions {
   	 * TODO: REMOVE?
 	 */
 	public static function getWikiFarm(): string {
-		self::$currentDatabase ??= self::getCurrentDatabase();
-
 		return self::TAGS['wikitide'];
 	}
 

@@ -2,7 +2,8 @@
 
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Logger\Monolog\BufferHandler;
-use MediaWiki\Logger\Monolog\LogstashFormatter;
+use MediaWiki\Logger\Monolog\CeeFormatter;
+use MediaWiki\Logger\Monolog\LineFormatter;
 use MediaWiki\Logger\Monolog\SyslogHandler;
 use MediaWiki\Logger\Monolog\WikiProcessor;
 use MediaWiki\Logger\MonologSpi;
@@ -46,7 +47,7 @@ $wmgMonologHandlers = [
 foreach ( [ 'debug', 'info', 'warning', 'error' ] as $logLevel ) {
 	$wmgMonologHandlers[ "graylog-$logLevel" ] = [
 		'class'     => SyslogHandler::class,
-		'formatter' => 'logstash',
+		'formatter' => 'line',
 		'args'      => [
 			// tag
 			'mediawiki',
@@ -64,7 +65,7 @@ foreach ( [ 'debug', 'info', 'warning', 'error' ] as $logLevel ) {
 
 $wmgMonologHandlers['what-debug'] = [
 	'class'     => WhatFailureGroupHandler::class,
-	'formatter' => 'logstash',
+	'formatter' => 'cee',
 	'args' => [
 		static function () {
 			$provider = LoggerFactory::getProvider();
@@ -90,9 +91,22 @@ $wmgMonologConfig = [
 	'processors' => $wmgMonologProcessors,
 	'handlers' => $wmgMonologHandlers,
 	'formatters' => [
-		'logstash' => [
-			'class' => LogstashFormatter::class,
-			'args' => [ 'mediawiki', php_uname( 'n' ), '', '', 1 ],
+		'line' => [
+			'class' => LineFormatter::class,
+			'args' => [
+				"%datetime% [%extra.reqId%] %extra.host% %extra.wiki% %extra.mwversion% %channel% %level_name%: %message% %context% %exception%\n",
+				'Y-m-d H:i:s.u',
+				// allowInlineLineBreaks
+				true,
+				// ignoreEmptyContextAndExtra
+				true,
+				// includeStacktraces
+				true,
+			],
+		],
+		'cee' => [
+			'class' => CeeFormatter::class,
+			'args'  => [ 'mediawiki', php_uname( 'n' ), '', '', 1 ],
 		],
 	],
 ];
@@ -120,7 +134,7 @@ foreach ( $wmgMonologChannels as $channel => $opts ) {
 
 	$handlers = [];
 
-	// Configure Logstash handler
+	// Configure Graylog handler
 	if ( $opts['graylog'] ) {
 		$level = $opts['graylog'];
 		$graylogHandler = "graylog-{$level}";

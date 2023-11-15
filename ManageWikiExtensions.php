@@ -254,7 +254,7 @@ $wgManageWikiExtensions = [
 		],
 		'install' => [
 			'mwscript' => [
-				"$IP/extensions/" . ( $wi->wikifarm === 'wikitide' ? 'WikiTideMagic' : 'WikiForgeMagic' ) . '/maintenance/createCargoDB.php' => [],
+				"$IP/extensions/WikiTideMagic/maintenance/createCargoDB.php" => [],
 			],
 			'sql' => [
 				'cargo_tables' => "$IP/extensions/Cargo/sql/Cargo.sql",
@@ -844,13 +844,6 @@ $wgManageWikiExtensions = [
 		'requires' => [],
 		'section' => 'parserhooks',
 	],
-	'score' => [
-		'name' => 'Score',
-		'linkPage' => 'https://www.mediawiki.org/wiki/Special:MyLanguage/Extension:Score',
-		'conflicts' => false,
-		'requires' => [],
-		'section' => 'parserhooks',
-	],
 	'scratchblocks' => [
 		'name' => 'ScratchBlocks4',
 		'linkPage' => 'https://www.mediawiki.org/wiki/Special:MyLanguage/Extension:ScratchBlocks',
@@ -1099,13 +1092,6 @@ $wgManageWikiExtensions = [
 		],
 		'section' => 'antispam',
 	],
-	'confirmaccount' => [
-		'name' => 'ConfirmAccount',
-		'linkPage' => 'https://www.mediawiki.org/wiki/Special:MyLanguage/Extension:ConfirmAccount',
-		'conflicts' => false,
-		'requires' => [],
-		'section' => 'antispam',
-	],
 	'lockauthor' => [
 		'name' => 'LockAuthor',
 		'linkPage' => 'https://www.mediawiki.org/wiki/Special:MyLanguage/Extension:LockAuthor',
@@ -1213,17 +1199,6 @@ $wgManageWikiExtensions = [
 		'linkPage' => 'https://www.mediawiki.org/wiki/Special:MyLanguage/Extension:CiteThisPage',
 		'conflicts' => false,
 		'requires' => [],
-		'section' => 'specialpages',
-	],
-	'collection' => [
-		'name' => 'Collection',
-		'linkPage' => 'https://www.mediawiki.org/wiki/Special:MyLanguage/Extension:Collection',
-		'conflicts' => false,
-		'requires' => [
-			'visibility' => [
-				'state' => 'public',
-			],
-		],
 		'section' => 'specialpages',
 	],
 	'contactpage' => [
@@ -1841,13 +1816,6 @@ $wgManageWikiExtensions = [
 		],
 		'section' => 'specialpages',
 	],
-	'usermerge' => [
-		'name' => 'UserMerge',
-		'linkPage' => 'https://www.mediawiki.org/wiki/Special:MyLanguage/Extension:UserMerge',
-		'conflicts' => false,
-		'requires' => [],
-		'section' => 'specialpages',
-	],
 	'video' => [
 		'name' => 'Video',
 		'linkPage' => 'https://www.mediawiki.org/wiki/Special:MyLanguage/Extension:Video',
@@ -2066,7 +2034,11 @@ $wgManageWikiExtensions = [
 		'name' => 'CirrusSearch',
 		'linkPage' => 'https://www.mediawiki.org/wiki/Special:MyLanguage/Extension:CirrusSearch',
 		'conflicts' => false,
-		'requires' => [],
+		'requires' => [
+			'permissions' => [
+				'managewiki-restricted',
+			],
+		],
 		'install' => [
 			'mwscript' => [
 				"$IP/extensions/CirrusSearch/maintenance/UpdateSearchIndexConfig.php" => [],
@@ -2077,21 +2049,6 @@ $wgManageWikiExtensions = [
 						'skipParse' => false,
 					],
 				],
-			],
-		],
-		'section' => 'other',
-	],
-	'citoid' => [
-		'name' => 'Citoid',
-		'linkPage' => 'https://www.mediawiki.org/wiki/Special:MyLanguage/Citoid',
-		'conflicts' => false,
-		'requires' => [
-			'extensions' => [
-				'cite',
-				'visualeditor',
-			],
-			'visibility' => [
-				'state' => 'public',
 			],
 		],
 		'section' => 'other',
@@ -2190,17 +2147,6 @@ $wgManageWikiExtensions = [
 		'linkPage' => 'https://www.mediawiki.org/wiki/Special:MyLanguage/Extension:EditSubpages',
 		'conflicts' => false,
 		'requires' => [],
-		'section' => 'other',
-	],
-	'electronpdfservice' => [
-		'name' => 'ElectronPdfService',
-		'linkPage' => 'https://www.mediawiki.org/wiki/Special:MyLanguage/Extension:ElectronPdfService',
-		'conflicts' => false,
-		'requires' => [
-			'visibility' => [
-				'state' => 'public',
-			],
-		],
 		'section' => 'other',
 	],
 	'externaldata' => [
@@ -2780,7 +2726,11 @@ $wgManageWikiExtensions = [
 		'name' => 'RelatedArticles',
 		'linkPage' => 'https://www.mediawiki.org/wiki/Special:MyLanguage/Extension:RelatedArticles',
 		'conflicts' => false,
-		'requires' => [],
+		'requires' => [
+			'permissions' => [
+				'managewiki-restricted',
+			],
+		],
 		'section' => 'other',
 	],
 	'removeredlinks' => [
@@ -3299,7 +3249,7 @@ $wgManageWikiExtensions = [
 				'wb_property_info' => "$IP/extensions/Wikibase/repo/sql/mysql/wb_property_info.sql"
 			],
 			'mwscript' => [
-				"$IP/extensions/" . ( $wi->wikifarm === 'wikitide' ? 'WikiTideMagic' : 'WikiForgeMagic' ) . '/maintenance/populateWikibaseSitesTable.php' => [],
+				"$IP/extensions/WikiTideMagic/maintenance/populateWikibaseSitesTable.php" => [],
 			],
 		],
 		'section' => 'other',
@@ -3711,25 +3661,3 @@ $wgManageWikiExtensions = [
 		'section' => 'skins',
 	],
 ];
-
-if ( $wi->wikifarm === 'wikitide' ) {
-	// Only SRE/Stewards can enable, for now
-	$wgManageWikiExtensions['advancedsearch']['requires']['permissions'] = [ 'managewiki-restricted' ];
-	$wgManageWikiExtensions['cirrussearch']['requires']['permissions'] = [ 'managewiki-restricted' ];
-	$wgManageWikiExtensions['relatedarticles']['requires']['permissions'] = [ 'managewiki-restricted' ];
-
-	// No Score or services on WikiTide (yet at least)
-	unset(
-		$wgManageWikiExtensions['citoid'],
-		$wgManageWikiExtensions['collection'],
-		// Incompatible with CentralAuth
-		$wgManageWikiExtensions['confirmaccount'],
-		$wgManageWikiExtensions['electronpdfservice'],
-		$wgManageWikiExtensions['score'],
-		// Incompatible with CentralAuth
-		$wgManageWikiExtensions['usermerge']
-	);
-} elseif ( $wi->wikifarm === 'wikiforge' ) {
-	// WikiForge is not global so we don't use GlobalUserPage
-	unset( $wgManageWikiExtensions['globaluserpage'] );
-}

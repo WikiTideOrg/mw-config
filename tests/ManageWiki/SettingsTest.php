@@ -1,6 +1,6 @@
 <?php
 
-namespace WikiForge\Config\Tests\ManageWiki;
+namespace WikiTide\Config\Tests\ManageWiki;
 
 class SettingsTest extends ManageWikiTestCase {
 	public function getSchema(): array {

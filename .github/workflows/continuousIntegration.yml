@@ -1,0 +1,84 @@
+name: Continuous integration
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    name: Test and lint
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php-versions: ['8.2']
+    steps:
+    - name: Cancel Previous Runs
+      uses: styfle/cancel-workflow-action@0.12.0
+      with:
+        access_token: ${{ github.token }}
+
+    - uses: actions/checkout@v4
+
+    - name: Install dependencies
+      run: |
+        composer validate
+        composer install --prefer-dist --no-progress
+
+    - name: Check PHP
+      run: |
+        composer fix
+        composer test
+
+    - name: Check if extension-list is sorted alphabetically
+      run: LC_ALL=C sort -c extension-list
+
+    - name: Check for common typos
+      run: |
+         ! grep -E -r --binary-files=without-match --color=always --file=typos --exclude=typos --exclude=LICENSE.md --exclude-dir=.git --exclude-dir=vendor
+
+    - name: Push the changes
+      continue-on-error: true
+      if: github.event_name == 'pull_request'
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        if ! git diff --exit-code --quiet; then
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@users.noreply.github.com"
+          git remote set-url origin "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git checkout -b ${GITHUB_HEAD_REF}
+          git add .
+          git commit -am "CI: lint code to MediaWiki standards" -m "Check commit and GitHub actions for more details"
+          git pull origin ${GITHUB_HEAD_REF} --rebase
+          git push --set-upstream origin ${GITHUB_HEAD_REF}
+        else
+          echo "No changes to commit"
+        fi
+
+  notify-irc:
+    needs: test
+    runs-on: ubuntu-latest
+    if: ${{ always() && github.repository_owner == 'WikiTideOrg' && ( github.ref == 'refs/heads/main' || github.event_name == 'pull_request' ) }}
+    steps:
+      - name: succeeded
+        uses: technote-space/workflow-conclusion-action@v3
+      - uses: rectalogic/notify-irc@v2
+        if: env.WORKFLOW_CONCLUSION == 'success'
+        with:
+          channel: "#wikitide-sre"
+          server: "irc.libera.chat"
+          nickname: wikitide-github
+          message: ${{ github.repository }} - ${{ github.actor }} the build passed.
+          sasl_password: ${{ secrets.IRC_WIKITIDEBOTS }}
+
+      - name: failed
+        uses: technote-space/workflow-conclusion-action@v3
+      - uses: rectalogic/notify-irc@v2
+        if: env.WORKFLOW_CONCLUSION == 'failure'
+        with:
+          channel: "#wikitide-sre"
+          server: "irc.libera.chat"
+          nickname: wikitide-github
+          message: ${{ github.repository }} - ${{ github.actor }} the build has errored.
+          sasl_password: ${{ secrets.IRC_WIKITIDEBOTS }}

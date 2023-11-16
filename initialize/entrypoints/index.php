@@ -2,7 +2,7 @@
 
 define( 'MW_ENTRY_POINT', 'index' );
 
-require_once '/srv/mediawiki/config/initialise/WikiTideFunctions.php';
+require_once '/srv/mediawiki/config/initialize/WikiTideFunctions.php';
 require WikiTideFunctions::getMediaWiki( 'includes/WebStart.php' );
 
 if ( $wgArticlePath === '/$1' && str_contains( strtoupper( $_SERVER['REQUEST_URI'] ), strtoupper( '/wiki/' ) ) ) {

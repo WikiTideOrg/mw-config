@@ -509,6 +509,9 @@ $wgConf->settings += [
 	'wgCitizenSearchGateway' => [
 		'default' => 'mwActionApi',
 	],
+	'wgCitizenSearchModule' => [
+		'default' => 'skins.citizen.search',
+	],
 	'wgCitizenSearchDescriptionSource' => [
 		'default' => 'textextracts',
 	],

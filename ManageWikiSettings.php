@@ -3275,6 +3275,19 @@ $wgManageWikiSettings = [
 		'help' => 'Which gateway to use for fetching search suggestion',
 		'requires' => [],
 	],
+	'wgCitizenSearchModule' => [
+		'name' => 'Citizen Search Module',
+		'from' => 'citizen',
+		'type' => 'list',
+		'options' => [
+			'Citizen' => 'skins.citizen.search',
+			'MediaWiki' => 'mediawiki.searchSuggest',
+		],
+		'overridedefault' => 'skins.citizen.search',
+		'section' => 'styling',
+		'help' => 'Which ResourceLoader module to use for search suggestion',
+		'requires' => [],
+	],
 	'wgCitizenSearchDescriptionSource' => [
 		'name' => 'Citizen Search Description Source',
 		'from' => 'citizen',

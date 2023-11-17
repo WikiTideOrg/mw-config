@@ -40,10 +40,6 @@ if ( $wgWikiTideCommons ?? false && !$cwPrivate ) {
 	wfLoadExtension( 'GlobalUsage' );
 }
 
-if ( $wi->isAnyOfExtensionsActive( 'SearchVue', 'Upload Wizard' ) ) {
-	wfLoadExtension( 'EventLogging' );
-}
-
 if ( $wi->isExtensionActive( 'InterwikiSorting' ) ) {
 	$wgInterwikiSortingInterwikiSortOrders = include __DIR__ . '/InterwikiSortOrders.php';
 }

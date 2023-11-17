@@ -162,7 +162,7 @@ $wgAWSRepoDeletedHashLevels = 3;
 $wgAWSBucketTopSubdirectory = '/' . $wgDBname;
 
 // Closed Wikis
-if ( ( $wi->wikifarm === 'wikitide' || $wi->wikifarm === 'nexttide' ) && $cwClosed ) {
+if ( $cwClosed ) {
 	$wgRevokePermissions = [
 		'*' => [
 			'block' => true,
@@ -183,14 +183,12 @@ if ( ( $wi->wikifarm === 'wikitide' || $wi->wikifarm === 'nexttide' ) && $cwClos
 
 // Public Wikis
 if ( !$cwPrivate ) {
-	if ( $wi->wikifarm === 'wikitide' || $wi->wikifarm === 'nexttide' ) {
-		$wgRCFeeds['irc'] = [
-			'formatter' => WikiTideIRCRCFeedFormatter::class,
-			'uri' => 'udp://jobrunner1.wikitide.net:5070',
-			'add_interwiki_prefix' => false,
-			'omit_bots' => true,
-		];
-	}
+	$wgRCFeeds['irc'] = [
+		'formatter' => WikiTideIRCRCFeedFormatter::class,
+		'uri' => 'udp://jobrunner1.wikitide.net:5070',
+		'add_interwiki_prefix' => false,
+		'omit_bots' => true,
+	];
 
 	$wgDiscordIncomingWebhookUrl = $wmgGlobalDiscordWebhookUrl;
 	$wgDiscordExperimentalWebhook = $wmgDiscordExperimentalWebhook;
@@ -431,7 +429,7 @@ if ( $wmgEnableSharedUploads && $wmgSharedUploadDBname && in_array( $wmgSharedUp
 }
 
 // WikiTide Commons
-if ( $wi->wikifarm === 'wikitide' || $wi->wikifarm === 'nexttide' && ( $wgDBname !== 'commonswikitide' && $wgWikiTideCommons ?? false ) ) {
+if ( $wgDBname !== 'commonswikitide' && $wgWikiTideCommons ?? false ) {
 	$wgForeignFileRepos[] = [
 		'class' => ForeignDBViaLBRepo::class,
 		'name' => 'wikitidecommons',
@@ -489,7 +487,6 @@ if ( $wgWordmark ) {
 
 // $wgUrlShortenerAllowedDomains
 $wgUrlShortenerAllowedDomains = [
-	'(.*\.)?wikiforge\.net',
 	'(.*\.)?wikitide\.org',
 ];
 

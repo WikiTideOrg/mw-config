@@ -291,7 +291,7 @@ $wgManageWikiSettings = [
 		'requires' => [
 			'visibility' => [
 				'permissions' => [
-					'managewiki',
+					'managewiki-settings',
 				],
 			],
 		],
@@ -1768,7 +1768,7 @@ $wgManageWikiSettings = [
 		'requires' => [
 			'visibility' => [
 				'permissions' => [
-					'managewiki',
+					'managewiki-settings',
 				],
 			],
 		],

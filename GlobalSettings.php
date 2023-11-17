@@ -40,10 +40,6 @@ if ( $wgWikiTideCommons ?? false && !$cwPrivate ) {
 	wfLoadExtension( 'GlobalUsage' );
 }
 
-if ( ( $wi->wikifarm !== 'wikitide' || $wi->wikifarm !== 'nexttide' ) && $wi->isAnyOfExtensionsActive( 'SearchVue', 'Upload Wizard' ) ) {
-	wfLoadExtension( 'EventLogging' );
-}
-
 if ( $wi->isExtensionActive( 'InterwikiSorting' ) ) {
 	$wgInterwikiSortingInterwikiSortOrders = include __DIR__ . '/InterwikiSortOrders.php';
 }
@@ -125,11 +121,6 @@ $wgHooks['MimeMagicInit'][] = static function ( MimeAnalyzer $mime ) {
 	$mime->addExtraTypes( 'font/sfnt ttf' );
 	$mime->addExtraTypes( 'font/woff woff' );
 	$mime->addExtraTypes( 'font/woff2 woff2' );
-};
-
-// Expose $wgDBname to page HTML for WikiForgeDebugJS
-$wgHooks['MakeGlobalVariablesScript'][] = static function ( &$vars, $out ): void {
-	$vars['wgDBname'] = $out->getConfig()->get( 'DBname' );
 };
 
 // Action and article paths

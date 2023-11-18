@@ -3505,6 +3505,7 @@ $wgConf->settings += [
 	],
 	'wgRestPath' => [
 		'default' => '/' . $wi->version . '/rest.php',
+		'metawikitide' => '/w/rest.php',
 	],
 	'wgScript' => [
 		'default' => '/w/index.php',

@@ -5,7 +5,7 @@ $wgMemCachedPersistent = false;
 
 // $beta = preg_match( '/^(.*)\.nexttide\.org$/', $wi->server );
 
-// mem11
+// mem1
 $wgObjectCaches['memcached'] = [
 	'class'                => MemcachedPeclBagOStuff::class,
 	'serializer'           => 'php',
@@ -19,6 +19,9 @@ $wgObjectCaches['memcached'] = [
 	// 500ms, in microseconds
 	'timeout'              => 1 * 1e6,
 ];
+
+// Used by WikiTideMagic for clearing keys when a wiki is deleted or renamed
+$wgWikiTideMagicMemcachedServer = '10.0.0.106:11211';
 
 $wgObjectCaches['mysql-multiwrite'] = [
 	'class' => MultiWriteBagOStuff::class,

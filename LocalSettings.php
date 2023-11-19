@@ -2091,7 +2091,7 @@ $wgConf->settings += [
 		],
 	],
 	'wgManageWikiExtensionsDefault' => [
-		'wikitide' => [
+		'default' => [
 			'cite',
 			'citethispage',
 			'codeeditor',

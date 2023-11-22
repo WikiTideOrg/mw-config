@@ -189,7 +189,7 @@ class WikiTideFunctions {
 	}
 
 	public static function setupHooks() {
-		global $wgHooks, $wgExtensionFunctions;
+		global $wgHooks;
 
 		$wgHooks['CreateWikiJsonGenerateDatabaseList'][] = 'WikiTideFunctions::onGenerateDatabaseLists';
 		$wgHooks['ManageWikiCoreAddFormFields'][] = 'WikiTideFunctions::onManageWikiCoreAddFormFields';

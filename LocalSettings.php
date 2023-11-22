@@ -3694,15 +3694,15 @@ $wgConf->settings += [
 		'default' => [
 			'audio' => [
 				'<^(?:https:)?//upload\\.wikimedia\\.org/wikipedia/commons/>',
-				'<^(?:https:)?//static\\.wikiforge\\.net/>',
+				'<^(?:https:)?//static\\.wikitide\\.net/>',
 			],
 			'image' => [
 				'<^(?:https:)?//upload\\.wikimedia\\.org/wikipedia/commons/>',
-				'<^(?:https:)?//static\\.wikiforge\\.net/>',
+				'<^(?:https:)?//static\\.wikitide\\.net/>',
 			],
 			'svg' => [
 				'<^(?:https:)?//upload\\.wikimedia\\.org/wikipedia/commons/[^?#]*\\.svg(?:[?#]|$)>',
-				'<^(?:https:)?//static\\.wikiforge\\.net/[^?#]*\\.svg(?:[?#]|$)>',
+				'<^(?:https:)?//static\\.wikitide\\.net/[^?#]*\\.svg(?:[?#]|$)>',
 			],
 			'font' => [],
 			'namespace' => [

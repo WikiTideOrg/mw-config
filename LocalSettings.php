@@ -52,7 +52,7 @@ require_once '/srv/mediawiki/config/PrivateSettings.php';
 // Load global extensions
 require_once '/srv/mediawiki/config/GlobalExtensions.php';
 
-$wmgUploadHostname = 'static.wikiforge.net';
+$wmgUploadHostname = 'static.wikitide.net';
 $wmgDBHostname = 'db1.wikitide.net';
 $wmgRedisHostname = 'jobchron1.wikitide.net';
 
@@ -1731,7 +1731,7 @@ $wgConf->settings += [
 
 	// ImportDump
 	'wgImportDumpCentralWiki' => [
-		'default' => $wi::CENTRAL_WIKI[$wi->wikifarm],
+		'default' => 'metawikitide',
 	],
 	'wgImportDumpInterwikiMap' => [
 		'default' => [
@@ -1742,7 +1742,7 @@ $wgConf->settings += [
 		],
 	],
 	'wgImportDumpScriptCommand' => [
-		'default' => 'screen -d -m bash -c ". /etc/s3-env.sh; aws s3 cp s3://' . $wi::CENTRAL_WIKI[$wi->wikifarm] . '/{file-path} /home/$USER/{file-name}; mwscript importDump.php {wiki} -y --no-updates --username-prefix={username-prefix} /home/$USER/{file-name}; mwscript rebuildall.php {wiki} -y; mwscript initSiteStats.php {wiki} --active --update -y; rm /home/$USER/{file-name}"',
+		'default' => 'screen -d -m bash -c ". /etc/swift-env.sh; swift download wikitide-metawikitide-local-public {file} -o /home/$USER/{file}; mwscript importDump.php {wiki} -y --no-updates --username-prefix={username-prefix} /home/$USER/{file}; mwscript rebuildall.php {wiki} -y; mwscript initSiteStats.php {wiki} --active --update -y; rm /home/$USER/{file}"',
 	],
 	'wgImportDumpUsersNotifiedOnAllRequests' => [
 		'default' => [
@@ -4777,8 +4777,7 @@ if ( $wgRequestTimeLimit ) {
 require_once '/srv/mediawiki/config/Database.php';
 require_once '/srv/mediawiki/config/GlobalCache.php';
 require_once '/srv/mediawiki/config/GlobalLogging.php';
-// Only once Swift is up!
-//require_once '/srv/mediawiki/config/FileBackend.php';
+require_once '/srv/mediawiki/config/FileBackend.php';
 
 if ( $wi->missing ) {
 	require_once '/srv/mediawiki/ErrorPages/MissingWiki.php';

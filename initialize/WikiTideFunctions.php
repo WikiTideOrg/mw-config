@@ -189,15 +189,13 @@ class WikiTideFunctions {
 	}
 
 	public static function setupHooks() {
-		global $wgHooks, $wgExtensionFunctions;
+		global $wgHooks;
 
 		$wgHooks['CreateWikiJsonGenerateDatabaseList'][] = 'WikiTideFunctions::onGenerateDatabaseLists';
 		$wgHooks['ManageWikiCoreAddFormFields'][] = 'WikiTideFunctions::onManageWikiCoreAddFormFields';
 		$wgHooks['ManageWikiCoreFormSubmission'][] = 'WikiTideFunctions::onManageWikiCoreFormSubmission';
 		$wgHooks['MediaWikiServices'][] = 'WikiTideFunctions::onMediaWikiServices';
 		$wgHooks['CreateWikiJsonBuilder'][] = 'WikiTideFunctions::onCreateWikiJsonBuilder';
-
-		$wgExtensionFunctions[] = 'WikiTideFunctions::onExtensionFunctions';
 	}
 
 	public static function setupSiteConfiguration() {
@@ -1093,15 +1091,5 @@ class WikiTideFunctions {
 			// Don't need a global here
 			unset( $GLOBALS['globals'] );
 		}
-	}
-
-	public static function onExtensionFunctions() {
-		global $wgFileBackends, $wgDBname, $wgAWSBucketName;
-		$wgFileBackends['s3']['containerPaths']["$wgDBname-avatars"] = "$wgAWSBucketName/$wgDBname/avatars";
-		$wgFileBackends['s3']['containerPaths']["$wgDBname-awards"] = "$wgAWSBucketName/$wgDBname/awards";
-		$wgFileBackends['s3']['containerPaths']["$wgDBname-dumps-backup"] = "$wgAWSBucketName/$wgDBname/dumps";
-		$wgFileBackends['s3']['containerPaths']["$wgDBname-local-transcoded"] = "$wgAWSBucketName/$wgDBname/transcoded";
-		$wgFileBackends['s3']['containerPaths']["$wgDBname-score-render"] = "$wgAWSBucketName/$wgDBname/score";
-		$wgFileBackends['s3']['containerPaths']["$wgDBname-timeline-render"] = "$wgAWSBucketName/$wgDBname/timeline";
 	}
 }

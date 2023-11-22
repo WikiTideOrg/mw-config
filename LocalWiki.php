@@ -29,30 +29,30 @@ switch ( $wi->dbname ) {
 		break;
 	case 'snxyzincubatorwikitide':
 		$wgLogos = [
-			'1x' => "https://static.wikiforge.net/snxyzincubatorwikitide/2/2e/Incubator_Logo.2023.svg",
-			'svg' => "https://static.wikiforge.net/snxyzincubatorwikitide/2/2e/Incubator_Logo.2023.svg",
-			'icon' => "https://static.wikiforge.net/snxyzincubatorwikitide/2/2e/Incubator_Logo.2023.svg",
+			'1x' => "https://static.wikitide.net/snxyzincubatorwikitide/2/2e/Incubator_Logo.2023.svg",
+			'svg' => "https://static.wikitide.net/snxyzincubatorwikitide/2/2e/Incubator_Logo.2023.svg",
+			'icon' => "https://static.wikitide.net/snxyzincubatorwikitide/2/2e/Incubator_Logo.2023.svg",
 			'wordmark' => [
-				'src' => "https://static.wikiforge.net/snxyzincubatorwikitide/d/d5/Wordmark_EN.svg",
-				'1x' => "https://static.wikiforge.net/snxyzincubatorwikitide/d/d5/Wordmark_EN.svg",
+				'src' => "https://static.wikitide.net/snxyzincubatorwikitide/d/d5/Wordmark_EN.svg",
+				'1x' => "https://static.wikitide.net/snxyzincubatorwikitide/d/d5/Wordmark_EN.svg",
 				'width' => 135,
 				'height' => 20,
 			],
 			'tagline' => [
-				'src' => "https://static.wikiforge.net/snxyzincubatorwikitide/6/60/Tagline_EN.svg",
+				'src' => "https://static.wikitide.net/snxyzincubatorwikitide/6/60/Tagline_EN.svg",
 				'width' => 135,
 				'height' => 15,
 			],
 			'variants' => [
 				'vi' => [
 					'wordmark' => [
-						'src' => "https://static.wikiforge.net/snxyzincubatorwikitide/4/41/Wordmark_VI.svg",
-						'1x' => "https://static.wikiforge.net/snxyzincubatorwikitide/4/41/Wordmark_VI.svg",
+						'src' => "https://static.wikitide.net/snxyzincubatorwikitide/4/41/Wordmark_VI.svg",
+						'1x' => "https://static.wikitide.net/snxyzincubatorwikitide/4/41/Wordmark_VI.svg",
 						'width' => 135,
 						'height' => 20,
 					],
 					'tagline' => [
-						'src' => "https://static.wikiforge.net/snxyzincubatorwikitide/1/1b/Tagline_VI.svg",
+						'src' => "https://static.wikitide.net/snxyzincubatorwikitide/1/1b/Tagline_VI.svg",
 						'width' => 135,
 						'height' => 15,
 					],

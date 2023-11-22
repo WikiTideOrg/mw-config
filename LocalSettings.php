@@ -1378,7 +1378,7 @@ $wgConf->settings += [
 		'wikitide' => [
 			'poweredby' => [
 				'wikitide' => [
-					'src' => 'https://static.wikiforge.net/commonswikitide/8/8a/Hosted_by_WikiTide.svg',
+					'src' => 'https://static.wikitide.net/commonswikitide/8/8a/Hosted_by_WikiTide.svg',
 					'url' => 'https://meta.wikitide.org/wiki/Special:MyLanguage/WikiTide',
 					'alt' => 'Hosted by WikiTide',
 				],
@@ -1387,12 +1387,12 @@ $wgConf->settings += [
 		'hsckwikitide' => [
 			'poweredby' => [
 				'songnguxyz' => [
-					'src' => 'https://static.wikiforge.net/lhmnwikitide/5/58/Footer.SN.xyz.svg',
+					'src' => 'https://static.wikitide.net/lhmnwikitide/5/58/Footer.SN.xyz.svg',
 					'url' => 'https://songngu.xyz',
 					'alt' => 'Dự án được bảo quản bởi SongNgư.xyz',
 				],
 				'wikitide' => [
-					'src' => 'https://static.wikiforge.net/commonswikitide/8/8a/Hosted_by_WikiTide.svg',
+					'src' => 'https://static.wikitide.net/commonswikitide/8/8a/Hosted_by_WikiTide.svg',
 					'url' => 'https://meta.wikitide.org/wiki/Special:MyLanguage/WikiTide',
 					'alt' => 'Hosted by WikiTide',
 				],
@@ -1401,12 +1401,12 @@ $wgConf->settings += [
 		'lhmnwikitide' => [
 			'poweredby' => [
 				'songnguxyz' => [
-					'src' => 'https://static.wikiforge.net/lhmnwikitide/5/58/Footer.SN.xyz.svg',
+					'src' => 'https://static.wikitide.net/lhmnwikitide/5/58/Footer.SN.xyz.svg',
 					'url' => 'https://songngu.xyz',
 					'alt' => 'Dự án được bảo quản bởi SongNgư.xyz',
 				],
 				'wikitide' => [
-					'src' => 'https://static.wikiforge.net/commonswikitide/8/8a/Hosted_by_WikiTide.svg',
+					'src' => 'https://static.wikitide.net/commonswikitide/8/8a/Hosted_by_WikiTide.svg',
 					'url' => 'https://meta.wikitide.org/wiki/Special:MyLanguage/WikiTide',
 					'alt' => 'Hosted by WikiTide',
 				],
@@ -1415,12 +1415,12 @@ $wgConf->settings += [
 		'snxyzincubatorwikitide' => [
 			'poweredby' => [
 				'songnguxyz' => [
-					'src' => 'https://static.wikiforge.net/lhmnwikitide/5/58/Footer.SN.xyz.svg',
+					'src' => 'https://static.wikitide.net/lhmnwikitide/5/58/Footer.SN.xyz.svg',
 					'url' => 'https://songngu.xyz',
 					'alt' => 'This project is a part of SongNgu.xyz',
 				],
 				'wikitide' => [
-					'src' => 'https://static.wikiforge.net/commonswikitide/8/8a/Hosted_by_WikiTide.svg',
+					'src' => 'https://static.wikitide.net/commonswikitide/8/8a/Hosted_by_WikiTide.svg',
 					'url' => 'https://meta.wikitide.org/wiki/Special:MyLanguage/WikiTide',
 					'alt' => 'Hosted by WikiTide',
 				],

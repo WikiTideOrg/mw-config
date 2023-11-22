@@ -319,7 +319,7 @@ if ( $wi->isExtensionActive( 'EasyTimeline' ) ) {
 // $wgFooterIcons
 if ( (bool)$wmgWikiapiaryFooterPageName ) {
 	$wgFooterIcons['poweredby']['wikiapiary'] = [
-		'src' => 'https://static.wikiforge.net/commonswiki/b/b4/Monitored_by_WikiApiary.png',
+		'src' => 'https://static.wikitide.net/commonswikitide/b/b4/Monitored_by_WikiApiary.png',
 		'url' => 'https://wikiapiary.com/wiki/' . str_replace( ' ', '_', $wmgWikiapiaryFooterPageName ),
 		'alt' => 'Monitored by WikiApiary'
 	];
@@ -395,7 +395,7 @@ if ( $wgDBname !== 'commonswikitide' && $wgWikiTideCommons ?? false ) {
 		'scriptDirUrl' => 'https://commons.wikitide.org/w',
 		'fetchDescription' => true,
 		'descriptionCacheExpiry' => 86400 * 7,
-		'wiki' => 'commonswiki',
+		'wiki' => 'commonswikitide',
 		'initialCapital' => true,
 		'zones' => [
 			'public' => [

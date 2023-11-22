@@ -195,10 +195,7 @@ class WikiTideFunctions {
 		$wgHooks['ManageWikiCoreAddFormFields'][] = 'WikiTideFunctions::onManageWikiCoreAddFormFields';
 		$wgHooks['ManageWikiCoreFormSubmission'][] = 'WikiTideFunctions::onManageWikiCoreFormSubmission';
 		$wgHooks['MediaWikiServices'][] = 'WikiTideFunctions::onMediaWikiServices';
-
-		if ( self::getWikiFarm() === 'wikitide' ) {
-			$wgHooks['CreateWikiJsonBuilder'][] = 'WikiTideFunctions::onCreateWikiJsonBuilder';
-		}
+		$wgHooks['CreateWikiJsonBuilder'][] = 'WikiTideFunctions::onCreateWikiJsonBuilder';
 	}
 
 	public static function setupSiteConfiguration() {
@@ -1043,7 +1040,6 @@ class WikiTideFunctions {
 	 * @param array &$formDescriptor
 	 */
 	public static function onManageWikiCoreAddFormFields( $ceMW, $context, $dbName, &$formDescriptor ) {
-		$wikiFarm = self::getWikiFarm();
 		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 
 		$mwVersion = self::getMediaWikiVersion( $dbName );
@@ -1062,13 +1058,6 @@ class WikiTideFunctions {
 			'cssclass' => 'managewiki-infuse',
 			'section' => 'main',
 		];
-
-		if ( $wikiFarm !== 'wikitide' ) {
-			$wiki = new RemoteWiki( $dbName );
-			if ( ( $setList['wgWikiDiscoverExclude'] ?? false ) || $wiki->isPrivate() ) {
-				unset( $formDescriptor['category'], $formDescriptor['description'] );
-			}
-		}
 	}
 
 	/**
@@ -1085,45 +1074,6 @@ class WikiTideFunctions {
 			$wiki->changes['mediawiki-version'] = [
 				'old' => $version,
 				'new' => $formData['mediawiki-version']
-			];
-		}
-
-		if ( self::getWikiFarm() === 'wikitide' ) {
-			return;
-		}
-
-		$mwSettings = new ManageWikiSettings( $dbName );
-
-		$articlePath = $mwSettings->list()['wgArticlePath'] ?? '';
-		if ( $formData['article-path'] !== $articlePath ) {
-			$mwSettings->modify( [ 'wgArticlePath' => $formData['article-path'] ] );
-			$mwSettings->commit();
-			$wiki->changes['article-path'] = [
-				'old' => $articlePath,
-				'new' => $formData['article-path']
-			];
-
-			$server = self::getServer();
-			$jobQueueGroupFactory = MediaWikiServices::getInstance()->getJobQueueGroupFactory();
-			$jobQueueGroupFactory->makeJobQueueGroup( $dbName )->push(
-				new CdnPurgeJob( [
-					'urls' => [
-						$server . '/wiki/',
-						$server . '/wiki',
-						$server . '/',
-						$server,
-					],
-				] )
-			);
-		}
-
-		$mainPageIsDomainRoot = $mwSettings->list()['wgMainPageIsDomainRoot'] ?? false;
-		if ( $formData['mainpage-is-domain-root'] !== $mainPageIsDomainRoot ) {
-			$mwSettings->modify( [ 'wgMainPageIsDomainRoot' => $formData['mainpage-is-domain-root'] ] );
-			$mwSettings->commit();
-			$wiki->changes['mainpage-is-domain-root'] = [
-				'old' => $mainPageIsDomainRoot,
-				'new' => $formData['mainpage-is-domain-root']
 			];
 		}
 	}

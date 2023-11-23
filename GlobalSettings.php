@@ -1,7 +1,5 @@
 <?php
 
-header( 'X-Wiki-Visibility: ' . ( $cwPrivate ? 'Private' : 'Public' ) );
-
 // Extensions
 $wgMWOAuthSharedUserSource = 'CentralAuth';
 $wgOATHAuthDatabase = $wi::GLOBAL_DATABASE[$wi->wikifarm];

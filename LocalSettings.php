@@ -984,9 +984,6 @@ $wgConf->settings += [
 	'wgCreateWikiUsePrivateWikis' => [
 		'default' => true,
 	],
-	'wgCreateWikiUseSecureContainers' => [
-		'default' => true,
-	],
 	'wgCreateWikiContainers' => [
 		'default' => [
 			'avatars' => 'public-private',
@@ -999,6 +996,10 @@ $wgConf->settings += [
 			'dumps-backup' => 'public-private',
 			'timeline-render' => 'public-private'
 		],
+	],
+	'wgCreateWikiUseJobQueue' => [
+		// TODO: enable
+		'default' => false,
 	],
 	'wgRequestWikiConfirmAgreement' => [
 		'wikitide' => true,

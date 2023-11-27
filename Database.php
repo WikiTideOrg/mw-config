@@ -43,7 +43,7 @@ $wgLBFactoryConf = [
 		],
 	],
 	'readOnlyBySection' => [
-		'DEFAULT' => 'We are performing database maintenance. Try again in a few hours.',
+		// 'DEFAULT' => 'We are performing database maintenance. Try again in a few hours.',
 		// 'c1' => 'Please try again in a few minutes.',
 	],
 ];

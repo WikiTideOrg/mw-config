@@ -76,7 +76,7 @@ $wgLocalFileRepo = [
 	'deletedHashLevels' => 3,
 	'abbrvThreshold' => 160,
 	'isPrivate' => $cwPrivate,
-	'thumbProxyUrl' => 'http://thumbor131.wikitide.net/' . $wgDBname . '/thumb/',
+	'thumbProxyUrl' => 'http://thumbor31.wikitide.net/' . $wgDBname . '/thumb/',
 	'thumbProxySecret' => $wmgThumborSecret,
 	'zones' => $cwPrivate
 		? [ 'thumb' => [ 'url' => "$wgScriptPath/thumb_handler.php" ] ]

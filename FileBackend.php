@@ -14,8 +14,10 @@ $wgFileBackends[] = [
 	'parallelize'        => 'implicit',
 	'cacheAuthInfo'      => true,
 	'readAffinity'       => true,
-	'readUsers'           => [ 'mw:media' ],
-	'writeUsers'          => [ 'mw:media' ],
+	'readUsers' => [ 'mw:thumbor' ],
+	'writeUsers' => [ 'mw:thumbor' ],
+	'secureReadUsers' => [ 'mw:thumbor-private' ],
+	'secureWriteUsers' => [ 'mw:thumbor-private' ],
 	'connTimeout'         => 10,
 	'reqTimeout'          => 900,
 ];
@@ -74,8 +76,9 @@ $wgLocalFileRepo = [
 	'deletedHashLevels' => 3,
 	'abbrvThreshold' => 160,
 	'isPrivate' => $cwPrivate,
+	'thumbProxyUrl' => 'http://thumbor131.wikitide.net/' . $wgDBname . '/thumb/',
+	'thumbProxySecret' => $wmgThumborSecret,
 	'zones' => $cwPrivate
-		? [
-			'thumb' => [ 'url' => "$wgScriptPath/thumb_handler.php" ] ]
+		? [ 'thumb' => [ 'url' => "$wgScriptPath/thumb_handler.php" ] ]
 		: [],
 ];

@@ -1003,11 +1003,36 @@ class WikiTideFunctions {
 					self::GLOBAL_DATABASE['wikitide']
 				),
 			],
+			'active' => [
+				'combi' => self::getActiveList(
+					self::GLOBAL_DATABASE['wikitide']
+				),
+			],
+			'databases' => [
+				'combi' => self::getCombiList(
+					self::GLOBAL_DATABASE['wikitide']
+				),
+			],
+			'deleted' => [
+				'deleted' => 'databases',
+				'databases' => self::getDeletedList(
+					self::GLOBAL_DATABASE['wikitide']
+				),
+			],
 		];
 
 		foreach ( self::MEDIAWIKI_VERSIONS as $name => $version ) {
 			$databaseLists += [
 				$name . '-wikis-wikitide' => [
+					'combi' => self::getCombiList(
+						self::GLOBAL_DATABASE['wikitide'],
+						$version
+					),
+				],
+			];
+
+			$databaseLists += [
+				$name . '-wikis' => [
 					'combi' => self::getCombiList(
 						self::GLOBAL_DATABASE['wikitide'],
 						$version

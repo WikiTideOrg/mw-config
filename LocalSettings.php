@@ -1057,7 +1057,7 @@ $wgConf->settings += [
 		'default' => 'mediawiki',
 	],
 	'wgReadOnly' => [
-		'default' => 'We are performing database maintenance. Please try again in a few hours.',
+		'default' => false,
 	],
 	'wgSharedTables' => [
 		'default' => [],

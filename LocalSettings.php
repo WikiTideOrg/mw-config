@@ -3506,6 +3506,7 @@ $wgConf->settings += [
 	],
 	'wgScriptPath' => [
 		'default' => '/' . $wi->version,
+		'metawikitide' => '/w',
 	],
 	'wgShowHostnames' => [
 		'default' => true,

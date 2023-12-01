@@ -862,8 +862,7 @@ $wgConf->settings += [
 		'default' => []
 	],
 	'wgCreateWikiDatabaseSuffix' => [
-		'default' => 'wikitide',
-		'nexttide' => 'nexttide',
+		'default' => 'wiki',
 	],
 	'wgCreateWikiEnableManageInactiveWikis' => [
 		'default' => true,

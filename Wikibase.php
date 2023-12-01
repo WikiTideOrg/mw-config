@@ -85,7 +85,7 @@ $wgWBClientSettings['recentChangesBatchSize'] = 100;
 if ( $wgDBname === 'lhmndatawikitide' ) {
 	$wgWBRepoSettings['siteLinkGroups'] = [ 'lhmngroup' ];
 	$wgWBRepoSettings['localClientDatabases'] = [
-    		'lhmn' => 'lhmnwikitide',
+			'lhmn' => 'lhmnwikitide',
 	];
 	$wgWBRepoSettings['allowDataAccessInUserLanguage'] = true;
 }

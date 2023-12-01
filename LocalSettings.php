@@ -1976,19 +1976,19 @@ $wgConf->settings += [
 	'wgLinkTargetParentClasses' => [
 		'default' => [],
 		'sdiywikitide' => [
-			'_blank' => [ 
+			'_blank' => [
 				''
- 			]
+			]
 		 ],
 		'scruffywikitide' => [
 			'_blank' => [
 				''
- 			]
+			]
 		 ],
 		'simpleelectronicswikitide' => [
-			'_blank' => [ 
+			'_blank' => [
 				''
- 			]
+			]
 		 ],
 	],
 
@@ -2024,7 +2024,7 @@ $wgConf->settings += [
 			'10.0.0.107' => true,
 		],
 	],
-	
+
 	// Lingo
 	'wgexLingoPage' => [
 		'default' => 'Terminology',

@@ -2,7 +2,6 @@
 
 use MediaWiki\MediaWikiServices;
 use WikiForge\CreateWiki\RemoteWiki;
-use WikiForge\ManageWiki\Helpers\ManageWikiSettings;
 use Wikimedia\Rdbms\DBConnRef;
 
 class WikiTideFunctions {
@@ -209,7 +208,7 @@ class WikiTideFunctions {
 
 	/**
 	 * @return string
-  	 * TODO: REMOVE?
+	 * TODO: REMOVE?
 	 */
 	public static function getWikiFarm(): string {
 		return self::TAGS['wikitide'];

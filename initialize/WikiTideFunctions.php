@@ -99,19 +99,16 @@ class WikiTideFunctions {
 	public static function getLocalDatabases(): ?array {
 		global $wgLocalDatabases;
 
-		static $wikiFarm = null;
 		static $databases = null;
 
 		self::$currentDatabase ??= self::getCurrentDatabase();
 
-		$wikiFarm ??= self::getWikiFarm();
-
 		// We need the CLI to be able to access 'deleted' wikis
 		if ( PHP_SAPI === 'cli' ) {
-			$databases ??= array_merge( self::readDbListFile( 'databases-' . $wikiFarm ), self::readDbListFile( 'deleted-' . $wikiFarm ) );
+			$databases ??= array_merge( self::readDbListFile( 'databases' ), self::readDbListFile( 'deleted-' . $wikiFarm ) );
 		}
 
-		$databases ??= self::readDbListFile( 'databases-' . $wikiFarm );
+		$databases ??= self::readDbListFile( 'databases' );
 
 		$wgLocalDatabases = $databases;
 		return $databases;
@@ -239,13 +236,13 @@ class WikiTideFunctions {
 
 		self::$currentDatabase ??= self::getCurrentDatabase();
 
-		$wikiFarm ??= self::getWikiFarm();
-		$databases = self::readDbListFile( 'databases-' . $wikiFarm, false, $database );
+		$databases = self::readDbListFile( 'databases', false, $database );
 
 		if ( $deleted && $databases ) {
-			$databases += self::readDbListFile( 'deleted-' . $wikiFarm, false, $database );
+			$databases += self::readDbListFile( 'deleted', false, $database );
 		}
 
+		$wikiFarm ??= self::getWikiFarm();
 		if ( $database !== null ) {
 			if ( is_string( $database ) && $database !== 'default' ) {
 				foreach ( array_flip( self::SUFFIXES ) as $suffix ) {
@@ -284,7 +281,7 @@ class WikiTideFunctions {
 		$hostname = $_SERVER['HTTP_HOST'] ?? 'undefined';
 
 		static $database = null;
-		$database ??= self::readDbListFile( 'databases-wikitide', true, 'https://' . $hostname, true );
+		$database ??= self::readDbListFile( 'databases', true, 'https://' . $hostname, true );
 
 		if ( $database ) {
 			return $database;
@@ -321,8 +318,8 @@ class WikiTideFunctions {
 		static $allDatabases = null;
 		static $deletedDatabases = null;
 
-		$allDatabases ??= self::readDbListFile( 'databases-' . self::LISTS[self::getWikiFarm()], false );
-		$deletedDatabases ??= self::readDbListFile( 'deleted-' . self::LISTS[self::getWikiFarm()], false );
+		$allDatabases ??= self::readDbListFile( 'databases', false );
+		$deletedDatabases ??= self::readDbListFile( 'deleted', false );
 
 		$databases = array_merge( $allDatabases, $deletedDatabases );
 
@@ -361,8 +358,8 @@ class WikiTideFunctions {
 		static $allDatabases = null;
 		static $deletedDatabases = null;
 
-		$allDatabases ??= self::readDbListFile( 'databases-' . self::LISTS[self::getWikiFarm()], false );
-		$deletedDatabases ??= self::readDbListFile( 'deleted-' . self::LISTS[self::getWikiFarm()], false );
+		$allDatabases ??= self::readDbListFile( 'databases', false );
+		$deletedDatabases ??= self::readDbListFile( 'deleted', false );
 
 		$databases = array_merge( $allDatabases, $deletedDatabases );
 
@@ -400,7 +397,7 @@ class WikiTideFunctions {
 		}
 
 		if ( $database ) {
-			$mwVersion = self::readDbListFile( 'databases-' . self::LISTS[self::getWikiFarm()], false, $database )['v'] ?? null;
+			$mwVersion = self::readDbListFile( 'databases', false, $database )['v'] ?? null;
 			return $mwVersion ?? self::MEDIAWIKI_VERSIONS[self::getDefaultMediaWikiVersion()];
 		}
 
@@ -414,7 +411,7 @@ class WikiTideFunctions {
 		static $version = null;
 
 		self::$currentDatabase ??= self::getCurrentDatabase();
-		$version ??= self::readDbListFile( 'databases-' . self::LISTS[self::getWikiFarm()], false, self::$currentDatabase )['v'] ?? null;
+		$version ??= self::readDbListFile( 'databases', false, self::$currentDatabase )['v'] ?? null;
 
 		return $version ?? self::MEDIAWIKI_VERSIONS[self::getDefaultMediaWikiVersion()];
 	}
@@ -629,13 +626,10 @@ class WikiTideFunctions {
 
 		// Assign states
 		$settings['cwPrivate']['default'] = (bool)$cacheArray['states']['private'];
-
-		if ( self::getWikiFarm() === 'wikitide' ) {
-			$settings['cwClosed']['default'] = (bool)$cacheArray['states']['closed'];
-			$settings['cwLocked']['default'] = (bool)$cacheArray['states']['locked'] ?? false;
-			$settings['cwInactive']['default'] = ( $cacheArray['states']['inactive'] === 'exempt' ) ? 'exempt' : (bool)$cacheArray['states']['inactive'];
-			$settings['cwExperimental']['default'] = (bool)( $cacheArray['states']['experimental'] ?? false );
-		}
+		$settings['cwClosed']['default'] = (bool)$cacheArray['states']['closed'];
+		$settings['cwLocked']['default'] = (bool)$cacheArray['states']['locked'] ?? false;
+		$settings['cwInactive']['default'] = ( $cacheArray['states']['inactive'] === 'exempt' ) ? 'exempt' : (bool)$cacheArray['states']['inactive'];
+		$settings['cwExperimental']['default'] = (bool)( $cacheArray['states']['experimental'] ?? false );
 
 		// Assign settings
 		if ( isset( $cacheArray['settings'] ) ) {

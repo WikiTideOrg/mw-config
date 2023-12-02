@@ -105,7 +105,7 @@ class WikiTideFunctions {
 
 		// We need the CLI to be able to access 'deleted' wikis
 		if ( PHP_SAPI === 'cli' ) {
-			$databases ??= array_merge( self::readDbListFile( 'databases' ), self::readDbListFile( 'deleted-' . $wikiFarm ) );
+			$databases ??= array_merge( self::readDbListFile( 'databases' ), self::readDbListFile( 'deleted' ) );
 		}
 
 		$databases ??= self::readDbListFile( 'databases' );

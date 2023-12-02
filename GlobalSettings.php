@@ -1,5 +1,11 @@
 <?php
 
+$wgHooks['CreateWikiJsonGenerateDatabaseList'][] = 'WikiTideFunctions::onGenerateDatabaseLists';
+$wgHooks['ManageWikiCoreAddFormFields'][] = 'WikiTideFunctions::onManageWikiCoreAddFormFields';
+$wgHooks['ManageWikiCoreFormSubmission'][] = 'WikiTideFunctions::onManageWikiCoreFormSubmission';
+$wgHooks['MediaWikiServices'][] = 'WikiTideFunctions::onMediaWikiServices';
+$wgHooks['CreateWikiJsonBuilder'][] = 'WikiTideFunctions::onCreateWikiJsonBuilder';
+
 // Extensions
 $wgMWOAuthSharedUserSource = 'CentralAuth';
 $wgOATHAuthDatabase = $wi::GLOBAL_DATABASE[$wi->wikifarm];

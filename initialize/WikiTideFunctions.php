@@ -71,7 +71,6 @@ class WikiTideFunctions {
 	];
 
 	public function __construct() {
-		self::setupHooks();
 		self::setupSiteConfiguration();
 
 		$this->dbname = self::getCurrentDatabase();
@@ -185,16 +184,6 @@ class WikiTideFunctions {
 		}
 
 		return $databases;
-	}
-
-	public static function setupHooks() {
-		global $wgHooks;
-
-		$wgHooks['CreateWikiJsonGenerateDatabaseList'][] = 'WikiTideFunctions::onGenerateDatabaseLists';
-		$wgHooks['ManageWikiCoreAddFormFields'][] = 'WikiTideFunctions::onManageWikiCoreAddFormFields';
-		$wgHooks['ManageWikiCoreFormSubmission'][] = 'WikiTideFunctions::onManageWikiCoreFormSubmission';
-		$wgHooks['MediaWikiServices'][] = 'WikiTideFunctions::onMediaWikiServices';
-		$wgHooks['CreateWikiJsonBuilder'][] = 'WikiTideFunctions::onCreateWikiJsonBuilder';
 	}
 
 	public static function setupSiteConfiguration() {

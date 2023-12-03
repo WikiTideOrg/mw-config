@@ -29,7 +29,7 @@ switch ( $wi->dbname ) {
 		break;
 	case 'picrosswikitide':
 		$wgLogos = [
-			'svg' => "https://static.your.wf/picrosswikitide/0/0a/Pikuw.svg",
+			'svg' => "https://static.wikitide.net/picrosswikitide/0/0a/Pikuw.svg",
 		];
 		break;
 	case 'snxyzincubatorwikitide':

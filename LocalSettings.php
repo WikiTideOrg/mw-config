@@ -1447,6 +1447,8 @@ $wgConf->settings += [
 	'wgMaxUploadSize' => [
 		/** 250MB */
 		'default' => 1024 * 1024 * 250,
+		/** 20MB - qixwikiwikitide */
+		'qixwikiwikitide' => 1024 * 1024 * 20,
 	],
 	'wgAllowCopyUploads' => [
 		'default' => false,

@@ -1240,7 +1240,7 @@ $wgManageWikiSettings = [
 		'help' => 'This option allows you to use the Wikimedia Commons file database on your wiki. This is a performance optimised version of the core <code>$wgUseInstantCommons</code>.',
 		'requires' => [],
 	],
-	'wgWikiTideCommons' => [
+	'wgwikiCommons' => [
 		'name' => 'Enable WikiTide Commons (linking to commons.wikitide.org)',
 		'from' => 'mediawiki',
 		'global' => true,
@@ -2753,7 +2753,7 @@ $wgManageWikiSettings = [
 		'from' => 'mediawiki',
 		'global' => true,
 		'type' => 'text',
-		'overridedefault' => "https://$wmgUploadHostname/commonswikitide/6/64/WikiTide_logo_135px.png",
+		'overridedefault' => "https://$wmgUploadHostname/commonswiki/6/64/WikiTide_logo_135px.png",
 		'section' => 'styling',
 		'help' => 'This will replace WikiTide\'s default logo. Also sets the value of <code>$wgLogos[\'1x\']</code>.',
 		'requires' => [],

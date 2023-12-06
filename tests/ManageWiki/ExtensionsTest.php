@@ -168,7 +168,7 @@ class ExtensionsTest extends ManageWikiTestCase {
 		define( 'MW_VERSION', null );
 
 		$IP = '';
-		$wi = $this->mockWikiTideFunctions();
+		$wi = $this->mockwikiFunctions();
 
 		require_once __DIR__ . '/../../ManageWikiExtensions.php';
 		$this->assertSchema( $wgManageWikiExtensions );

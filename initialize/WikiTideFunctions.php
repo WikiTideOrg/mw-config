@@ -46,7 +46,7 @@ class WikiTideFunctions {
 	];
 
 	public const CENTRAL_WIKI = [
-		'wikitide' => 'metawikitide',
+		'wikitide' => 'metawiki',
 	];
 
 	public const GLOBAL_DATABASE = [
@@ -67,7 +67,7 @@ class WikiTideFunctions {
 	];
 
 	public const SUFFIXES = [
-		'wikitide' => 'wikitide.org',
+		'wiki' => 'wikitide.org',
 	];
 
 	public function __construct() {

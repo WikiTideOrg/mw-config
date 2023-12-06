@@ -82,15 +82,15 @@ $wgWBClientSettings['recentChangesBatchSize'] = 100;
 
 // Per-wiki goes below here
 
-if ( $wgDBname === 'lhmndatawikitide' ) {
+if ( $wgDBname === 'lhmndatawiki' ) {
 	$wgWBRepoSettings['siteLinkGroups'] = [ 'lhmngroup' ];
 	$wgWBRepoSettings['localClientDatabases'] = [
-			'lhmn' => 'lhmnwikitide',
+			'lhmn' => 'lhmnwiki',
 	];
 	$wgWBRepoSettings['allowDataAccessInUserLanguage'] = true;
 }
 
-if ( $wgDBname === 'lhmnwikitide' ) {
+if ( $wgDBname === 'lhmnwiki' ) {
 	$wgWBClientSettings['repoSiteName'] = 'MNDb';
 	$wgWBClientSettings['allowDataAccessInUserLanguage'] = true;
 	$wgWBClientSettings['siteLinkGroups'] = [ 'lhmngroup' ];

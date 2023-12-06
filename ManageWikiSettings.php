@@ -2609,7 +2609,7 @@ $wgManageWikiSettings = [
 		'help' => 'Whether to display a Share via WhatsApp button on the sidebar.',
 		'requires' => [],
 	],
-// 	'wgRandomGameDisplay' => [
+// 'wgRandomGameDisplay' => [
 //		'name' => 'Random Game Display',
 //		'from' => 'randomgameunit',
 //		'type' => 'list-multi-bool',

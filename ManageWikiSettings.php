@@ -1240,7 +1240,7 @@ $wgManageWikiSettings = [
 		'help' => 'This option allows you to use the Wikimedia Commons file database on your wiki. This is a performance optimised version of the core <code>$wgUseInstantCommons</code>.',
 		'requires' => [],
 	],
-	'wgwikiCommons' => [
+	'wgWikiTideCommons' => [
 		'name' => 'Enable WikiTide Commons (linking to commons.wikitide.org)',
 		'from' => 'mediawiki',
 		'global' => true,

@@ -36,7 +36,7 @@ if ( $wi->isExtensionActive( 'StandardDialogs' ) ) {
 	wfLoadExtension( 'OOJSPlus' );
 }
 
-if ( $wgwikiCommons ?? false && !$cwPrivate ) {
+if ( $wgWikiTideCommons ?? false && !$cwPrivate ) {
 	wfLoadExtension( 'GlobalUsage' );
 }
 
@@ -385,7 +385,7 @@ if ( $wmgEnableSharedUploads && $wmgSharedUploadDBname && in_array( $wmgSharedUp
 }
 
 // WikiTide Commons
-if ( $wgDBname !== 'commonswiki' && $wgwikiCommons ?? false ) {
+if ( $wgDBname !== 'commonswiki' && $wgWikiTideCommons ?? false ) {
 	$wgForeignFileRepos[] = [
 		'class' => ForeignDBViaLBRepo::class,
 		'name' => 'wikitidecommons',

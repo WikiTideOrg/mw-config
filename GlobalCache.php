@@ -21,7 +21,7 @@ $wgObjectCaches['memcached'] = [
 ];
 
 // Used by WikiTideMagic for clearing keys when a wiki is deleted or renamed
-$wgwikiMagicMemcachedServer = '10.0.0.106:11211';
+$wgWikiTideMagicMemcachedServer = '10.0.0.106:11211';
 
 $wgObjectCaches['mysql-multiwrite'] = [
 	'class' => MultiWriteBagOStuff::class,

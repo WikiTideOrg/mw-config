@@ -255,7 +255,7 @@ class SettingsTest extends ManageWikiTestCase {
 		$wgPasswordSender = '';
 		$wmgSharedUploadDBname = '';
 		$wmgUploadHostname = '';
-		$wi = $this->mockwikiFunctions();
+		$wi = $this->mockWikiTideFunctions();
 
 		require_once __DIR__ . '/../../ManageWikiSettings.php';
 		$this->assertSchema( $wgManageWikiSettings );

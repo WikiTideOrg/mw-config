@@ -1481,7 +1481,7 @@ $wgConf->settings += [
 	'wgMaxAnimatedGifArea' => [
 		'default' => '1.25e7',
 	],
-	'wgwikiCommons' => [
+	'wgWikiTideCommons' => [
 		'wikitide' => true,
 	],
 	'wgEnableImageWhitelist' => [
@@ -4353,10 +4353,10 @@ $wgConf->settings += [
 	],
 
 	// WikiTide
-	'wgwikiMagicServicesRepo' => [
+	'wgWikiTideMagicServicesRepo' => [
 		'wikitide' => '/srv/services/services',
 	],
-	'wgwikiMagicSurveyEnabled' => [
+	'wgWikiTideMagicSurveyEnabled' => [
 		'default' => false,
 	],
 

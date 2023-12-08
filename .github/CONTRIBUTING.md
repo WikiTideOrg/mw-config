@@ -29,7 +29,7 @@ If you would like to add configuration options or extensions/skins to ManageWiki
 
 We use tabs with indent size 8 - if you use the GitHub editor this styling will be automatically applied.
 
-Please note that wiki identifiers are formed by the name of the wiki followed by `wikitide` string, for instance, `'examplewiki'` is the identifier for `example.wikitide.org`. `examplewikiwiki` would be the identifier for `examplewiki.wikitide.org`.
+Please note that wiki identifiers are formed by the name of the wiki followed by `wiki` string, for instance, `'examplewiki'` is the identifier for `example.wikitide.org`. `examplewikiwiki` would be the identifier for `examplewiki.wikitide.org`.
 
 # Alphabetical order
 

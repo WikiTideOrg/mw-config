@@ -18,7 +18,7 @@ switch ( $wi->dbname ) {
 		];
 
 		break;
-	case 'metawikitide':
+	case 'metawiki':
 		wfLoadExtensions( [
 			'GlobalWatchlist',
 			'ImportDump',

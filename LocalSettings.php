@@ -91,7 +91,7 @@ $wgConf->settings += [
 	],
 	'wgAbuseFilterIsCentral' => [
 		'default' => false,
-		'metawikitide' => true,
+		'metawiki' => true,
 		'metanexttide' => true,
 	],
 	'wgAbuseFilterBlockDuration' => [
@@ -404,7 +404,7 @@ $wgConf->settings += [
 
 	// CentralNotice
 	'wgNoticeInfrastructure' => [
-		'metawikitide' => true,
+		'metawiki' => true,
 		'metanexttide' => true,
 	],
 	'wgCentralSelectedBannerDispatcher' => [
@@ -414,7 +414,7 @@ $wgConf->settings += [
 		'wikitide' => 'https://meta.wikitide.org/wiki/Special:RecordImpression',
 	],
 	'wgCentralDBname' => [
-		'wikitide' => 'metawikitide',
+		'wikitide' => 'metawiki',
 		'nexttide' => 'metanexttide',
 	],
 	'wgCentralHost' => [
@@ -460,7 +460,7 @@ $wgConf->settings += [
 	],
 	'wgCheckUserGBtoollink' => [
 		'wikitide' => [
-			'centralDB' => 'metawikitide',
+			'centralDB' => 'metawiki',
 			'groups' => [
 				'steward',
 			],
@@ -468,7 +468,7 @@ $wgConf->settings += [
 	],
 	'wgCheckUserCAMultiLock' => [
 		'wikitide' => [
-			'centralDB' => 'metawikitide',
+			'centralDB' => 'metawiki',
 			'groups' => [
 				'steward',
 			],
@@ -1112,7 +1112,7 @@ $wgConf->settings += [
 	],
 	'wgDiscordNotificationIncludeAutocreatedUsers' => [
 		'default' => true,
-		'metawikitide' => false,
+		'metawiki' => false,
 	],
 	'wgDiscordAdditionalIncomingWebhookUrls' => [
 		'default' => [],
@@ -1147,7 +1147,7 @@ $wgConf->settings += [
 				'FuzzyBot',
 			],
 		],
-		'+metawikitide' => [
+		'+metawiki' => [
 			'article_inserted' => [
 				'groups' => [
 					'bot',
@@ -1554,7 +1554,7 @@ $wgConf->settings += [
 	],
 	'+wgResourceLoaderSources' => [
 		'wikitide' => [
-			'metawikitide' => [
+			'metawiki' => [
 				'apiScript' => '//meta.wikitide.org/w/api.php',
 				'loadScript' => '//meta.wikitide.org/w/load.php',
 			],
@@ -1736,7 +1736,7 @@ $wgConf->settings += [
 
 	// ImportDump
 	'wgImportDumpCentralWiki' => [
-		'default' => 'metawikitide',
+		'default' => 'metawiki',
 	],
 	'wgImportDumpInterwikiMap' => [
 		'default' => [
@@ -1747,7 +1747,7 @@ $wgConf->settings += [
 		],
 	],
 	'wgImportDumpScriptCommand' => [
-		'default' => 'screen -d -m bash -c ". /etc/swift-env.sh; swift download wikitide-metawikitide-local-public {file-path} -o /home/$USER/{file-name}; mwscript importDump.php {wiki} -y --no-updates --username-prefix={username-prefix} /home/$USER/{file-name}; mwscript rebuildall.php {wiki} -y; mwscript initSiteStats.php {wiki} --active --update -y; rm /home/$USER/{file-name}"',
+		'default' => 'screen -d -m bash -c ". /etc/swift-env.sh; swift download wikitide-metawiki-local-public {file-path} -o /home/$USER/{file-name}; mwscript importDump.php {wiki} -y --no-updates --username-prefix={username-prefix} /home/$USER/{file-name}; mwscript rebuildall.php {wiki} -y; mwscript initSiteStats.php {wiki} --active --update -y; rm /home/$USER/{file-name}"',
 	],
 	'wgImportDumpUsersNotifiedOnAllRequests' => [
 		'default' => [
@@ -2142,7 +2142,7 @@ $wgConf->settings += [
 				'user' => true,
 			],
 		],
-		'+metawikitide' => [
+		'+metawiki' => [
 			'checkuser' => [
 				'abusefilter-privatedetails' => true,
 				'abusefilter-privatedetails-log' => true,
@@ -2512,7 +2512,7 @@ $wgConf->settings += [
 	// MassMessage
 	'wgAllowGlobalMessaging' => [
 		'default' => false,
-		'metawikitide' => true,
+		'metawiki' => true,
 	],
 
 	// MediaWikiChat settings
@@ -2945,7 +2945,7 @@ $wgConf->settings += [
 			'userrights',
 			'userrights-interwiki',
 		],
-		'+metawikitide' => [
+		'+metawiki' => [
 			'editsitejs',
 			'edituserjs',
 		],
@@ -2962,7 +2962,7 @@ $wgConf->settings += [
 		],
 	],
 	'wgOATHRequiredForGroups' => [
-		'metawikitide' => [
+		'metawiki' => [
 			'checkuser',
 			'global-sysop',
 			'interface-admin',
@@ -3353,7 +3353,7 @@ $wgConf->settings += [
 	// RemovePII
 	'wgRemovePIIAllowedWikis' => [
 		'wikitide' => [
-			'metawikitide',
+			'metawiki',
 		],
 	],
 	'wgRemovePIIAutoPrefix' => [
@@ -3501,14 +3501,14 @@ $wgConf->settings += [
 	],
 	'wgRestPath' => [
 		'default' => '/' . $wi->version . '/rest.php',
-		'metawikitide' => '/w/rest.php',
+		'metawiki' => '/w/rest.php',
 	],
 	'wgScript' => [
 		'default' => '/w/index.php',
 	],
 	'wgScriptPath' => [
 		'default' => '/' . $wi->version,
-		'metawikitide' => '/w',
+		'metawiki' => '/w',
 	],
 	'wgShowHostnames' => [
 		'default' => true,
@@ -3806,7 +3806,7 @@ $wgConf->settings += [
 				'zh-my' => '本站已配置[[Project:繁簡處理|自动简繁转换]]功能，请在语言表单选择翻译语言为「中文」而非「中文（马来西亚）」。',
 			],
 		],
-		'metawikitide' => [
+		'metawiki' => [
 			'*' => [
 				'en' => 'English is the source language.',
 			],

@@ -46,7 +46,7 @@ class WikiTideFunctions {
 	];
 
 	public const CENTRAL_WIKI = [
-		'wikitide' => 'metawikitide',
+		'wikitide' => 'metawiki',
 	];
 
 	public const GLOBAL_DATABASE = [

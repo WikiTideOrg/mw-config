@@ -59,7 +59,7 @@ $wmgRedisHostname = 'jobchron21.wikitide.net';
 $wgConf->settings += [
 	// invalidates user sessions - do not change unless it is an emergency.
 	'wgAuthenticationTokenVersion' => [
-		'default' => '7',
+		'default' => '8',
 	],
 
 	// 3D

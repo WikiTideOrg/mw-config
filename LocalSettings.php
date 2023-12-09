@@ -59,7 +59,7 @@ $wmgRedisHostname = 'jobchron21.wikitide.net';
 $wgConf->settings += [
 	// invalidates user sessions - do not change unless it is an emergency.
 	'wgAuthenticationTokenVersion' => [
-		'default' => '8',
+		'default' => '1',
 	],
 
 	// 3D
@@ -364,7 +364,7 @@ $wgConf->settings += [
 		'nexttide' => true,
 	],
 	'wgCentralAuthCookiePrefix' => [
-		'default' => 'centralauth_',
+		'default' => 'centralauth_wikitide_',
 		'nexttide' => 'centralauth_nexttide_',
 	],
 	'wgCentralAuthCreateOnView' => [

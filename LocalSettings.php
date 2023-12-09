@@ -4726,6 +4726,7 @@ if ( in_array( $_SERVER['REMOTE_ADDR'] ?? '', [ '74.208.104.183' ] ) ) {
 require_once __DIR__ . '/ManageWikiExtensions.php';
 $wi::$disabledExtensions = [
 	'lingo',
+	'pageproperties',
 	'wikiforum',
 ];
 

@@ -61,7 +61,7 @@ if ( $wi->wikifarm === 'wikitide' ) {
 		'reportDupes' => false,
 	];
 
-	$wgSessionCacheType = 'redis-session';
+	$wgSessionCacheType = 'memcached';
 } else {
 	$wgSessionCacheType = 'memcached';
 

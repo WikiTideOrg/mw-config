@@ -862,15 +862,14 @@ $wgConf->settings += [
 		'default' => []
 	],
 	'wgCreateWikiDatabaseSuffix' => [
-		'default' => 'wikitide',
-		'nexttide' => 'nexttide',
+		'default' => 'wiki',
 	],
 	'wgCreateWikiEnableManageInactiveWikis' => [
 		'default' => true,
 	],
 	'wgCreateWikiGlobalWiki' => [
 		'default' => $wi::CENTRAL_WIKI[$wi->wikifarm],
-		'test1wikitide' => 'test1wikitide',
+		'test1wiki' => 'test1wiki',
 	],
 	'wgCreateWikiEmailNotifications' => [
 		'default' => true,
@@ -1312,10 +1311,10 @@ $wgConf->settings += [
 				'verbose' => true,
 			],
 		],
-		'+cslmodswikitide' => [
+		'+cslmodswiki' => [
 			'api.steampowered.com/*' => [
 				'replacements' => [
-					'STEAM_API_KEY' => $wmgExternalDataCredsCslmodswikitide,
+					'STEAM_API_KEY' => $wmgExternalDataCredsCslmodswiki,
 				],
 			],
 		],
@@ -1381,49 +1380,49 @@ $wgConf->settings += [
 		'wikitide' => [
 			'poweredby' => [
 				'wikitide' => [
-					'src' => 'https://static.wikitide.net/commonswikitide/8/8a/Hosted_by_WikiTide.svg',
+					'src' => 'https://static.wikitide.net/commonswiki/8/8a/Hosted_by_WikiTide.svg',
 					'url' => 'https://meta.wikitide.org/wiki/Special:MyLanguage/WikiTide',
 					'alt' => 'Hosted by WikiTide',
 				],
 			],
 		],
-		'hsckwikitide' => [
+		'hsckwiki' => [
 			'poweredby' => [
 				'songnguxyz' => [
-					'src' => 'https://static.wikitide.net/lhmnwikitide/5/58/Footer.SN.xyz.svg',
+					'src' => 'https://static.wikitide.net/lhmnwiki/5/58/Footer.SN.xyz.svg',
 					'url' => 'https://songngu.xyz',
 					'alt' => 'Dự án được bảo quản bởi SongNgư.xyz',
 				],
 				'wikitide' => [
-					'src' => 'https://static.wikitide.net/commonswikitide/8/8a/Hosted_by_WikiTide.svg',
+					'src' => 'https://static.wikitide.net/commonswiki/8/8a/Hosted_by_WikiTide.svg',
 					'url' => 'https://meta.wikitide.org/wiki/Special:MyLanguage/WikiTide',
 					'alt' => 'Hosted by WikiTide',
 				],
 			],
 		],
-		'lhmnwikitide' => [
+		'lhmnwiki' => [
 			'poweredby' => [
 				'songnguxyz' => [
-					'src' => 'https://static.wikitide.net/lhmnwikitide/5/58/Footer.SN.xyz.svg',
+					'src' => 'https://static.wikitide.net/lhmnwiki/5/58/Footer.SN.xyz.svg',
 					'url' => 'https://songngu.xyz',
 					'alt' => 'Dự án được bảo quản bởi SongNgư.xyz',
 				],
 				'wikitide' => [
-					'src' => 'https://static.wikitide.net/commonswikitide/8/8a/Hosted_by_WikiTide.svg',
+					'src' => 'https://static.wikitide.net/commonswiki/8/8a/Hosted_by_WikiTide.svg',
 					'url' => 'https://meta.wikitide.org/wiki/Special:MyLanguage/WikiTide',
 					'alt' => 'Hosted by WikiTide',
 				],
 			],
 		],
-		'snxyzincubatorwikitide' => [
+		'snxyzincubatorwiki' => [
 			'poweredby' => [
 				'songnguxyz' => [
-					'src' => 'https://static.wikitide.net/lhmnwikitide/5/58/Footer.SN.xyz.svg',
+					'src' => 'https://static.wikitide.net/lhmnwiki/5/58/Footer.SN.xyz.svg',
 					'url' => 'https://songngu.xyz',
 					'alt' => 'This project is a part of SongNgu.xyz',
 				],
 				'wikitide' => [
-					'src' => 'https://static.wikitide.net/commonswikitide/8/8a/Hosted_by_WikiTide.svg',
+					'src' => 'https://static.wikitide.net/commonswiki/8/8a/Hosted_by_WikiTide.svg',
 					'url' => 'https://meta.wikitide.org/wiki/Special:MyLanguage/WikiTide',
 					'alt' => 'Hosted by WikiTide',
 				],
@@ -1447,8 +1446,8 @@ $wgConf->settings += [
 	'wgMaxUploadSize' => [
 		/** 250MB */
 		'default' => 1024 * 1024 * 250,
-		/** 20MB - qixwikiwikitide */
-		'qixwikiwikitide' => 1024 * 1024 * 20,
+		/** 20MB - qixwikiwiki */
+		'qixwikiwiki' => 1024 * 1024 * 20,
 	],
 	'wgAllowCopyUploads' => [
 		'default' => false,
@@ -1521,7 +1520,7 @@ $wgConf->settings += [
 			'showDimensions' => true,
 			'mode' => 'traditional',
 		],
-		'theunnamedwikiwikitide' => [
+		'theunnamedwikiwiki' => [
 			'imagesPerRow' => 0,
 			'imageWidth' => 120,
 			'imageHeight' => 120,
@@ -1571,7 +1570,7 @@ $wgConf->settings += [
 
 	// GlobalUsage
 	'wgGlobalUsageDatabase' => [
-		'wikitide' => 'commonswikitide',
+		'wikitide' => 'commonswiki',
 	],
 	'wgGlobalUsageSharedRepoWiki' => [
 		'default' => false,
@@ -1717,7 +1716,7 @@ $wgConf->settings += [
 				/** WikiTide */
 				'interwiki' => 'wt',
 				'url' => 'https://$2.wikitide.org/wiki/$1',
-				'dbname' => '$2wikitide',
+				'dbname' => '$2wiki',
 				'baseTransOnly' => true,
 			],
 			'wikiforge' => [
@@ -1765,7 +1764,7 @@ $wgConf->settings += [
 			'wikipedia',
 			'metawikimedia',
 		],
-		'+hkrailwikitide' => [
+		'+hkrailwiki' => [
 			'zhwikipedia',
 			'hkrailfan',
 		],
@@ -1787,7 +1786,7 @@ $wgConf->settings += [
 	],
 	'wgJsonConfigInterwikiPrefix' => [
 		'default' => 'commons',
-		'commonswikitide' => 'meta',
+		'commonswiki' => 'meta',
 	],
 	'wgJsonConfigModels' => [
 		'default' => [
@@ -1799,7 +1798,7 @@ $wgConf->settings += [
 	// Kartographer
 	'wgKartographerDfltStyle' => [
 		'default' => 'osm-intl',
-		'hkrailwikitide' => '.',
+		'hkrailwiki' => '.',
 	],
 	'wgKartographerEnableMapFrame' => [
 		'default' => true,
@@ -1815,7 +1814,7 @@ $wgConf->settings += [
 			2.6,
 			3,
 		],
-		'hkrailwikitide' => [
+		'hkrailwiki' => [
 			1,
 		],
 	],
@@ -1824,7 +1823,7 @@ $wgConf->settings += [
 	],
 	'wgKartographerSimpleStyleMarkers' => [
 		'default' => true,
-		'hkrailwikitide' => false,
+		'hkrailwiki' => false,
 	],
 	'wgKartographerStyles' => [
 		'default' => [
@@ -1846,77 +1845,77 @@ $wgConf->settings += [
 
 	// LDAP
 	'wgLDAPDomainNames' => [
-		'accountsinternalwikitide' => [
+		'accountsinternalwiki' => [
 			'wikitide',
 		],
 	],
 	'wgLDAPServerNames' => [
-		'accountsinternalwikitide' => [
+		'accountsinternalwiki' => [
 			'wikitide' => 'ldap.wikitide.net',
 		],
 	],
 	'wgLDAPEncryptionType' => [
-		'accountsinternalwikitide' => [
+		'accountsinternalwiki' => [
 			'wikitide' => 'ssl',
 		],
 	],
 	'wgLDAPSearchAttributes' => [
-		'accountsinternalwikitide' => [
+		'accountsinternalwiki' => [
 			'wikitide' => 'uid',
 		],
 	],
 	'wgLDAPBaseDNs' => [
-		'accountsinternalwikitide' => [
+		'accountsinternalwiki' => [
 			'wikitide' => 'dc=wikitide,dc=org',
 		],
 	],
 	'wgLDAPUserBaseDNs' => [
-		'accountsinternalwikitide' => [
+		'accountsinternalwiki' => [
 			'wikitide' => 'ou=people,dc=wikitide,dc=org',
 		],
 	],
 	'wgLDAPProxyAgent' => [
-		'accountsinternalwikitide' => [
+		'accountsinternalwiki' => [
 			'wikitide' => 'cn=admin,dc=wikitide,dc=org',
 		],
 	],
 	'wgLDAPProxyAgentPassword' => [
-		'accountsinternalwikitide' => [
+		'accountsinternalwiki' => [
 			'wikitide' => $wmgLdapPassword,
 		],
 	],
 	'wgLDAPWriterDN' => [
-		'accountsinternalwikitide' => [
+		'accountsinternalwiki' => [
 			'wikitide' => 'cn=admin,dc=wikitide,dc=org',
 		],
 	],
 	'wgLDAPWriterPassword' => [
-		'accountsinternalwikitide' => [
+		'accountsinternalwiki' => [
 			'wikitide' => $wmgLdapPassword,
 		],
 	],
 	'wgLDAPWriteLocation' => [
-		'accountsinternalwikitide' => [
+		'accountsinternalwiki' => [
 			'wikitide' => 'ou=people,dc=wikitide,dc=org',
 		],
 	],
 	'wgLDAPAddLDAPUsers' => [
-		'accountsinternalwikitide' => [
+		'accountsinternalwiki' => [
 			'wikitide' => true,
 		],
 	],
 	'wgLDAPUpdateLDAP' => [
-		'accountsinternalwikitide' => [
+		'accountsinternalwiki' => [
 			'wikitide' => true,
 		],
 	],
 	'wgLDAPPasswordHash' => [
-		'accountsinternalwikitide' => [
+		'accountsinternalwiki' => [
 			'wikitide' => 'ssha',
 		],
 	],
 	'wgLDAPPreferences' => [
-		'accountsinternalwikitide' => [
+		'accountsinternalwiki' => [
 			'wikitide' => [
 				'email' => 'mail',
 				'realname' => 'givenName',
@@ -1924,31 +1923,31 @@ $wgConf->settings += [
 		],
 	],
 	'wgLDAPUseFetchedUsername' => [
-		'accountsinternalwikitide' => [
+		'accountsinternalwiki' => [
 			'wikitide' => true,
 		],
 	],
 	'wgLDAPLowerCaseUsernameScheme' => [
-		'accountsinternalwikitide' => [
+		'accountsinternalwiki' => [
 			'wikitide' => false,
 			'invaliddomain' => false,
 		],
 	],
 	'wgLDAPLowerCaseUsername' => [
-		'accountsinternalwikitide' => [
+		'accountsinternalwiki' => [
 			'wikitide' => false,
 			'invaliddomain' => false,
 		],
 	],
 	'wgLDAPOptions' => [
-		'accountsinternalwikitide' => [
+		'accountsinternalwiki' => [
 			'wikitide' => [
 				'LDAP_OPT_X_TLS_CACERTFILE' => '/etc/ssl/certs/ISRG_Root_X1.pem',
 			],
 		],
 	],
 	'wgLDAPDebug' => [
-		'accountsinternalwikitide' => 1,
+		'accountsinternalwiki' => 1,
 	],
 
 	// License
@@ -1957,10 +1956,10 @@ $wgConf->settings += [
 		'default' => '',
 	],
 	'wgRightsText' => [
-		'harrypotterwikitide' => 'Creative Commons Attribution-ShareAlike 3.0 Unported (CC BY-SA 3.0)',
+		'harrypotterwiki' => 'Creative Commons Attribution-ShareAlike 3.0 Unported (CC BY-SA 3.0)',
 	],
 	'wgRightsUrl' => [
-		'harrypotterwikitide' => 'https://creativecommons.org/licenses/by-sa/3.0',
+		'harrypotterwiki' => 'https://creativecommons.org/licenses/by-sa/3.0',
 	],
 	'wmgWikiLicense' => [
 		'default' => 'cc-by-sa',
@@ -1977,17 +1976,17 @@ $wgConf->settings += [
 	// LinkTarget
 	'wgLinkTargetParentClasses' => [
 		'default' => [],
-		'sdiywikitide' => [
+		'sdiywiki' => [
 			'_blank' => [
 				''
 			]
 		 ],
-		'scruffywikitide' => [
+		'scruffywiki' => [
 			'_blank' => [
 				''
 			]
 		 ],
-		'simpleelectronicswikitide' => [
+		'simpleelectronicswiki' => [
 			'_blank' => [
 				''
 			]
@@ -2276,7 +2275,7 @@ $wgConf->settings += [
 				'createwiki' => true,
 			],
 		],
-		'+testwikitide' => [
+		'+testwiki' => [
 			'sysop' => [
 				'createwiki' => true,
 				'requestwiki' => true,
@@ -2723,7 +2722,7 @@ $wgConf->settings += [
 	],
 	'wgDisabledVariants' => [
 		'default' => [],
-		'hkrailwikitide' => [
+		'hkrailwiki' => [
 			'zh',
 			'zh-hant',
 			'zh-hans',
@@ -2731,7 +2730,7 @@ $wgConf->settings += [
 	],
 	'wgDefaultLanguageVariant' => [
 		'default' => false,
-		'hkrailwikitide' => 'zh-hk',
+		'hkrailwiki' => 'zh-hk',
 	],
 
 	// MobileFrontend
@@ -3664,8 +3663,8 @@ $wgConf->settings += [
 		'default' => '/favicon.ico',
 	],
 	'wgLogo' => [
-		'wikitide' => "https://$wmgUploadHostname/commonswikitide/6/64/WikiTide_logo_135px.png",
-		'nexttide' => "https://$wmgUploadHostname/commonswikitide/6/64/WikiTide_logo_135px.png",
+		'wikitide' => "https://$wmgUploadHostname/commonswiki/6/64/WikiTide_logo_135px.png",
+		'nexttide' => "https://$wmgUploadHostname/commonswiki/6/64/WikiTide_logo_135px.png",
 	],
 	'wgIcon' => [
 		'default' => false,
@@ -3794,7 +3793,7 @@ $wgConf->settings += [
 	// Translate
 	'wgTranslateDisabledTargetLanguages' => [
 		'default' => [],
-		'hkrailwikitide' => [
+		'hkrailwiki' => [
 			'*' => [
 				'zh-hant' => '本站已配置[[Project:繁簡處理|自動繁簡轉換]]功能，請在語言表單選擇翻譯語言為「中文」而非「中文（繁體）」。',
 				'zh-hk' => '本站已配置[[Project:繁簡處理|自動繁簡轉換]]功能，請在語言表單選擇翻譯語言為「中文」而非「中文（香港）」。',
@@ -4413,7 +4412,7 @@ $wgConf->settings += [
 				'sister' => false,
 			],
 		],
-		'snxyzincubatorwikitide' => [
+		'snxyzincubatorwiki' => [
 			'k' => [
 				'name' => 'Cookie Run: Kingdom Wiki',
 				'dbsuffix' => 'crk',
@@ -4433,7 +4432,7 @@ $wgConf->settings += [
 			'name' => 'Incubator Plus 2.0',
 			'short' => 'incplus',
 		],
-		'snxyzincubatorwikitide' => [
+		'snxyzincubatorwiki' => [
 			'name' => "Pisces's Incubator",
 			'short' => 'pi',
 		]
@@ -4707,7 +4706,7 @@ $wgConf->settings += [
 	// Control MediaWiki Deprecation Warnings
 	'wgDeprecationReleaseLimit' => [
 		'default' => '1.34',
-		'test1wikitide' => false,
+		'test1wiki' => false,
 	],
 ];
 

@@ -2609,7 +2609,7 @@ $wgManageWikiSettings = [
 		'help' => 'Whether to display a Share via WhatsApp button on the sidebar.',
 		'requires' => [],
 	],
-// 	'wgRandomGameDisplay' => [
+// 'wgRandomGameDisplay' => [
 //		'name' => 'Random Game Display',
 //		'from' => 'randomgameunit',
 //		'type' => 'list-multi-bool',
@@ -2753,7 +2753,7 @@ $wgManageWikiSettings = [
 		'from' => 'mediawiki',
 		'global' => true,
 		'type' => 'text',
-		'overridedefault' => "https://$wmgUploadHostname/commonswikitide/6/64/WikiTide_logo_135px.png",
+		'overridedefault' => "https://$wmgUploadHostname/commonswiki/6/64/WikiTide_logo_135px.png",
 		'section' => 'styling',
 		'help' => 'This will replace WikiTide\'s default logo. Also sets the value of <code>$wgLogos[\'1x\']</code>.',
 		'requires' => [],

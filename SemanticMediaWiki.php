@@ -33,7 +33,7 @@ if ( !class_exists( SMW\Setup::class ) ) {
 	require_once "$IP/extensions/SemanticMediaWiki/src/Setup.php";
 }
 
-if ( $wgDBname === 'farthestfrontierwikitide' ) {
+if ( $wgDBname === 'farthestfrontierwiki' ) {
 	$smwgNamespacesWithSemanticLinks = [
 		NS_MAIN => true,
 		NS_TALK => false,

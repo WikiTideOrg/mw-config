@@ -5,7 +5,7 @@ $wgFileBackends[] = [
 	'name'               => 'wikitide-swift',
 	// This is the prefix for the container that it starts with.
 	'wikiId'             => "wikitide-$wgDBname",
-	'lockManager'        => 'redisLockManager',
+	'lockManager'        => 'nullLockManager',
 	'swiftAuthUrl'       => 'https://swift-lb.wikitide.net/auth',
 	'swiftStorageUrl'    => 'https://swift-lb.wikitide.net/v1/AUTH_mw',
 	'swiftUser'          => 'mw:media',
@@ -20,19 +20,19 @@ $wgFileBackends[] = [
 	'reqTimeout'          => 900,
 ];
 
-$wgLockManagers[] = [
+/* $wgLockManagers[] = [
 	'name' => 'redisLockManager',
 	'class' => RedisLockManager::class,
 	'lockServers' => [
-		// jobchron1
-		'rdb1' => '10.0.0.105:6379',
+		// jobchron21
+		'rdb1' => '10.0.2.7:6379',
 	],
 	'redisConfig' => [
 		'connectTimeout' => 2,
 		'readTimeout' => 2,
 		'password' => $wmgRedisPassword,
 	]
-];
+]; */
 
 $wgGenerateThumbnailOnParse = false;
 $wgUploadThumbnailRenderMethod = 'http';

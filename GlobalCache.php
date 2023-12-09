@@ -5,7 +5,7 @@ $wgMemCachedPersistent = false;
 
 // $beta = preg_match( '/^(.*)\.nexttide\.org$/', $wi->server );
 
-// mem1
+// mem21
 $wgObjectCaches['memcached'] = [
 	'class'                => MemcachedPeclBagOStuff::class,
 	'serializer'           => 'php',
@@ -61,7 +61,7 @@ if ( $wi->wikifarm === 'wikitide' ) {
 		'reportDupes' => false,
 	];
 
-	$wgSessionCacheType = 'memcached';
+	$wgSessionCacheType = 'redis-session';
 } else {
 	$wgSessionCacheType = 'memcached';
 

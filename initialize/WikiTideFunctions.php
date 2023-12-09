@@ -68,7 +68,6 @@ class WikiTideFunctions {
 
 	public const SUFFIXES = [
 		'wiki' => 'wikitide.org',
-		'wikitide' => 'wikitide.org',
 	];
 
 	public function __construct() {

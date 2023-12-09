@@ -364,7 +364,7 @@ $wgConf->settings += [
 		'nexttide' => true,
 	],
 	'wgCentralAuthCookiePrefix' => [
-		'default' => 'centralauth_wikitide_',
+		'default' => 'centralauth_',
 		'nexttide' => 'centralauth_nexttide_',
 	],
 	'wgCentralAuthCreateOnView' => [

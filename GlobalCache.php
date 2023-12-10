@@ -5,19 +5,17 @@ $wgMemCachedPersistent = false;
 
 // $beta = preg_match( '/^(.*)\.nexttide\.org$/', $wi->server );
 
-// mem21
-$wgObjectCaches['memcached'] = [
-	'class'                => MemcachedPeclBagOStuff::class,
-	'serializer'           => 'php',
-	'persistent'           => false,
-	'servers'              => [ '127.0.0.1:11212' ],
-	// Effectively disable the failure limit (0 is invalid)
-	'server_failure_limit' => 1e9,
-	// Effectively disable the retry timeout
-	'retry_timeout'        => -1,
-	'loggroup'             => 'memcached',
-	// 500ms, in microseconds
-	'timeout'              => 1 * 1e6,
+$wgObjectCaches['mcrouter'] = [
+	'class'                 => MemcachedPeclBagOStuff::class,
+	'serializer'            => 'php',
+	'persistent'            => false,
+	'servers'               => [ '127.0.0.1:11213' ],
+	'server_failure_limit'  => 1e9,
+	'retry_timeout'         => -1,
+	'loggroup'              => 'memcached',
+	// 250ms, in microseconds
+	'timeout'               => 0.25 * 1e6,
+	'allow_tcp_nagle_delay' => false,
 ];
 
 // Used by WikiTideMagic for clearing keys when a wiki is deleted or renamed
@@ -28,7 +26,7 @@ $wgObjectCaches['mysql-multiwrite'] = [
 	'caches' => [
 		0 => [
 			'factory' => [ 'ObjectCache', 'getInstance' ],
-			'args' => [ 'memcached' ]
+			'args' => [ 'mcrouter' ]
 		],
 		1 => [
 			'class' => SqlBagOStuff::class,
@@ -63,14 +61,14 @@ if ( $wi->wikifarm === 'wikitide' ) {
 
 	$wgSessionCacheType = 'redis-session';
 } else {
-	$wgSessionCacheType = 'memcached';
+	$wgSessionCacheType = 'mcrouter';
 
 	// Same as $wgMainStash
 	$wgMWOAuthSessionCacheType = 'db-replicated';
 }
 
-$wgMainCacheType = 'memcached';
-$wgMessageCacheType = 'memcached';
+$wgMainCacheType = 'mcrouter';
+$wgMessageCacheType = 'mcrouter';
 
 $wgParserCacheType = 'mysql-multiwrite';
 $wgParsoidCacheConfig = [
@@ -101,32 +99,6 @@ $wgEnableSidebarCache = true;
 
 $wgUseLocalMessageCache = true;
 $wgInvalidateCacheOnLocalSettingsChange = false;
-
-/** if ( $beta ) {
- * // test11 - No production traffic may use test11
- * $wgObjectCaches['memcached-test11'] = [
- * 'class'                => MemcachedPeclBagOStuff::class,
- * 'serializer'           => 'php',
- * 'persistent'           => false,
- * 'servers'              => [ '127.0.0.1:11215' ],
- * // Effectively disable the failure limit (0 is invalid)
- * 'server_failure_limit' => 1e9,
- * // Effectively disable the retry timeout
- * 'retry_timeout'        => -1,
- * 'loggroup'             => 'memcached',
- * // 500ms, in microseconds
- * 'timeout'              => 1 * 1e6,
- * ];
- *
- * $redisServerIP = '127.0.0.1:6379';
- *
- * $wgMainCacheType = 'memcached-test11';
- * $wgMessageCacheType = 'memcached-test11';
- *
- * $wgSessionCacheType = 'memcached-test11';
- * $wgMWOAuthSessionCacheType = 'memcached-test11';
- * }
- */
 
 $wgJobTypeConf['default'] = [
 	'class' => JobQueueRedis::class,

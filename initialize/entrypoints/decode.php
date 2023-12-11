@@ -26,7 +26,7 @@ if ( $decodedUri && !str_contains( $queryString, 'title' ) ) {
 	$queryParameters['title'] = $title;
 }
 
-if ( isset( $_GET['diff'] ) ) {
+if ( $wgArticlePath === '/wiki/$1' && isset( $_GET['diff'] ) ) {
 	if ( !$decodedUri ) {
 		$redirectUrl .= '/';
 	}

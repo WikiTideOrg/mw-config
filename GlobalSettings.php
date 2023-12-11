@@ -163,7 +163,7 @@ if ( $cwClosed ) {
 if ( !$cwPrivate ) {
 	$wgRCFeeds['irc'] = [
 		'formatter' => WikiTideIRCRCFeedFormatter::class,
-		'uri' => 'udp://bots1.wikitide.net:5070',
+		'uri' => 'udp://bots21.wikitide.net:5070',
 		'add_interwiki_prefix' => false,
 		'omit_bots' => true,
 	];
@@ -323,7 +323,7 @@ if ( $wi->isExtensionActive( 'EasyTimeline' ) ) {
 // $wgFooterIcons
 if ( (bool)$wmgWikiapiaryFooterPageName ) {
 	$wgFooterIcons['poweredby']['wikiapiary'] = [
-		'src' => 'https://static.wikitide.net/commonswikitide/b/b4/Monitored_by_WikiApiary.png',
+		'src' => 'https://static.wikitide.net/commonswiki/b/b4/Monitored_by_WikiApiary.png',
 		'url' => 'https://wikiapiary.com/wiki/' . str_replace( ' ', '_', $wmgWikiapiaryFooterPageName ),
 		'alt' => 'Monitored by WikiApiary'
 	];
@@ -385,12 +385,12 @@ if ( $wmgEnableSharedUploads && $wmgSharedUploadDBname && in_array( $wmgSharedUp
 }
 
 // WikiTide Commons
-if ( $wgDBname !== 'commonswikitide' && $wgWikiTideCommons ?? false ) {
+if ( $wgDBname !== 'commonswiki' && $wgWikiTideCommons ?? false ) {
 	$wgForeignFileRepos[] = [
 		'class' => ForeignDBViaLBRepo::class,
 		'name' => 'wikitidecommons',
 		'backend' => 'wikitide-swift',
-		'url' => 'https://static.wikitide.net/commonswikitide',
+		'url' => 'https://static.wikitide.net/commonswiki',
 		'hashLevels' => 2,
 		'thumbScriptUrl' => false,
 		'transformVia404' => true,
@@ -399,7 +399,7 @@ if ( $wgDBname !== 'commonswikitide' && $wgWikiTideCommons ?? false ) {
 		'scriptDirUrl' => 'https://commons.wikitide.org/w',
 		'fetchDescription' => true,
 		'descriptionCacheExpiry' => 86400 * 7,
-		'wiki' => 'commonswikitide',
+		'wiki' => 'commonswiki',
 		'initialCapital' => true,
 		'zones' => [
 			'public' => [
@@ -474,7 +474,7 @@ if ( $wi->isExtensionActive( 'JsonConfig' ) ) {
 		],
 	];
 
-	if ( $wgDBname !== 'commonswikitide' ) {
+	if ( $wgDBname !== 'commonswiki' ) {
 		$wgJsonConfigs['Map.JsonConfig']['remote'] = [
 			'url' => 'https://commons.wikitide.org/w/api.php'
 		];
@@ -649,11 +649,11 @@ $wgPoolCounterConf = [
 ];
 
 $wgPoolCountClientConf = [
-	// jobchron1
-	'servers' => [ '10.0.0.105:7531' ],
+	// jobchron21
+	'servers' => [ '10.0.2.7:7531' ],
 	'timeout' => 0.5,
 	'connect_timeout' => 0.01,
 ];
 
 // Mathoid
-$wgMathMathMLUrl = 'http://10.0.0.115:10044/';
+$wgMathMathMLUrl = 'http://10.0.2.18:10044/';

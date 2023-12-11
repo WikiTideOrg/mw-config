@@ -46,7 +46,7 @@ class WikiTideFunctions {
 	];
 
 	public const CENTRAL_WIKI = [
-		'wikitide' => 'metawikitide',
+		'wikitide' => 'metawiki',
 	];
 
 	public const GLOBAL_DATABASE = [
@@ -67,7 +67,7 @@ class WikiTideFunctions {
 	];
 
 	public const SUFFIXES = [
-		'wikitide' => 'wikitide.org',
+		'wiki' => 'wikitide.org',
 	];
 
 	public function __construct() {
@@ -387,7 +387,7 @@ class WikiTideFunctions {
 	 * @return string
 	 */
 	public static function getDefaultMediaWikiVersion(): string {
-		return ( php_uname( 'n' ) === 'test1.wikitide.net' && isset( self::MEDIAWIKI_VERSIONS['beta'] ) ) ? 'beta' : 'stable';
+		return ( php_uname( 'n' ) === 'test21.wikitide.net' && isset( self::MEDIAWIKI_VERSIONS['beta'] ) ) ? 'beta' : 'stable';
 	}
 
 	/**
@@ -542,7 +542,7 @@ class WikiTideFunctions {
 			), $wikiTags
 		);
 
-		list( $site, $lang ) = $wgConf->siteFromDB( $wgDBname );
+		[ $site, $lang ] = $wgConf->siteFromDB( $wgDBname );
 		$dbSuffix = self::getCurrentSuffix();
 
 		$confParams = [

@@ -869,7 +869,7 @@ $wgConf->settings += [
 	],
 	'wgCreateWikiGlobalWiki' => [
 		'default' => $wi::CENTRAL_WIKI[$wi->wikifarm],
-		'test1wiki' => 'test1wiki',
+		'test21wiki' => 'test21wiki',
 	],
 	'wgCreateWikiEmailNotifications' => [
 		'default' => true,
@@ -2015,14 +2015,17 @@ $wgConf->settings += [
 		'ext-Linter' => [
 			/** localhost */
 			'127.0.0.1' => true,
-			/** jobrunner11 */
-			'10.0.0.104' => true,
-			/** mw11 */
-			'10.0.0.101' => true,
-			/** mw12 */
-			'10.0.0.102' => true,
-			/** test11 */
-			'10.0.0.107' => true,
+			/** jobrunner21 */
+			'10.0.2.8' => true,
+			/** mw21 */
+			'10.0.2.5' => true,
+			'23.95.103.21' => true,
+			/** mw22 */
+			'10.0.2.6' => true,
+			'23.95.103.22' => true,
+			/** test21 */
+			'10.0.2.9' => true,
+			'23.95.103.27' => true,
 		],
 	],
 
@@ -4706,7 +4709,7 @@ $wgConf->settings += [
 	// Control MediaWiki Deprecation Warnings
 	'wgDeprecationReleaseLimit' => [
 		'default' => '1.34',
-		'test1wiki' => false,
+		'test21wiki' => false,
 	],
 ];
 
@@ -4717,8 +4720,8 @@ if ( wfHostname() === 'test21.wikitide.net' ) {
 	$wgConf->settings['wgUseCdn']['default'] = false;
 }
 
-// CookieWarning exempt ElectronPdfService (services1)
-if ( in_array( $_SERVER['REMOTE_ADDR'] ?? '', [ '74.208.104.183' ] ) ) {
+// CookieWarning exempt ElectronPdfService (services21)
+if ( in_array( $_SERVER['REMOTE_ADDR'] ?? '', [ '10.0.2.18' ] ) ) {
 	$wgConf->settings['wgCookieWarningEnabled']['default'] = false;
 }
 

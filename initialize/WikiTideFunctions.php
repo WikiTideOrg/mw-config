@@ -60,6 +60,9 @@ class WikiTideFunctions {
 	public const MEDIAWIKI_VERSIONS = [
 		'alpha' => '1.42',
 		'beta' => '1.41',
+		// 'legacy' => '',
+		// 'legacy-lts' => '',
+		'lts' => '1.39',
 		'stable' => '1.40',
 	];
 
@@ -96,16 +99,19 @@ class WikiTideFunctions {
 	public static function getLocalDatabases(): ?array {
 		global $wgLocalDatabases;
 
+		static $wikiFarm = null;
 		static $databases = null;
 
 		self::$currentDatabase ??= self::getCurrentDatabase();
 
+		$wikiFarm ??= self::getWikiFarm();
+
 		// We need the CLI to be able to access 'deleted' wikis
 		if ( PHP_SAPI === 'cli' ) {
-			$databases ??= array_merge( self::readDbListFile( 'databases' ), self::readDbListFile( 'deleted' ) );
+			$databases ??= array_merge( self::readDbListFile( 'databases-' . $wikiFarm ), self::readDbListFile( 'deleted-' . $wikiFarm ) );
 		}
 
-		$databases ??= self::readDbListFile( 'databases' );
+		$databases ??= self::readDbListFile( 'databases-' . $wikiFarm );
 
 		$wgLocalDatabases = $databases;
 		return $databases;
@@ -233,13 +239,13 @@ class WikiTideFunctions {
 
 		self::$currentDatabase ??= self::getCurrentDatabase();
 
-		$databases = self::readDbListFile( 'databases', false, $database );
+		$wikiFarm ??= self::getWikiFarm();
+		$databases = self::readDbListFile( 'databases-' . $wikiFarm, false, $database );
 
 		if ( $deleted && $databases ) {
-			$databases += self::readDbListFile( 'deleted', false, $database );
+			$databases += self::readDbListFile( 'deleted-' . $wikiFarm, false, $database );
 		}
 
-		$wikiFarm ??= self::getWikiFarm();
 		if ( $database !== null ) {
 			if ( is_string( $database ) && $database !== 'default' ) {
 				foreach ( array_flip( self::SUFFIXES ) as $suffix ) {
@@ -278,7 +284,7 @@ class WikiTideFunctions {
 		$hostname = $_SERVER['HTTP_HOST'] ?? 'undefined';
 
 		static $database = null;
-		$database ??= self::readDbListFile( 'databases', true, 'https://' . $hostname, true );
+		$database ??= self::readDbListFile( 'databases-wikitide', true, 'https://' . $hostname, true );
 
 		if ( $database ) {
 			return $database;
@@ -315,8 +321,8 @@ class WikiTideFunctions {
 		static $allDatabases = null;
 		static $deletedDatabases = null;
 
-		$allDatabases ??= self::readDbListFile( 'databases', false );
-		$deletedDatabases ??= self::readDbListFile( 'deleted', false );
+		$allDatabases ??= self::readDbListFile( 'databases-' . self::LISTS[self::getWikiFarm()], false );
+		$deletedDatabases ??= self::readDbListFile( 'deleted-' . self::LISTS[self::getWikiFarm()], false );
 
 		$databases = array_merge( $allDatabases, $deletedDatabases );
 
@@ -355,8 +361,8 @@ class WikiTideFunctions {
 		static $allDatabases = null;
 		static $deletedDatabases = null;
 
-		$allDatabases ??= self::readDbListFile( 'databases', false );
-		$deletedDatabases ??= self::readDbListFile( 'deleted', false );
+		$allDatabases ??= self::readDbListFile( 'databases-' . self::LISTS[self::getWikiFarm()], false );
+		$deletedDatabases ??= self::readDbListFile( 'deleted-' . self::LISTS[self::getWikiFarm()], false );
 
 		$databases = array_merge( $allDatabases, $deletedDatabases );
 
@@ -394,7 +400,7 @@ class WikiTideFunctions {
 		}
 
 		if ( $database ) {
-			$mwVersion = self::readDbListFile( 'databases', false, $database )['v'] ?? null;
+			$mwVersion = self::readDbListFile( 'databases-' . self::LISTS[self::getWikiFarm()], false, $database )['v'] ?? null;
 			return $mwVersion ?? self::MEDIAWIKI_VERSIONS[self::getDefaultMediaWikiVersion()];
 		}
 
@@ -408,7 +414,7 @@ class WikiTideFunctions {
 		static $version = null;
 
 		self::$currentDatabase ??= self::getCurrentDatabase();
-		$version ??= self::readDbListFile( 'databases', false, self::$currentDatabase )['v'] ?? null;
+		$version ??= self::readDbListFile( 'databases-' . self::LISTS[self::getWikiFarm()], false, self::$currentDatabase )['v'] ?? null;
 
 		return $version ?? self::MEDIAWIKI_VERSIONS[self::getDefaultMediaWikiVersion()];
 	}
@@ -623,10 +629,13 @@ class WikiTideFunctions {
 
 		// Assign states
 		$settings['cwPrivate']['default'] = (bool)$cacheArray['states']['private'];
-		$settings['cwClosed']['default'] = (bool)$cacheArray['states']['closed'];
-		$settings['cwLocked']['default'] = (bool)$cacheArray['states']['locked'] ?? false;
-		$settings['cwInactive']['default'] = ( $cacheArray['states']['inactive'] === 'exempt' ) ? 'exempt' : (bool)$cacheArray['states']['inactive'];
-		$settings['cwExperimental']['default'] = (bool)( $cacheArray['states']['experimental'] ?? false );
+
+		if ( self::getWikiFarm() === 'wikitide' ) {
+			$settings['cwClosed']['default'] = (bool)$cacheArray['states']['closed'];
+			$settings['cwLocked']['default'] = (bool)$cacheArray['states']['locked'] ?? false;
+			$settings['cwInactive']['default'] = ( $cacheArray['states']['inactive'] === 'exempt' ) ? 'exempt' : (bool)$cacheArray['states']['inactive'];
+			$settings['cwExperimental']['default'] = (bool)( $cacheArray['states']['experimental'] ?? false );
+		}
 
 		// Assign settings
 		if ( isset( $cacheArray['settings'] ) ) {
@@ -966,6 +975,22 @@ class WikiTideFunctions {
 	 */
 	public static function onGenerateDatabaseLists( array &$databaseLists ) {
 		$databaseLists = [
+			'active-wikitide' => [
+				'combi' => self::getActiveList(
+					self::GLOBAL_DATABASE['wikitide']
+				),
+			],
+			'databases-wikitide' => [
+				'combi' => self::getCombiList(
+					self::GLOBAL_DATABASE['wikitide']
+				),
+			],
+			'deleted-wikitide' => [
+				'deleted' => 'databases',
+				'databases' => self::getDeletedList(
+					self::GLOBAL_DATABASE['wikitide']
+				),
+			],
 			'active' => [
 				'combi' => self::getActiveList(
 					self::GLOBAL_DATABASE['wikitide']
@@ -985,6 +1010,15 @@ class WikiTideFunctions {
 		];
 
 		foreach ( self::MEDIAWIKI_VERSIONS as $name => $version ) {
+			$databaseLists += [
+				$name . '-wikis-wikitide' => [
+					'combi' => self::getCombiList(
+						self::GLOBAL_DATABASE['wikitide'],
+						$version
+					),
+				],
+			];
+
 			$databaseLists += [
 				$name . '-wikis' => [
 					'combi' => self::getCombiList(

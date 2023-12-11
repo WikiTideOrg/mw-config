@@ -649,11 +649,11 @@ $wgPoolCounterConf = [
 ];
 
 $wgPoolCountClientConf = [
-	// jobchron1
-	'servers' => [ '10.0.0.105:7531' ],
+	// jobchron21
+	'servers' => [ '10.0.2.7:7531' ],
 	'timeout' => 0.5,
 	'connect_timeout' => 0.01,
 ];
 
 // Mathoid
-$wgMathMathMLUrl = 'http://10.0.0.115:10044/';
+$wgMathMathMLUrl = 'http://10.0.2.18:10044/';

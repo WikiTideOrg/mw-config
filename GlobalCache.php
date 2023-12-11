@@ -53,6 +53,28 @@ $wgObjectCaches['mysql-multiwrite'] = [
 	'reportDupes' => false
 ];
 
+$wgObjectCaches['db-mainstash'] = [
+	'class' => SqlBagOStuff::class,
+	'server' => [
+		'type'     => 'mysql',
+		'host'     => $wmgDBHostname,
+		'dbname'   => 'mainstash',
+		'user'     => $wgDBuser,
+		'password' => $wgDBpassword,
+		'ssl'      => false,
+		'flags'    => 0,
+	],
+	'dbDomain' => 'mainstash',
+	'globalKeyLbDomain' => 'mainstash',
+	'tableName' => 'objectstash',
+	'multiPrimaryMode' => false,
+	'purgePeriod' => 100,
+	'purgeLimit' => 1000,
+	'reportDupes' => false
+];
+
+$wgMainStash = 'db-mainstash';
+
 $wgStatsCacheType = 'memcached';
 $wgMicroStashType = 'memcached';
 
@@ -67,7 +89,7 @@ $wgObjectCaches['redis-session'] = [
 $wgSessionCacheType = 'redis-session';
 
 // Same as $wgMainStash
-$wgMWOAuthSessionCacheType = 'db-replicated';
+$wgMWOAuthSessionCacheType = 'db-mainstash';
 
 $wgMainCacheType = 'memcached';
 $wgMessageCacheType = 'memcached';

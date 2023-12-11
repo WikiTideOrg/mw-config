@@ -105,10 +105,14 @@ $wgDLPMaxCacheTime = 86400 * 7;
 $wgDLPQueryCacheTime = 120;
 $wgDplSettings['queryCacheTime'] = 120;
 
+$wgSearchSuggestCacheExpiry = 10800;
+
 $wgEnableSidebarCache = true;
 
 $wgUseLocalMessageCache = true;
 $wgInvalidateCacheOnLocalSettingsChange = false;
+
+$wgResourceLoaderUseObjectCacheForDeps = true;
 
 $wgJobTypeConf['default'] = [
 	'class' => JobQueueRedis::class,

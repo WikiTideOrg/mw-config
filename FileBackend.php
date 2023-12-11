@@ -27,6 +27,9 @@ $wgLockManagers[] = [
 		// jobchron21
 		'rdb1' => '10.0.2.7:6379',
 	],
+	'srvsByBucket' => [
+		0 => [ 'rdb1' ]
+	],
 	'redisConfig' => [
 		'connectTimeout' => 2,
 		'readTimeout' => 2,

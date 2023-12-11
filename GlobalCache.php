@@ -50,27 +50,29 @@ $wgObjectCaches['mysql-multiwrite'] = [
 	'reportDupes' => false
 ];
 
-if ( $wi->wikifarm === 'wikitide' ) {
-	$wgObjectCaches['redis-session'] = [
-		'class' => RedisBagOStuff::class,
-		'servers' => [ $wmgRedisHostname ],
-		'password' => $wmgRedisPassword,
-		'loggroup' => 'redis',
-		'reportDupes' => false,
-	];
+$wgStatsCacheType = 'mcrouter';
+$wgMicroStashType = 'mcrouter';
 
-	$wgSessionCacheType = 'redis-session';
-} else {
-	$wgSessionCacheType = 'mcrouter';
+$wgObjectCaches['redis-session'] = [
+	'class' => RedisBagOStuff::class,
+	'servers' => [ $wmgRedisHostname ],
+	'password' => $wmgRedisPassword,
+	'loggroup' => 'redis',
+	'reportDupes' => false,
+];
 
-	// Same as $wgMainStash
-	$wgMWOAuthSessionCacheType = 'db-replicated';
-}
+$wgSessionCacheType = 'redis-session';
+
+// Same as $wgMainStash
+$wgMWOAuthSessionCacheType = 'db-replicated';
 
 $wgMainCacheType = 'mcrouter';
 $wgMessageCacheType = 'mcrouter';
 
 $wgParserCacheType = 'mysql-multiwrite';
+
+$wgChronologyProtectorStash = 'mcrouter';
+
 $wgParsoidCacheConfig = [
 	'StashType' => null,
 	'StashDuration' => 24 * 60 * 60,
@@ -83,8 +85,10 @@ $wgParsoidCacheConfig = [
 
 $wgLanguageConverterCacheType = CACHE_ACCEL;
 
-// 5 days
-$wgParserCacheExpireTime = 86400 * 5;
+$wgQueryCacheLimit = 5000;
+
+// 7 days
+$wgParserCacheExpireTime = 86400 * 7;
 
 // 3 days
 $wgRevisionCacheExpiry = 86400 * 3;
@@ -92,13 +96,20 @@ $wgRevisionCacheExpiry = 86400 * 3;
 // 1 day
 $wgObjectCacheSessionExpiry = 86400;
 
+// 7 days
+$wgDLPMaxCacheTime = 86400 * 7;
+
 $wgDLPQueryCacheTime = 120;
 $wgDplSettings['queryCacheTime'] = 120;
+
+$wgSearchSuggestCacheExpiry = 10800;
 
 $wgEnableSidebarCache = true;
 
 $wgUseLocalMessageCache = true;
 $wgInvalidateCacheOnLocalSettingsChange = false;
+
+$wgResourceLoaderUseObjectCacheForDeps = true;
 
 $wgJobTypeConf['default'] = [
 	'class' => JobQueueRedis::class,
@@ -108,7 +119,6 @@ $wgJobTypeConf['default'] = [
 		'password' => $wmgRedisPassword,
 		'compression' => 'gzip',
 	],
-	'claimTTL' => 3600,
 	'daemonized' => true,
 ];
 

@@ -53,27 +53,29 @@ $wgObjectCaches['mysql-multiwrite'] = [
 	'reportDupes' => false
 ];
 
-if ( $wi->wikifarm === 'wikitide' ) {
-	$wgObjectCaches['redis-session'] = [
-		'class' => RedisBagOStuff::class,
-		'servers' => [ $wmgRedisHostname ],
-		'password' => $wmgRedisPassword,
-		'loggroup' => 'redis',
-		'reportDupes' => false,
-	];
+$wgStatsCacheType = 'memcached';
+$wgMicroStashType = 'memcached';
 
-	$wgSessionCacheType = 'redis-session';
-} else {
-	$wgSessionCacheType = 'memcached';
+$wgObjectCaches['redis-session'] = [
+	'class' => RedisBagOStuff::class,
+	'servers' => [ $wmgRedisHostname ],
+	'password' => $wmgRedisPassword,
+	'loggroup' => 'redis',
+	'reportDupes' => false,
+];
 
-	// Same as $wgMainStash
-	$wgMWOAuthSessionCacheType = 'db-replicated';
-}
+$wgSessionCacheType = 'redis-session';
+
+// Same as $wgMainStash
+$wgMWOAuthSessionCacheType = 'db-replicated';
 
 $wgMainCacheType = 'memcached';
 $wgMessageCacheType = 'memcached';
 
 $wgParserCacheType = 'mysql-multiwrite';
+
+$wgChronologyProtectorStash = 'memcached';
+
 $wgParsoidCacheConfig = [
 	'StashType' => null,
 	'StashDuration' => 24 * 60 * 60,
@@ -86,8 +88,10 @@ $wgParsoidCacheConfig = [
 
 $wgLanguageConverterCacheType = CACHE_ACCEL;
 
-// 5 days
-$wgParserCacheExpireTime = 86400 * 5;
+$wgQueryCacheLimit = 5000;
+
+// 7 days
+$wgParserCacheExpireTime = 86400 * 7;
 
 // 3 days
 $wgRevisionCacheExpiry = 86400 * 3;

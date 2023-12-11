@@ -95,6 +95,9 @@ $wgRevisionCacheExpiry = 86400 * 3;
 // 1 day
 $wgObjectCacheSessionExpiry = 86400;
 
+// 7 days
+$wgDLPMaxCacheTime = 86400 * 7;
+
 $wgDLPQueryCacheTime = 120;
 $wgDplSettings['queryCacheTime'] = 120;
 

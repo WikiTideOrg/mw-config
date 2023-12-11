@@ -387,7 +387,7 @@ class WikiTideFunctions {
 	 * @return string
 	 */
 	public static function getDefaultMediaWikiVersion(): string {
-		return ( php_uname( 'n' ) === 'test1.wikitide.net' && isset( self::MEDIAWIKI_VERSIONS['beta'] ) ) ? 'beta' : 'stable';
+		return ( php_uname( 'n' ) === 'test21.wikitide.net' && isset( self::MEDIAWIKI_VERSIONS['beta'] ) ) ? 'beta' : 'stable';
 	}
 
 	/**

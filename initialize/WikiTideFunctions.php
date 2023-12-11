@@ -60,9 +60,6 @@ class WikiTideFunctions {
 	public const MEDIAWIKI_VERSIONS = [
 		'alpha' => '1.42',
 		'beta' => '1.41',
-		// 'legacy' => '',
-		// 'legacy-lts' => '',
-		'lts' => '1.39',
 		'stable' => '1.40',
 	];
 
@@ -969,22 +966,6 @@ class WikiTideFunctions {
 	 */
 	public static function onGenerateDatabaseLists( array &$databaseLists ) {
 		$databaseLists = [
-			'active-wikitide' => [
-				'combi' => self::getActiveList(
-					self::GLOBAL_DATABASE['wikitide']
-				),
-			],
-			'databases-wikitide' => [
-				'combi' => self::getCombiList(
-					self::GLOBAL_DATABASE['wikitide']
-				),
-			],
-			'deleted-wikitide' => [
-				'deleted' => 'databases',
-				'databases' => self::getDeletedList(
-					self::GLOBAL_DATABASE['wikitide']
-				),
-			],
 			'active' => [
 				'combi' => self::getActiveList(
 					self::GLOBAL_DATABASE['wikitide']
@@ -1004,15 +985,6 @@ class WikiTideFunctions {
 		];
 
 		foreach ( self::MEDIAWIKI_VERSIONS as $name => $version ) {
-			$databaseLists += [
-				$name . '-wikis-wikitide' => [
-					'combi' => self::getCombiList(
-						self::GLOBAL_DATABASE['wikitide'],
-						$version
-					),
-				],
-			];
-
 			$databaseLists += [
 				$name . '-wikis' => [
 					'combi' => self::getCombiList(

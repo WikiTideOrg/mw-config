@@ -96,13 +96,11 @@ $wgParserCacheType = 'mysql-multiwrite';
 $wgChronologyProtectorStash = 'mcrouter';
 
 $wgParsoidCacheConfig = [
+	// use the same as main stash
 	'StashType' => null,
 	'StashDuration' => 24 * 60 * 60,
 	'CacheThresholdTime' => 0.0,
-	// This created over 50,000 parsoidCachePrewarm jobs on a single wiki,
-	// and creates jobs faster than the queues can run them.
-	// Do not enable yet.
-	'WarmParsoidParserCache' => false,
+	'WarmParsoidParserCache' => true,
 ];
 
 $wgLanguageConverterCacheType = CACHE_ACCEL;
@@ -112,8 +110,8 @@ $wgQueryCacheLimit = 5000;
 // 7 days
 $wgParserCacheExpireTime = 86400 * 7;
 
-// 3 days
-$wgRevisionCacheExpiry = 86400 * 3;
+// 7 days
+$wgRevisionCacheExpiry = 86400 * 7;
 
 // 1 day
 $wgObjectCacheSessionExpiry = 86400;
@@ -133,6 +131,8 @@ $wgInvalidateCacheOnLocalSettingsChange = false;
 
 $wgResourceLoaderUseObjectCacheForDeps = true;
 
+$wgCdnMatchParameterOrder = false;
+
 $wgJobTypeConf['default'] = [
 	'class' => JobQueueRedis::class,
 	'redisServer' => $wmgRedisHostname,
@@ -147,4 +147,10 @@ $wgJobTypeConf['default'] = [
 if ( PHP_SAPI === 'cli' ) {
 	// APC not available in CLI mode
 	$wgLanguageConverterCacheType = CACHE_NONE;
+}
+
+if ( $wgDBname === 'metawiki' ) {
+	$wgUseFileCache = true;
+	$wgUseGzip = true;
+	$wgFileCacheDirectory = '/srv/mediawiki/cache/file/' . $wgDBname;
 }

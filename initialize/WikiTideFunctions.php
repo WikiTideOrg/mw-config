@@ -462,7 +462,7 @@ class WikiTideFunctions {
 	 * @return array
 	 */
 	public static function getConfigGlobals(): array {
-		global $wgDBname, $wgConf;
+		global $wgDBname, $wgConf, $wgExtensionInfoMTime;
 
 		// Try configuration cache
 		$confCacheFileName = "config-$wgDBname.json";
@@ -482,6 +482,8 @@ class WikiTideFunctions {
 			// When ManageWiki is changed
 			@filemtime( self::CACHE_DIRECTORY . '/' . $wgDBname . '.json' )
 		);
+
+		$wgExtensionInfoMTime = $confActualMtime;
 
 		static $globals = null;
 		$globals ??= self::readFromCache(

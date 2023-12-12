@@ -44,3 +44,17 @@ $wgMaxUserDBWriteDuration = 6;
 $wgMaxExecutionTimeForExpensiveQueries = 30000;
 
 $wgMiserMode = true;
+
+if ( $cwClosed ) {
+	// Disable all query pages on closed wikis
+	$wgDisableQueryPages = true;
+}
+
+$wgDisableQueryPageUpdate = [
+	'Ancientpages' => 'half-monthly',
+	'Deadendpages' => 'half-monthly',
+	'Fewestrevisions' => 'half-monthly',
+	'Mostlinked' => 'half-monthly',
+	'Mostrevisions' => 'half-monthly',
+	'Wantedpages' => 'half-monthly',
+];

@@ -99,6 +99,7 @@ $wgParserCacheType = 'mysql-multiwrite';
 $wgChronologyProtectorStash = 'memcached';
 
 $wgParsoidCacheConfig = [
+	// use the same as main stash
 	'StashType' => null,
 	'StashDuration' => 24 * 60 * 60,
 	'CacheThresholdTime' => 0.0,

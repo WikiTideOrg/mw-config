@@ -150,8 +150,8 @@ if ( PHP_SAPI === 'cli' ) {
 	$wgLanguageConverterCacheType = CACHE_NONE;
 }
 
-if ( $wgDBname === 'metawiki' ) {
+/* if ( $wgDBname === 'metawiki' ) {
 	$wgUseFileCache = true;
 	$wgUseGzip = true;
 	$wgFileCacheDirectory = '/srv/mediawiki/cache/file/' . $wgDBname;
-}
+} */

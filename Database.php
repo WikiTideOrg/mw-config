@@ -42,3 +42,5 @@ $wgMaxUserDBWriteDuration = 6;
 
 // Max execution time for expensive queries of special pages (in milliseconds)
 $wgMaxExecutionTimeForExpensiveQueries = 30000;
+
+$wgMiserMode = true;

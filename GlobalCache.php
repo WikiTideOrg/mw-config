@@ -132,6 +132,8 @@ $wgInvalidateCacheOnLocalSettingsChange = false;
 
 $wgResourceLoaderUseObjectCacheForDeps = true;
 
+$wgCdnMatchParameterOrder = false;
+
 $wgJobTypeConf['default'] = [
 	'class' => JobQueueRedis::class,
 	'redisServer' => $wmgRedisHostname,

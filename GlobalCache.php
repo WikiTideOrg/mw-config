@@ -149,3 +149,9 @@ if ( PHP_SAPI === 'cli' ) {
 	// APC not available in CLI mode
 	$wgLanguageConverterCacheType = CACHE_NONE;
 }
+
+if ( $wgDBname === 'metawiki' ) {
+	$wgUseFileCache = true;
+	$wgUseGzip = true;
+	$wgFileCacheDirectory = '/srv/mediawiki/cache/file/' . $wgDBname;
+}

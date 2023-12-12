@@ -11,9 +11,7 @@ $wgObjectCaches['memcached'] = [
 	'serializer'            => 'php',
 	'persistent'            => false,
 	'servers'               => [ '127.0.0.1:11212' ],
-	// Effectively disable the failure limit (0 is invalid)
 	'server_failure_limit'  => 1e9,
-	// Effectively disable the retry timeout
 	'retry_timeout'         => -1,
 	'loggroup'              => 'memcached',
 	// 250ms, in microseconds
@@ -113,8 +111,8 @@ $wgQueryCacheLimit = 5000;
 // 7 days
 $wgParserCacheExpireTime = 86400 * 7;
 
-// 3 days
-$wgRevisionCacheExpiry = 86400 * 3;
+// 7 days
+$wgRevisionCacheExpiry = 86400 * 7;
 
 // 1 day
 $wgObjectCacheSessionExpiry = 86400;

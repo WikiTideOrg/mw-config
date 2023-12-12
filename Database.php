@@ -5,10 +5,10 @@ $wgLBFactoryConf = [
 	'sectionsByDB' => $wi->wikiDBClusters,
 	'sectionLoads' => [
 		'DEFAULT' => [
-			'db21' => 1,
+			'db21' => 0,
 		],
 		'c1' => [
-			'db21' => 1,
+			'db21' => 0,
 		],
 	],
 	'serverTemplate' => [
@@ -28,7 +28,7 @@ $wgLBFactoryConf = [
 	'externalLoads' => [
 		'echo' => [
 			/** where the metawiki database is located */
-			'db21' => 1,
+			'db21' => 0,
 		],
 	],
 	'readOnlyBySection' => [
@@ -37,7 +37,7 @@ $wgLBFactoryConf = [
 	],
 ];
 
-// Disallow web request database transactions that are slower than 3 seconds
+// Disallow web request database transactions that are slower than 6 seconds
 $wgMaxUserDBWriteDuration = 6;
 
 // Max execution time for expensive queries of special pages (in milliseconds)

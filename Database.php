@@ -50,11 +50,11 @@ if ( $cwClosed ) {
 	$wgDisableQueryPages = true;
 }
 
-$wgDisableQueryPageUpdate = [
+/* $wgDisableQueryPageUpdate = [
 	'Ancientpages' => 'half-monthly',
 	'Deadendpages' => 'half-monthly',
 	'Fewestrevisions' => 'half-monthly',
 	'Mostlinked' => 'half-monthly',
 	'Mostrevisions' => 'half-monthly',
 	'Wantedpages' => 'half-monthly',
-];
+]; */

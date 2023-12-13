@@ -5,12 +5,11 @@ $wgMemCachedPersistent = false;
 
 // $beta = preg_match( '/^(.*)\.nexttide\.org$/', $wi->server );
 
-// mem21
-$wgObjectCaches['memcached'] = [
+$wgObjectCaches['mcrouter'] = [
 	'class'                 => MemcachedPeclBagOStuff::class,
 	'serializer'            => 'php',
 	'persistent'            => false,
-	'servers'               => [ '127.0.0.1:11212' ],
+	'servers'               => [ '127.0.0.1:11213' ],
 	'server_failure_limit'  => 1e9,
 	'retry_timeout'         => -1,
 	'loggroup'              => 'memcached',
@@ -27,7 +26,7 @@ $wgObjectCaches['mysql-multiwrite'] = [
 	'caches' => [
 		0 => [
 			'factory' => [ 'ObjectCache', 'getInstance' ],
-			'args' => [ 'memcached' ]
+			'args' => [ 'mcrouter' ]
 		],
 		1 => [
 			'class' => SqlBagOStuff::class,
@@ -73,8 +72,8 @@ $wgObjectCaches['db-mainstash'] = [
 
 $wgMainStash = 'db-mainstash';
 
-$wgStatsCacheType = 'memcached';
-$wgMicroStashType = 'memcached';
+$wgStatsCacheType = 'mcrouter';
+$wgMicroStashType = 'mcrouter';
 
 $wgObjectCaches['redis-session'] = [
 	'class' => RedisBagOStuff::class,
@@ -89,12 +88,12 @@ $wgSessionCacheType = 'redis-session';
 // Same as $wgMainStash
 $wgMWOAuthSessionCacheType = 'db-mainstash';
 
-$wgMainCacheType = 'memcached';
-$wgMessageCacheType = 'memcached';
+$wgMainCacheType = 'mcrouter';
+$wgMessageCacheType = 'mcrouter';
 
 $wgParserCacheType = 'mysql-multiwrite';
 
-$wgChronologyProtectorStash = 'memcached';
+$wgChronologyProtectorStash = 'mcrouter';
 
 $wgParsoidCacheConfig = [
 	// use the same as main stash

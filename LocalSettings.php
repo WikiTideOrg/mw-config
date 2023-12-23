@@ -13,7 +13,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 // Configure PHP request timeouts.
 if ( PHP_SAPI === 'cli' ) {
 	$wgRequestTimeLimit = 0;
-} elseif ( in_array( $_SERVER['HTTP_HOST'] ?? '', [ 'jobrunner21.wikitide.net' ] ) ) {
+} elseif ( in_array( $_SERVER['HTTP_HOST'] ?? '', [ 'jobrunner1.wikitide.net' ] ) ) {
 	$wgRequestTimeLimit = 1200;
 } elseif ( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
 	$wgRequestTimeLimit = 200;
@@ -53,8 +53,8 @@ require_once '/srv/mediawiki/config/PrivateSettings.php';
 require_once '/srv/mediawiki/config/GlobalExtensions.php';
 
 $wmgUploadHostname = 'static.wikitide.net';
-$wmgDBHostname = 'db21.wikitide.net';
-$wmgRedisHostname = 'jobchron21.wikitide.net';
+$wmgDBHostname = 'db1.wikitide.net';
+$wmgRedisHostname = 'jobchron1.wikitide.net';
 
 $wgConf->settings += [
 	// invalidates user sessions - do not change unless it is an emergency.
@@ -4709,19 +4709,19 @@ $wgConf->settings += [
 	// Control MediaWiki Deprecation Warnings
 	'wgDeprecationReleaseLimit' => [
 		'default' => '1.34',
-		'test21wiki' => false,
+		'test1wiki' => false,
 	],
 ];
 
 // Start settings requiring external dependency checks/functions
 
-if ( wfHostname() === 'test21.wikitide.net' ) {
+if ( wfHostname() === 'test1.wikitide.net' ) {
 	// Prevent cache (better be safe than sorry)
 	$wgConf->settings['wgUseCdn']['default'] = false;
 }
 
-// CookieWarning exempt ElectronPdfService (services21)
-if ( in_array( $_SERVER['REMOTE_ADDR'] ?? '', [ '10.0.2.18' ] ) ) {
+// CookieWarning exempt ElectronPdfService (services1)
+if ( in_array( $_SERVER['REMOTE_ADDR'] ?? '', [ '10.0.0.115' ] ) ) {
 	$wgConf->settings['wgCookieWarningEnabled']['default'] = false;
 }
 

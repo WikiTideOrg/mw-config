@@ -163,7 +163,7 @@ if ( $cwClosed ) {
 if ( !$cwPrivate ) {
 	$wgRCFeeds['irc'] = [
 		'formatter' => WikiTideIRCRCFeedFormatter::class,
-		'uri' => 'udp://bots21.wikitide.net:5070',
+		'uri' => 'udp://bots1.wikitide.net:5070',
 		'add_interwiki_prefix' => false,
 		'omit_bots' => true,
 	];

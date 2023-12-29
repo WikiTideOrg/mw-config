@@ -2055,7 +2055,7 @@ $wgConf->settings += [
 	],
 	'wgSMTP' => [
 		'default' => [
-			'host' => 'smtp-relay.google.com',
+			'host' => 'smtp-relay.gmail.com',
 			'port' => 587,
 			'IDHost' => 'wikitide.org',
 			'auth' => true,

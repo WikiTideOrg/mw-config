@@ -2055,11 +2055,11 @@ $wgConf->settings += [
 	],
 	'wgSMTP' => [
 		'default' => [
-			'host' => 'mail.wikitide.net',
+			'host' => 'smtp-relay.google.com',
 			'port' => 587,
-			'IDHost' => 'wikitide.net',
+			'IDHost' => 'wikitide.org',
 			'auth' => true,
-			'username' => 'noreply',
+			'username' => 'noreply@wikitide.org',
 			'password' => $wmgSMTPPassword,
 		],
 	],

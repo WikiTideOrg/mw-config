@@ -2272,7 +2272,6 @@ $wgConf->settings += [
 			],
 			'user' => [
 				'request-import-dump' => true,
-				'requestwiki' => true,
 			],
 			'wiki-request-reviewer' => [
 				'createwiki' => true,
@@ -2281,7 +2280,6 @@ $wgConf->settings += [
 		'+testwiki' => [
 			'sysop' => [
 				'createwiki' => true,
-				'requestwiki' => true,
 			],
 		],
 		'+wikitide' => [

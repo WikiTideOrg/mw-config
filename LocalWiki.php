@@ -26,6 +26,8 @@ switch ( $wi->dbname ) {
 			'RemovePII',
 			'SecurePoll',
 		] );
+
+		$wgSpecialPages['RequestWiki'] = DisabledSpecialPage::getCallback( 'RequestWiki', 'requestwiki-disabled' );
 		break;
 	case 'picrosswiki':
 		$wgLogos = [

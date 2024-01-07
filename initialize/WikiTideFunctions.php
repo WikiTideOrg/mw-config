@@ -769,12 +769,9 @@ class WikiTideFunctions {
 			array_diff( $allExtensions, static::$disabledExtensions )
 		);
 
-		return array_keys( array_intersect_key(
-			$allExtensions,
-			array_intersect(
-				array_flip( $cacheArray['extensions'] ?? [] ),
-				array_flip( $enabledExtensions )
-			)
+		return array_values( array_intersect(
+			$cacheArray['extensions'] ?? [],
+			$enabledExtensions
 		) );
 	}
 

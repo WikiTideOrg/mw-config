@@ -2055,12 +2055,10 @@ $wgConf->settings += [
 	],
 	'wgSMTP' => [
 		'default' => [
-			'host' => 'smtp-relay.gmail.com',
-			'port' => 587,
+			'host' => 'ssl://smtp-relay.gmail.com',
+			'port' => 465,
 			'IDHost' => 'wikitide.org',
-			'auth' => true,
-			'username' => 'noreply@wikitide.org',
-			'password' => $wmgSMTPPassword,
+			'auth' => false,
 		],
 	],
 	'wgEnotifWatchlist' => [

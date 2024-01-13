@@ -1,7 +1,7 @@
 <?php
 
 use MediaWiki\MediaWikiServices;
-use WikiForge\CreateWiki\RemoteWiki;
+use Miraheze\CreateWiki\RemoteWiki;
 use Wikimedia\Rdbms\DBConnRef;
 
 class WikiTideFunctions {

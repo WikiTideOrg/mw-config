@@ -28,6 +28,7 @@ switch ( $wi->dbname ) {
 		] );
 
 		$wgSpecialPages['RequestWiki'] = DisabledSpecialPage::getCallback( 'RequestWiki', 'requestwiki-disabled' );
+		$wgSpecialPages['RequestImportDump'] = DisabledSpecialPage::getCallback( 'RequestImportDump', 'requestimportdump-disabled' );
 		break;
 	case 'picrosswiki':
 		$wgLogos = [

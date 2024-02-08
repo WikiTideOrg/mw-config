@@ -27,7 +27,6 @@ wfLoadExtensions( [
 	'InterwikiDispatcher',
 	'LoginNotify',
 	'ManageWiki',
-	'MatomoAnalytics',
 	'NativeSvgHandler',
 	'Nuke',
 	'OATHAuth',

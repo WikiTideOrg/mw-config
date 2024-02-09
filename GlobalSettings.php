@@ -217,7 +217,7 @@ $wgDataDump = [
 		'useBackendTempStore' => true,
 		'generate' => [
 			'type' => 'mwscript',
-			'script' => "$IP/extensions/WikiTideMagic/maintenance/generateS3Backup.php",
+			'script' => "$IP/extensions/WikiTideMagic/maintenance/swiftDump.php",
 			'options' => [
 				'--filename',
 				'${filename}'

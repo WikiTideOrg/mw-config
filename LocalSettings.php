@@ -1057,6 +1057,7 @@ $wgConf->settings += [
 	],
 	'wgReadOnly' => [
 		'default' => false,
+		'polcompballwiki' => true,
 	],
 	'wgSharedTables' => [
 		'default' => [],

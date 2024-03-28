@@ -20,15 +20,10 @@ switch ( $wi->dbname ) {
 		break;
 	case 'metawiki':
 		wfLoadExtensions( [
-			'GlobalWatchlist',
-			'ImportDump',
-			'IncidentReporting',
-			'RemovePII',
 			'SecurePoll',
 		] );
 
 		$wgSpecialPages['RequestWiki'] = DisabledSpecialPage::getCallback( 'RequestWiki', 'requestwiki-disabled' );
-		$wgSpecialPages['RequestImportDump'] = DisabledSpecialPage::getCallback( 'RequestImportDump', 'requestimportdump-disabled' );
 		break;
 	case 'picrosswiki':
 		$wgLogos = [

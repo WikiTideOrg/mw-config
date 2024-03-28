@@ -43,7 +43,7 @@ $wgMajorSiteNoticeID = 100;
 								<span class="oo-ui-indicatorElement-indicator oo-ui-indicatorElement-noIndicator"></span>
 							</a>
 						</span>
-            <span id="sitenotice-learnmore-button" class="oo-ui-widget oo-ui-widget-enabled oo-ui-buttonElement oo-ui-buttonElement-framed oo-ui-iconElement oo-ui-labelElement oo-ui-buttonWidget">
+						<span id="sitenotice-learnmore-button" class="oo-ui-widget oo-ui-widget-enabled oo-ui-buttonElement oo-ui-buttonElement-framed oo-ui-iconElement oo-ui-labelElement oo-ui-buttonWidget">
 							<a class="oo-ui-buttonElement-button" role="button" tabindex="0" href="https://meta.wikitide.org/wiki/WikiTide_Foundation/Merger_FAQ#Migration">
 								<span class="oo-ui-iconElement-icon oo-ui-icon-info"></span>
 								<span class="oo-ui-labelElement-label">Wiki migration FAQ</span>

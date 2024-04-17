@@ -1,3 +1,6 @@
+# ARCHIVED
+See [miraheze/mw-config](https://github.com/miraheze/mw-config)
+
 # WikiTide's MediaWiki Configuration
 
 ![Continuous integration](https://github.com/WikiTideOrg/mw-config/workflows/Continuous%20integration/badge.svg)
